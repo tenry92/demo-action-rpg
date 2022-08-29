@@ -29,18 +29,14 @@ namespace Tenry.DemoActionRpg {
     /// Direction in degrees.
     private float facingDirection = 0f;
 
-    public float MaxMoveSpeed {
-      get {
-        return this.moveSpeed;
-      }
-    }
+    private Weapon weapon;
+
+    public float MaxMoveSpeed => this.moveSpeed;
+
+    public bool IsAttacking { get; set; }
 
     /// Movement vector on the XZ-plane.
-    public Vector3 MovementDirection {
-      get {
-        return new Vector3(this.velocity.x, 0f, this.velocity.z);
-      }
-    }
+    public Vector3 MovementDirection => new Vector3(this.velocity.x, 0f, this.velocity.z);
 
     public Vector2 Movement {
       get {
@@ -52,17 +48,9 @@ namespace Tenry.DemoActionRpg {
       }
     }
 
-    public float MovementSpeed {
-      get {
-        return this.MovementDirection.magnitude;
-      }
-    }
+    public float MovementSpeed => this.MovementDirection.magnitude;
 
-    public float FallingSpeed {
-      get {
-        return -this.velocity.y;
-      }
-    }
+    public float FallingSpeed => -this.velocity.y;
 
     private void Awake() {
       this.respawnPosition = this.transform.position;
@@ -70,6 +58,7 @@ namespace Tenry.DemoActionRpg {
       Debug.Assert(this.model != null);
       Debug.Assert(this.characterController = this.GetComponent<CharacterController>());
       Debug.Assert(this.animator = this.GetComponentInChildren<Animator>());
+      Debug.Assert(this.weapon = this.GetComponentInChildren<Weapon>());
     }
 
     private void Update() {
@@ -87,6 +76,11 @@ namespace Tenry.DemoActionRpg {
         this.velocity.y = 0f;
       } else {
         this.velocity.y -= this.gravity * Time.deltaTime;
+      }
+
+      if (this.IsAttacking) {
+        this.velocity.x = 0f;
+        this.velocity.z = 0f;
       }
 
       this.characterController.Move(this.velocity * Time.deltaTime);
@@ -108,6 +102,25 @@ namespace Tenry.DemoActionRpg {
     public void Respawn() {
       this.transform.position = this.respawnPosition;
       this.velocity = Vector3.zero;
+    }
+
+    public void Attack() {
+      if (this.IsAttacking) {
+        Debug.Log("Player is already attacking");
+        return;
+      }
+
+      this.IsAttacking = true;
+      this.weapon.WeaponActive = true;
+      this.animator?.SetTrigger("MeleeAttack");
+
+      this.Invoke("OnAttackEnd", this.weapon.Cooldown);
+    }
+
+    private void OnAttackEnd() {
+      Debug.Log("End of attack");
+      this.weapon.WeaponActive = false;
+      this.IsAttacking = false;
     }
   }
 }

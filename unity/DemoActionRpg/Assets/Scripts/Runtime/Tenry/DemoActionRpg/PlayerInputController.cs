@@ -9,12 +9,16 @@ namespace Tenry.DemoActionRpg {
     #region Serialized Fields
     [SerializeField]
     private InputAction moveAction;
+
+    [SerializeField]
+    private InputAction attackAction;
     #endregion
 
     private PlayerController playerController;
 
     private void Awake() {
       Debug.Assert(this.moveAction != null);
+      Debug.Assert(this.attackAction != null);
       Debug.Assert(this.playerController = this.GetComponent<PlayerController>());
     }
 
@@ -22,12 +26,16 @@ namespace Tenry.DemoActionRpg {
       foreach (var action in this.GetAllActions()) {
         action?.Enable();
       }
+
+      this.attackAction.performed += this.OnAttack;
     }
 
     private void OnDisable() {
       foreach (var action in this.GetAllActions()) {
         action?.Disable();
       }
+
+      this.attackAction.performed -= this.OnAttack;
     }
 
     private void Update() {
@@ -42,6 +50,11 @@ namespace Tenry.DemoActionRpg {
 
     private IEnumerable<InputAction> GetAllActions() {
       yield return this.moveAction;
+      yield return this.attackAction;
+    }
+
+    private void OnAttack(InputAction.CallbackContext context) {
+      this.playerController.Attack();
     }
   }
 }

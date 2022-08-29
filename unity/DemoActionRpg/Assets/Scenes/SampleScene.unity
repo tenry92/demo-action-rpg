@@ -328,6 +328,23 @@ MonoBehaviour:
       m_Action: Move
       m_Flags: 0
     m_Flags: 0
+  attackAction:
+    m_Name: Attack
+    m_Type: 1
+    m_ExpectedControlType: Button
+    m_Id: 702bcf08-4dc5-4b06-8e5a-ffa008bd4eee
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: d8c4874b-ab37-477f-ad34-c627f259d4ca
+      m_Path: <Mouse>/leftButton
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Attack
+      m_Flags: 0
+    m_Flags: 0
 --- !u!1001 &159570721
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1262,6 +1279,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 547632400}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &547632408
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 547632401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 939482177ed751b43a366c3b6f5acadd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &571124474 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4548539680920072, guid: 6fc2010b5899cfd488a0ddf205679e2b,
