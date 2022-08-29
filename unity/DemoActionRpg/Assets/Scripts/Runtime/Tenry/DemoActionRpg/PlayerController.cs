@@ -1,7 +1,4 @@
-using System.Collections.Generic;
-
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 namespace Tenry.DemoActionRpg {
   [RequireComponent(typeof(CharacterController))]
@@ -19,9 +16,6 @@ namespace Tenry.DemoActionRpg {
 
     [SerializeField]
     private Transform model;
-
-    [SerializeField]
-    private InputAction moveAction;
     #endregion
 
     private CharacterController characterController;
@@ -30,13 +24,31 @@ namespace Tenry.DemoActionRpg {
 
     private Vector3 velocity;
 
+    private Vector3 respawnPosition;
+
     /// Direction in degrees.
     private float facingDirection = 0f;
+
+    public float MaxMoveSpeed {
+      get {
+        return this.moveSpeed;
+      }
+    }
 
     /// Movement vector on the XZ-plane.
     public Vector3 MovementDirection {
       get {
         return new Vector3(this.velocity.x, 0f, this.velocity.z);
+      }
+    }
+
+    public Vector2 Movement {
+      get {
+        return new Vector2(this.MovementDirection.x, this.MovementDirection.z);
+      }
+      set {
+        this.velocity.x = value.x;
+        this.velocity.z = value.y;
       }
     }
 
@@ -46,41 +58,34 @@ namespace Tenry.DemoActionRpg {
       }
     }
 
+    public float FallingSpeed {
+      get {
+        return -this.velocity.y;
+      }
+    }
+
     private void Awake() {
-      Debug.Assert(this.moveAction != null);
+      this.respawnPosition = this.transform.position;
+
       Debug.Assert(this.model != null);
       Debug.Assert(this.characterController = this.GetComponent<CharacterController>());
       Debug.Assert(this.animator = this.GetComponentInChildren<Animator>());
     }
 
-    private void OnEnable() {
-      foreach (var action in this.GetAllActions()) {
-        action?.Enable();
-      }
-    }
-
-    private void OnDisable() {
-      foreach (var action in this.GetAllActions()) {
-        action?.Disable();
-      }
-    }
-
     private void Update() {
       this.UpdateMovement();
       this.UpdateAnimation();
+
+      if (this.FallingSpeed > 50f) {
+        // we assume the player is falling endlessly, so do a respawn
+        this.Respawn();
+      }
     }
 
     private void UpdateMovement() {
-      var input = this.moveAction.ReadValue<Vector2>();
-
-      this.velocity.x = input.x * this.moveSpeed;
-      this.velocity.z = input.y * this.moveSpeed;
-
       if (this.characterController.isGrounded) {
-        Debug.Log("grounded");
         this.velocity.y = 0f;
       } else {
-        Debug.Log("not grounded");
         this.velocity.y -= this.gravity * Time.deltaTime;
       }
 
@@ -97,8 +102,12 @@ namespace Tenry.DemoActionRpg {
       this.animator?.SetFloat("MovementSpeed", this.MovementSpeed);
     }
 
-    private IEnumerable<InputAction> GetAllActions() {
-      yield return this.moveAction;
+    /// <summary>
+    /// Respawn at last checkpoint.
+    /// </summary>
+    public void Respawn() {
+      this.transform.position = this.respawnPosition;
+      this.velocity = Vector3.zero;
     }
   }
 }
