@@ -15,6 +15,9 @@ namespace Tenry.DemoActionRpg {
     private float rotationSpeed = 360f * 2f;
 
     [SerializeField]
+    private float gravity = 10f;
+
+    [SerializeField]
     private Transform model;
 
     [SerializeField]
@@ -25,10 +28,23 @@ namespace Tenry.DemoActionRpg {
 
     private Animator animator;
 
-    private float movementSpeed = 0f;
+    private Vector3 velocity;
 
     /// Direction in degrees.
     private float facingDirection = 0f;
+
+    /// Movement vector on the XZ-plane.
+    public Vector3 MovementDirection {
+      get {
+        return new Vector3(this.velocity.x, 0f, this.velocity.z);
+      }
+    }
+
+    public float MovementSpeed {
+      get {
+        return this.MovementDirection.magnitude;
+      }
+    }
 
     private void Awake() {
       Debug.Assert(this.moveAction != null);
@@ -57,19 +73,28 @@ namespace Tenry.DemoActionRpg {
     private void UpdateMovement() {
       var input = this.moveAction.ReadValue<Vector2>();
 
-      var moveVector = new Vector3(input.x, 0f, input.y) * this.moveSpeed;
-      this.characterController.Move(moveVector * Time.deltaTime);
-      this.movementSpeed = input.magnitude;
+      this.velocity.x = input.x * this.moveSpeed;
+      this.velocity.z = input.y * this.moveSpeed;
 
-      if (moveVector.magnitude > 0f) {
-        var targetRotation = Quaternion.LookRotation(moveVector, Vector3.up);
+      if (this.characterController.isGrounded) {
+        Debug.Log("grounded");
+        this.velocity.y = 0f;
+      } else {
+        Debug.Log("not grounded");
+        this.velocity.y -= this.gravity * Time.deltaTime;
+      }
+
+      this.characterController.Move(this.velocity * Time.deltaTime);
+
+      if (this.MovementSpeed > 0f) {
+        var targetRotation = Quaternion.LookRotation(this.MovementDirection, Vector3.up);
         this.model.transform.rotation = Quaternion.RotateTowards(this.model.transform.rotation, targetRotation, this.rotationSpeed * Time.deltaTime);
         this.facingDirection = Vector3.SignedAngle(Vector3.forward, this.model.transform.rotation * Vector3.forward, Vector3.up);
       }
     }
 
     private void UpdateAnimation() {
-      this.animator?.SetFloat("MovementSpeed", this.movementSpeed);
+      this.animator?.SetFloat("MovementSpeed", this.MovementSpeed);
     }
 
     private IEnumerable<InputAction> GetAllActions() {

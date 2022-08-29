@@ -165,6 +165,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 10
   rotationSpeed: 720
+  gravity: 10
   model: {fileID: 3784655599388619047}
   moveAction:
     m_Name: Move
