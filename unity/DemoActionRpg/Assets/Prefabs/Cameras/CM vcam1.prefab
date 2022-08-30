@@ -105,6 +105,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8588678655220123984}
   - component: {fileID: 8588678655220123987}
+  - component: {fileID: 115216782776575979}
+  - component: {fileID: 3036076795026742640}
   m_Layer: 0
   m_Name: CM vcam1
   m_TagString: Untagged
@@ -166,3 +168,47 @@ MonoBehaviour:
         m_Calls: []
   m_LegacyBlendHint: 0
   m_ComponentOwner: {fileID: 8588678654817648111}
+--- !u!114 &115216782776575979
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8588678655220123986}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f28f68dcccad9e642bdd53b0b004c90e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  orthoMin: 2
+  orthoMax: 10
+  zoomSpeed: 30
+--- !u!114 &3036076795026742640
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8588678655220123986}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15bc2b57b1fffb34cbd2741fceffea39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  zoomAction:
+    m_Name: Zoom
+    m_Type: 0
+    m_ExpectedControlType: Axis
+    m_Id: 9753c5ce-63f9-4b53-909b-d9b1e0ee1880
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 3bc5bf79-5c1c-42d5-bfed-1211429ba40c
+      m_Path: <Mouse>/scroll/y
+      m_Interactions: 
+      m_Processors: Normalize(min=-120,max=120)
+      m_Groups: 
+      m_Action: Zoom
+      m_Flags: 0
+    m_Flags: 0

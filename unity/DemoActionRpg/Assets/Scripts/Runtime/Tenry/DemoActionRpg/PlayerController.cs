@@ -118,7 +118,6 @@ namespace Tenry.DemoActionRpg {
     }
 
     private void OnAttackEnd() {
-      Debug.Log("End of attack");
       this.weapon.WeaponActive = false;
       this.IsAttacking = false;
     }
