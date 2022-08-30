@@ -316,9 +316,32 @@ MonoBehaviour:
   m_GameObject: {fileID: 28855971}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 939482177ed751b43a366c3b6f5acadd, type: 3}
+  m_Script: {fileID: 11500000, guid: 126f073fdeeb2764da52427da293d3d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 5
+  damageCooldown: 1
+  damageTextPrefab: {fileID: 8921454389798267681, guid: 47e4794c12f377845b65969cf139612e,
+    type: 3}
+  damageTextSpawnPoint: {fileID: 1361297610}
+--- !u!114 &28855976
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 28855971}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b63c0fd82c315fd4f87b1b0906358de7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &28855977 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8955322500898459853, guid: 28d0a30d6aed6fc4c8ca473413f70c24,
+    type: 3}
+  m_PrefabInstance: {fileID: 28855970}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &70669310
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2822,6 +2845,37 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bdf8e7438a7816543998181bd3067573, type: 3}
+--- !u!1 &1361297609
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1361297610}
+  m_Layer: 0
+  m_Name: DamageTextSpawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1361297610
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1361297609}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.6, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 28855977}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1390536391
 PrefabInstance:
   m_ObjectHideFlags: 0
