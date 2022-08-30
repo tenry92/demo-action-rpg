@@ -4,6 +4,11 @@ using UnityEngine;
 
 namespace Tenry.DemoActionRpg {
   public class EnemyBehavior : MonoBehaviour {
+    #region Serialized Fields
+    [SerializeField]
+    private GameObject perishEffectPrefab;
+    #endregion
+
     private Damageable damage;
 
     private Animator animator;
@@ -37,6 +42,10 @@ namespace Tenry.DemoActionRpg {
 
       await Task.Delay(500);
       Destroy(this.gameObject);
+
+      if (this.perishEffectPrefab != null) {
+        Instantiate(this.perishEffectPrefab, this.transform.position, Quaternion.identity);
+      }
     }
 
     private void OnDamage(int amount) {

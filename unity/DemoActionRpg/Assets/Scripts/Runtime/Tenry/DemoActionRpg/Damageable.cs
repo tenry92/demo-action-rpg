@@ -16,6 +16,9 @@ namespace Tenry.DemoActionRpg {
 
     [SerializeField]
     private Transform damageTextSpawnPoint;
+
+    [SerializeField]
+    private GameObject damageEffectPrefab;
     #endregion
 
     private int health;
@@ -94,6 +97,10 @@ namespace Tenry.DemoActionRpg {
       this.Health -= amount;
       this.SetCooldown();
       this.Damaged?.Invoke(amount);
+
+      if (this.damageEffectPrefab != null) {
+        Instantiate(this.damageEffectPrefab, damageTextSpawnPoint?.position ?? this.transform.position, Quaternion.identity);
+      }
     }
 
     private void SetCooldown() {
