@@ -45,7 +45,10 @@ namespace Tenry.DemoActionRpg {
     private void UpdateMovement() {
       var input = this.moveAction.ReadValue<Vector2>();
 
-      this.playerController.Movement = input * this.playerController.MaxMoveSpeed;
+      if (input.magnitude > 0f) {
+        var direction = -Vector2.SignedAngle(Vector2.right, input.normalized) + 90f;
+        this.playerController.Move(direction, input.magnitude);
+      }
     }
 
     private IEnumerable<InputAction> GetAllActions() {

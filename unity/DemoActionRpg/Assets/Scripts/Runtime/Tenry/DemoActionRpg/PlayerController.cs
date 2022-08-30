@@ -9,7 +9,10 @@ namespace Tenry.DemoActionRpg {
 
     /// Model rotation in degrees per second.
     [SerializeField]
-    private float rotationSpeed = 360f * 2f;
+    private float angularSpeed = 360f * 2f;
+
+    [SerializeField]
+    private float acceleration = 15f;
 
     [SerializeField]
     private float gravity = 10f;
@@ -22,35 +25,35 @@ namespace Tenry.DemoActionRpg {
 
     private Animator animator;
 
-    private Vector3 velocity;
+    /// Current direction in degrees.
+    private float direction = 0f;
+
+    private float speed = 0f;
+
+    private float verticalSpeed = 0f;
+
+    private float FallingSpeed {
+      get {
+        return -this.verticalSpeed;
+      }
+      set {
+        this.verticalSpeed = -value;
+      }
+    }
+
+    private bool IsFalling => this.FallingSpeed > 0f;
 
     private Vector3 respawnPosition;
 
-    /// Direction in degrees.
-    private float facingDirection = 0f;
-
     private Weapon weapon;
+
+    private bool didMove = false;
 
     public float MaxMoveSpeed => this.moveSpeed;
 
     public bool IsAttacking { get; set; }
 
-    /// Movement vector on the XZ-plane.
-    public Vector3 MovementDirection => new Vector3(this.velocity.x, 0f, this.velocity.z);
-
-    public Vector2 Movement {
-      get {
-        return new Vector2(this.MovementDirection.x, this.MovementDirection.z);
-      }
-      set {
-        this.velocity.x = value.x;
-        this.velocity.z = value.y;
-      }
-    }
-
-    public float MovementSpeed => this.MovementDirection.magnitude;
-
-    public float FallingSpeed => -this.velocity.y;
+    public Vector3 MovementDirection => Quaternion.AngleAxis(this.direction, Vector3.up) * Vector3.forward;
 
     private void Awake() {
       this.respawnPosition = this.transform.position;
@@ -61,7 +64,13 @@ namespace Tenry.DemoActionRpg {
       Debug.Assert(this.weapon = this.GetComponentInChildren<Weapon>());
     }
 
-    private void Update() {
+    private void LateUpdate() {
+      if (!this.didMove) {
+        this.Decelarate();
+      } else {
+        this.didMove = false;
+      }
+
       this.UpdateMovement();
       this.UpdateAnimation();
 
@@ -73,27 +82,49 @@ namespace Tenry.DemoActionRpg {
 
     private void UpdateMovement() {
       if (this.characterController.isGrounded) {
-        this.velocity.y = 0f;
+        this.StopFalling();
       } else {
-        this.velocity.y -= this.gravity * Time.deltaTime;
+        this.FallingSpeed += this.gravity * Time.deltaTime;
       }
 
       if (this.IsAttacking) {
-        this.velocity.x = 0f;
-        this.velocity.z = 0f;
+        this.speed = 0f;
       }
 
-      this.characterController.Move(this.velocity * Time.deltaTime);
-
-      if (this.MovementSpeed > 0f) {
-        var targetRotation = Quaternion.LookRotation(this.MovementDirection, Vector3.up);
-        this.model.transform.rotation = Quaternion.RotateTowards(this.model.transform.rotation, targetRotation, this.rotationSpeed * Time.deltaTime);
-        this.facingDirection = Vector3.SignedAngle(Vector3.forward, this.model.transform.rotation * Vector3.forward, Vector3.up);
-      }
+      var moveVector = this.MovementDirection * this.speed + Vector3.down * this.FallingSpeed;
+      this.characterController.Move(moveVector * Time.deltaTime);
     }
 
     private void UpdateAnimation() {
-      this.animator?.SetFloat("MovementSpeed", this.MovementSpeed);
+      this.animator?.SetFloat("MovementSpeed", this.speed);
+    }
+
+    private void Accelerate(float desiredSpeed) {
+      this.speed = Mathf.MoveTowards(this.speed, desiredSpeed, this.acceleration * Time.deltaTime);
+    }
+
+    private void Decelarate() {
+      this.Accelerate(0f);
+    }
+
+    private void Turn(float desiredDirection) {
+      this.direction = Mathf.MoveTowardsAngle(this.direction, desiredDirection, this.angularSpeed * Time.deltaTime);
+
+      var targetRotation = Quaternion.LookRotation(this.MovementDirection, Vector3.up);
+      this.model.transform.rotation = Quaternion.RotateTowards(this.model.transform.rotation, targetRotation, this.angularSpeed * Time.deltaTime);
+    }
+
+    public void Move(float direction, float speed = 1f) {
+      var desiredSpeed = this.MaxMoveSpeed * speed;
+      this.Accelerate(desiredSpeed);
+      this.Turn(direction);
+      this.didMove = true;
+    }
+
+    public void StopFalling() {
+      if (this.IsFalling) {
+        this.verticalSpeed = 0f;
+      }
     }
 
     /// <summary>
@@ -101,7 +132,8 @@ namespace Tenry.DemoActionRpg {
     /// </summary>
     public void Respawn() {
       this.transform.position = this.respawnPosition;
-      this.velocity = Vector3.zero;
+      this.speed = 0f;
+      this.verticalSpeed = 0f;
     }
 
     public void Attack() {
