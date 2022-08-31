@@ -19,6 +19,9 @@ namespace Tenry.DemoActionRpg {
 
     [SerializeField]
     private GameObject damageEffectPrefab;
+
+    [SerializeField]
+    private DamageableTypes damageableType = DamageableTypes.Object;
     #endregion
 
     private int health;
@@ -39,6 +42,8 @@ namespace Tenry.DemoActionRpg {
         }
       }
     }
+
+    public int MaxHealth => this.maxHealth;
 
     private float activeDamageCooldown = 0f;
 
@@ -69,11 +74,11 @@ namespace Tenry.DemoActionRpg {
     }
 
     private void OnTriggerEnter(Collider other) {
-      if (other.tag == "Weapon") {
-        var weapon = other.GetComponent<Weapon>();
-        Debug.Assert(weapon != null);
+      // Debug.Log($"{this.gameObject.name}@OnTriggerEnter -> {other.gameObject.name}");
+      var weapon = other.GetComponent<Weapon>();
 
-        if (weapon.WeaponActive) {
+      if (weapon != null) {
+        if (weapon.WeaponActive && (weapon.DamageTargets & this.damageableType) != DamageableTypes.None) {
           this.Damage(1);
         } else {
           Debug.Log("Weapon is not active");

@@ -61,7 +61,7 @@ namespace Tenry.DemoActionRpg {
       Debug.Assert(this.model != null);
       Debug.Assert(this.characterController = this.GetComponent<CharacterController>());
       Debug.Assert(this.animator = this.GetComponentInChildren<Animator>());
-      Debug.Assert(this.weapon = this.GetComponentInChildren<Weapon>());
+      this.weapon = this.GetComponentInChildren<Weapon>();
     }
 
     private void LateUpdate() {
@@ -96,7 +96,7 @@ namespace Tenry.DemoActionRpg {
     }
 
     private void UpdateAnimation() {
-      this.animator?.SetFloat("MovementSpeed", this.speed);
+      this.animator?.SetFloat("Speed", this.speed);
     }
 
     private void Accelerate(float desiredSpeed) {

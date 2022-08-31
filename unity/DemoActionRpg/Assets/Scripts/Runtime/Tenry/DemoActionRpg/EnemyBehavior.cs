@@ -45,7 +45,7 @@ namespace Tenry.DemoActionRpg {
       var lookForPlayer = new CallbackNode(async (CancellationToken token) => {
         var distance = this.GetDistanceToPlayer();
 
-        if (distance < 5f) {
+        if (distance < 6f) {
           return true;
         }
 
@@ -57,14 +57,14 @@ namespace Tenry.DemoActionRpg {
           return false;
         }
 
+        if (distance < 1f) {
+          return true;
+        }
+
         var directionVector = playerObject.transform.position - this.transform.position;
         var direction = Vector3.SignedAngle(Vector3.forward, directionVector.normalized, Vector3.up);
 
         this.controller.Move(direction);
-        
-        if (distance < 1f) {
-          return true;
-        }
 
         return false;
       });
