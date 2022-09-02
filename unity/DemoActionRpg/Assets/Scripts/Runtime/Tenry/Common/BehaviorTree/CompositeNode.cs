@@ -8,9 +8,17 @@ namespace Tenry.Common.BehaviorTree {
     [SerializeField]
     [HideInInspector]
     private List<Node> children = new List<Node>();
+
+    [SerializeField]
+    private AbortType abortType = AbortType.None;
     #endregion
 
     public List<Node> Children => this.children;
+
+    public AbortType AbortType {
+      get => this.abortType;
+      set => this.abortType = value;
+    }
 
     public override Node Clone() {
       var copy = Instantiate(this);
@@ -40,6 +48,25 @@ namespace Tenry.Common.BehaviorTree {
 
     public override void SortChildren() {
       this.children.Sort((a, b) => a.Position.x < b.Position.x ? -1 : 1);
+    }
+
+    protected bool CheckAbort(int lastBranchIndex, out int abortingBranchIndex) {
+      abortingBranchIndex = -1;
+      
+      if (this.AbortType.HasFlag(AbortType.Self)) {
+        for (abortingBranchIndex = 0; abortingBranchIndex <= lastBranchIndex; ++abortingBranchIndex) {
+          var previousBranchNode = this.Children[abortingBranchIndex];
+
+          var previousStatus = previousBranchNode.Status;
+          var newStatus = previousBranchNode.Evaluate();
+
+          if (newStatus != previousStatus) {
+            return true;
+          }
+        }
+      }
+
+      return false;
     }
   }
 }

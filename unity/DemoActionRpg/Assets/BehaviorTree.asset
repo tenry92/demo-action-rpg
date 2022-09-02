@@ -14,8 +14,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   position: {x: 382, y: 137.10004}
   guid: e3ed0ca173fa9dc42b6b138998092ce2
+  note: 
   child: {fileID: -4488936348174473682}
---- !u!114 &-5781836785293307207
+--- !u!114 &-7694374478489024107
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7aca3f79b9cedb408e09e2496ce7c19, type: 3}
+  m_Name: SelectorNode
+  m_EditorClassIdentifier: 
+  position: {x: 368.99994, y: 410.6}
+  guid: 795e19326a5ae96419b38ce9c9079a9f
+  note: 
+  children:
+  - {fileID: 4317722756968616033}
+  - {fileID: -7059879515806776094}
+  - {fileID: 582019247020188308}
+  abortType: 0
+--- !u!114 &-7059879515806776094
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -27,14 +48,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2e47dafcd01a5e4784486fb1d9061ab, type: 3}
   m_Name: SequenceNode
   m_EditorClassIdentifier: 
-  position: {x: 374, y: 333}
-  guid: b780cfe03009f684b9aa3a0277428216
+  position: {x: 357.5, y: 577}
+  guid: 2393606264055b34d9d6e0c9f592a959
+  note: Seek
   children:
-  - {fileID: 7408372064318196444}
-  - {fileID: 9196014852001816659}
-  - {fileID: -3141136095601146384}
-  - {fileID: -3813748020321978776}
-  - {fileID: 778873698666844312}
+  - {fileID: 4968660783389964890}
+  - {fileID: 5916316927296185638}
+  abortType: 2
+--- !u!114 &-6792281471186361206
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36b1d352ed4dd2b48a77b2519ff91021, type: 3}
+  m_Name: WaitNode
+  m_EditorClassIdentifier: 
+  position: {x: 181.37973, y: 766}
+  guid: d26b3481c0236494ca677a3563078457
+  note: Attack
+  duration: 1
 --- !u!114 &-4488936348174473682
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -47,10 +83,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f651e25aa08142346914ccd18879942c, type: 3}
   m_Name: RepeatNode
   m_EditorClassIdentifier: 
-  position: {x: 383, y: 232.04001}
+  position: {x: 373, y: 266}
   guid: 16ca66dbdbf1cf0408ffaadcebc44eaf
-  child: {fileID: -5781836785293307207}
---- !u!114 &-3813748020321978776
+  note: 
+  child: {fileID: -7694374478489024107}
+--- !u!114 &-2160168858361559096
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -59,29 +96,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 36b1d352ed4dd2b48a77b2519ff91021, type: 3}
-  m_Name: WaitNode
+  m_Script: {fileID: 11500000, guid: caef0fc4c215c1c4eb4bbdfb5f0cfff9, type: 3}
+  m_Name: DebugNode
   m_EditorClassIdentifier: 
-  position: {x: 782.92, y: 462.00003}
-  guid: 2669d96ae392c7a4f8efba7ab7bc5647
-  duration: 1
---- !u!114 &-3141136095601146384
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b2e6d792b2959149be82eab1a8a0d5e, type: 3}
-  m_Name: DebugLogNode
-  m_EditorClassIdentifier: 
-  position: {x: 570, y: 462}
-  guid: e46e6923ef0d8084093da2d9269bf4be
-  message: Log2
-  logStart: 1
-  logEnd: 1
+  position: {x: 15.604351, y: 758.3997}
+  guid: ef948d7c406eb9144a632550c1343af5
+  note: In Atk Range?
+  emitStatus: 2
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -96,17 +117,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodes:
   - {fileID: -8654018872402167731}
-  - {fileID: 7408372064318196444}
   - {fileID: -4488936348174473682}
-  - {fileID: 9196014852001816659}
-  - {fileID: -5781836785293307207}
-  - {fileID: -3141136095601146384}
-  - {fileID: -3813748020321978776}
-  - {fileID: 778873698666844312}
-  - {fileID: 795526260616718961}
+  - {fileID: -7694374478489024107}
+  - {fileID: 4317722756968616033}
+  - {fileID: -7059879515806776094}
+  - {fileID: 582019247020188308}
+  - {fileID: -2160168858361559096}
+  - {fileID: -6792281471186361206}
+  - {fileID: 4968660783389964890}
+  - {fileID: 5916316927296185638}
   root: {fileID: -8654018872402167731}
   Status: 0
---- !u!114 &778873698666844312
+--- !u!114 &582019247020188308
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -115,13 +137,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 03f356f9eedea9f4aa41565811814ea9, type: 3}
-  m_Name: InvertNode
+  m_Script: {fileID: 11500000, guid: caef0fc4c215c1c4eb4bbdfb5f0cfff9, type: 3}
+  m_Name: DebugNode
   m_EditorClassIdentifier: 
-  position: {x: 929, y: 458}
-  guid: 007ea19ea77550b438f69ffadb226a73
-  child: {fileID: 795526260616718961}
---- !u!114 &795526260616718961
+  position: {x: 599.40015, y: 594.0001}
+  guid: c87f1b65976c679488dc4d9b2940d961
+  note: Idle
+  emitStatus: 0
+--- !u!114 &4317722756968616033
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -130,13 +153,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 36b1d352ed4dd2b48a77b2519ff91021, type: 3}
-  m_Name: WaitNode
+  m_Script: {fileID: 11500000, guid: b2e47dafcd01a5e4784486fb1d9061ab, type: 3}
+  m_Name: SequenceNode
   m_EditorClassIdentifier: 
-  position: {x: 937, y: 599}
-  guid: e858a76b13c01504a8970f34c49c5d60
-  duration: 1
---- !u!114 &7408372064318196444
+  position: {x: 142, y: 578}
+  guid: 1f97f314d8a14744a81484329938268f
+  note: Attack
+  children:
+  - {fileID: -2160168858361559096}
+  - {fileID: -6792281471186361206}
+  abortType: 0
+--- !u!114 &4968660783389964890
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -145,15 +172,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b2e6d792b2959149be82eab1a8a0d5e, type: 3}
-  m_Name: DebugLogNode
+  m_Script: {fileID: 11500000, guid: caef0fc4c215c1c4eb4bbdfb5f0cfff9, type: 3}
+  m_Name: DebugNode
   m_EditorClassIdentifier: 
-  position: {x: 176, y: 469}
-  guid: 1ff002348083e474283f28359cf125e7
-  message: Log1
-  logStart: 1
-  logEnd: 1
---- !u!114 &9196014852001816659
+  position: {x: 320, y: 748.9095}
+  guid: c4107e4a5583a9f49bdab38c7d4e74ea
+  note: Visible?
+  emitStatus: 1
+--- !u!114 &5916316927296185638
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -162,9 +188,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 36b1d352ed4dd2b48a77b2519ff91021, type: 3}
-  m_Name: WaitNode
+  m_Script: {fileID: 11500000, guid: caef0fc4c215c1c4eb4bbdfb5f0cfff9, type: 3}
+  m_Name: DebugNode
   m_EditorClassIdentifier: 
-  position: {x: 391, y: 461}
-  guid: 9217ab19c07793842a0cc0cb5b6730f1
-  duration: 2
+  position: {x: 432.99997, y: 757.0001}
+  guid: b1d4517e951744a4d80be78ac1712287
+  note: Seek
+  emitStatus: 0

@@ -2,7 +2,9 @@ using System;
 
 using UnityEditor;
 using UnityEditor.Experimental.GraphView;
+using UnityEditor.UIElements;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace Tenry.Common.BehaviorTree {
   public class NodeView : UnityEditor.Experimental.GraphView.Node {
@@ -29,6 +31,10 @@ namespace Tenry.Common.BehaviorTree {
 
       this.CreatePorts();
       this.ApplyStyles();
+
+      var noteLabel = this.Q<Label>("note");
+      noteLabel.bindingPath = "note";
+      noteLabel.Bind(new SerializedObject(node));
     }
 
     private void CreatePorts() {

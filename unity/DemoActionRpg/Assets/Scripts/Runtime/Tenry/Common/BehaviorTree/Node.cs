@@ -13,6 +13,9 @@ namespace Tenry.Common.BehaviorTree {
     [SerializeField]
     [HideInInspector]
     private string guid;
+
+    [SerializeField]
+    private string note;
     #endregion
 
     internal GameObject gameObject;
@@ -38,6 +41,11 @@ namespace Tenry.Common.BehaviorTree {
       set {
         this.guid = value;
       }
+    }
+
+    public string Note {
+      get => this.note;
+      set => this.note = value;
     }
 
     public Vector2 Position {
@@ -84,6 +92,13 @@ namespace Tenry.Common.BehaviorTree {
 
       foreach (var child in this.GetChildren()) {
         child.Traverse(visitor);
+      }
+    }
+
+    public void Abort() {
+      if (this.Status == NodeStatus.Running) {
+        this.OnEnd();
+        this.Started = false;
       }
     }
 
