@@ -19,17 +19,33 @@ namespace Tenry.Common.BehaviorTree {
     #endregion
 
     public Node Root {
-      get {
-        return this.root;
-      }
-      set {
-        this.root = value;
-      }
+      get => this.root;
+      set => this.root = value;
     }
 
     public NodeStatus Status = NodeStatus.Running;
 
     public List<Node> Nodes => this.nodes;
+
+    private BehaviorTreeController controller;
+
+    public BehaviorTreeController Controller {
+      get => this.controller;
+      internal set {
+        this.controller = value;
+        this.SetupNodeProperties(this.Root);
+      }
+    }
+
+    private void SetupNodeProperties(Node node) {
+      node.behaviorTree = this;
+      node.controller = this.controller;
+      node.gameObject = this.controller.gameObject;
+
+      foreach (var child in node.GetChildren()) {
+        this.SetupNodeProperties(child);
+      }
+    }
 
     public NodeStatus Update() {
       if (this.Root.Status == NodeStatus.Running) {
@@ -54,6 +70,8 @@ namespace Tenry.Common.BehaviorTree {
     public BehaviorTree Clone() {
       var copy = Instantiate(this);
       copy.Root = copy.Root.Clone();
+
+      // todo(?): properly clone this.nodes
 
       return copy;
     }

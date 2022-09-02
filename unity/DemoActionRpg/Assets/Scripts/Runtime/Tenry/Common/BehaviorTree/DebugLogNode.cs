@@ -22,20 +22,27 @@ namespace Tenry.Common.BehaviorTree {
       }
     }
 
+    private string GetMessagePrefix(string phase) {
+      var objectName = this.GameObject?.name ?? "?";
+      var treeName = this.BehaviorTree?.name ?? "?";
+
+      return $"<color=#007fff>{objectName}</color><color=#c9a96d>@{treeName}</color>(<color=#c96da6>{phase}</color>): ";
+    }
+
     protected override void OnStart() {
       if (this.logStart) {
-        Debug.Log($"DebugLogNode({this.Message})@OnStart");
+        Debug.Log($"{this.GetMessagePrefix("OnStart")}{this.Message}", this);
       }
     }
 
     protected override void OnEnd() {
       if (this.logEnd) {
-        Debug.Log($"DebugLogNode({this.Message})@OnEnd");
+        Debug.Log($"{this.GetMessagePrefix("OnEnd")}{this.Message}", this);
       }
     }
 
     protected override NodeStatus OnUpdate() {
-      Debug.Log(this.Message);
+      Debug.Log($"{this.GetMessagePrefix("OnUpdate")}{this.Message}", this);
 
       return NodeStatus.Success;
     }

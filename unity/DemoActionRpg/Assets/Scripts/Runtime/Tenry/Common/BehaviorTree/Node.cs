@@ -14,6 +14,18 @@ namespace Tenry.Common.BehaviorTree {
     private string guid;
     #endregion
 
+    internal GameObject gameObject;
+
+    public GameObject GameObject => this.gameObject;
+
+    internal BehaviorTree behaviorTree;
+
+    public BehaviorTree BehaviorTree => this.behaviorTree;
+
+    internal BehaviorTreeController controller;
+
+    public BehaviorTreeController Controller => this.controller;
+
     public NodeStatus Status { get; protected set; } = NodeStatus.Running;
 
     public bool Started { get; protected set; } = false;
