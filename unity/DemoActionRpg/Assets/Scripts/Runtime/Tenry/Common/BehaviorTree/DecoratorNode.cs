@@ -34,5 +34,7 @@ namespace Tenry.Common.BehaviorTree {
         yield return this.child;
       }
     }
+
+    public override void SortChildren() {}
   }
 }

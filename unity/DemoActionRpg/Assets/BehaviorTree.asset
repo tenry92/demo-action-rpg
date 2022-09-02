@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf41b31ee31385b4c9dfe2809228cc40, type: 3}
   m_Name: RootNode
   m_EditorClassIdentifier: 
-  position: {x: 397, y: 135.88}
+  position: {x: 382, y: 137.10004}
   guid: e3ed0ca173fa9dc42b6b138998092ce2
   child: {fileID: -4488936348174473682}
 --- !u!114 &-5781836785293307207
@@ -27,13 +27,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2e47dafcd01a5e4784486fb1d9061ab, type: 3}
   m_Name: SequenceNode
   m_EditorClassIdentifier: 
-  position: {x: 383, y: 330}
+  position: {x: 374, y: 333}
   guid: b780cfe03009f684b9aa3a0277428216
   children:
   - {fileID: 7408372064318196444}
   - {fileID: 9196014852001816659}
   - {fileID: -3141136095601146384}
   - {fileID: -3813748020321978776}
+  - {fileID: 778873698666844312}
 --- !u!114 &-4488936348174473682
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -101,9 +102,40 @@ MonoBehaviour:
   - {fileID: -5781836785293307207}
   - {fileID: -3141136095601146384}
   - {fileID: -3813748020321978776}
-  - {fileID: 8206714415961566464}
+  - {fileID: 778873698666844312}
+  - {fileID: 795526260616718961}
   root: {fileID: -8654018872402167731}
   Status: 0
+--- !u!114 &778873698666844312
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03f356f9eedea9f4aa41565811814ea9, type: 3}
+  m_Name: InvertNode
+  m_EditorClassIdentifier: 
+  position: {x: 929, y: 458}
+  guid: 007ea19ea77550b438f69ffadb226a73
+  child: {fileID: 795526260616718961}
+--- !u!114 &795526260616718961
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36b1d352ed4dd2b48a77b2519ff91021, type: 3}
+  m_Name: WaitNode
+  m_EditorClassIdentifier: 
+  position: {x: 937, y: 599}
+  guid: e858a76b13c01504a8970f34c49c5d60
+  duration: 1
 --- !u!114 &7408372064318196444
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -116,28 +148,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b2e6d792b2959149be82eab1a8a0d5e, type: 3}
   m_Name: DebugLogNode
   m_EditorClassIdentifier: 
-  position: {x: 167, y: 462}
+  position: {x: 176, y: 469}
   guid: 1ff002348083e474283f28359cf125e7
   message: Log1
   logStart: 1
   logEnd: 1
---- !u!114 &8206714415961566464
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b2e6d792b2959149be82eab1a8a0d5e, type: 3}
-  m_Name: DebugLogNode
-  m_EditorClassIdentifier: 
-  position: {x: 0, y: 0}
-  guid: 7911835e37cb3684e8aad2a7f6c743e7
-  message: 
-  logStart: 0
-  logEnd: 0
 --- !u!114 &9196014852001816659
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -150,6 +165,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36b1d352ed4dd2b48a77b2519ff91021, type: 3}
   m_Name: WaitNode
   m_EditorClassIdentifier: 
-  position: {x: 383, y: 462}
+  position: {x: 391, y: 461}
   guid: 9217ab19c07793842a0cc0cb5b6730f1
   duration: 2

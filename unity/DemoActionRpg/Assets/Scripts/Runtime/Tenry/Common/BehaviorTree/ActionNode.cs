@@ -13,5 +13,7 @@ namespace Tenry.Common.BehaviorTree {
     public override IEnumerable<Node> GetChildren() {
       return new List<Node>();
     }
+
+    public override void SortChildren() {}
   }
 }

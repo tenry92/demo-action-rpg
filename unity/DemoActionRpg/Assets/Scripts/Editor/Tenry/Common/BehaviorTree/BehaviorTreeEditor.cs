@@ -1,7 +1,7 @@
 using UnityEditor;
+using UnityEditor.Callbacks;
 using UnityEngine;
 using UnityEngine.UIElements;
-using UnityEditor.UIElements;
 
 using Tenry.Common.UIElements;
 
@@ -11,12 +11,42 @@ namespace Tenry.Common.BehaviorTree {
 
     private InspectorView inspectorView;
 
-    public BehaviorTree ActiveTree => Selection.activeObject as BehaviorTree;
+    public static BehaviorTree ActiveTree => Selection.activeObject as BehaviorTree;
+
+    public static BehaviorTreeController ActiveController => Selection.activeGameObject?.GetComponent<BehaviorTreeController>();
 
     [MenuItem("Window/Tenry/Behavior Tree Editor")]
     public static void ShowWindow() {
       BehaviorTreeEditor wnd = GetWindow<BehaviorTreeEditor>();
       wnd.titleContent = new GUIContent("Behavior Tree Editor");
+    }
+
+    [OnOpenAsset]
+    public static bool OnOpenAsset(int instandeId, int line) {
+      if (Selection.activeObject is BehaviorTree) {
+        ShowWindow();
+        return true;
+      }
+
+      return false;
+    }
+
+    private void OnEnable() {
+      EditorApplication.playModeStateChanged -= this.OnPlayModeStateChanged;
+      EditorApplication.playModeStateChanged += this.OnPlayModeStateChanged;
+    }
+
+    private void OnDisable() {
+      EditorApplication.playModeStateChanged -= this.OnPlayModeStateChanged;
+    }
+
+    private void OnPlayModeStateChanged(PlayModeStateChange change) {
+      switch (change) {
+        case PlayModeStateChange.EnteredEditMode:
+        case PlayModeStateChange.EnteredPlayMode:
+          this.LoadActiveTree();
+          break;
+      }
     }
 
     public void CreateGUI() {
@@ -43,10 +73,19 @@ namespace Tenry.Common.BehaviorTree {
     }
 
     private void LoadActiveTree() {
-      var tree = this.ActiveTree;
+      var tree = ActiveTree;
 
-      if (tree != null && AssetDatabase.CanOpenAssetInEditor(tree.GetInstanceID())) {
-        this.treeView.PopulateView(tree);
+      if (tree == null) {
+        var controller = ActiveController;
+        if (controller != null) {
+          tree = controller.Tree;
+        }
+      }
+
+      if (tree != null) {
+        if (Application.isPlaying || AssetDatabase.CanOpenAssetInEditor(tree.GetInstanceID())) {
+          this.treeView?.PopulateView(tree);
+        }
       }
     }
 
@@ -56,6 +95,10 @@ namespace Tenry.Common.BehaviorTree {
 
     private void OnNodeSelectionChanged(Node node) {
       this.inspectorView.Inspect(node);
+    }
+
+    private void OnInspectorUpdate() {
+      this.treeView?.UpdateNodeStates();
     }
   }
 }

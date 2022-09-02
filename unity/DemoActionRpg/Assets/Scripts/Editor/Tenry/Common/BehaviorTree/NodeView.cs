@@ -1,5 +1,6 @@
 using System;
 
+using UnityEditor;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
@@ -17,15 +18,17 @@ namespace Tenry.Common.BehaviorTree {
 
     internal Port Output => output;
 
-    public NodeView(Node node) {
+    public NodeView(Node node) : base("Assets/Scripts/Editor/Tenry/Common/BehaviorTree/NodeView.uxml") {
       this.Node = node;
-      this.title = node.name;
+      this.title = Node.GetUserFriendlyName(node.GetType());
+      // todo: this.name = node.name;
       this.viewDataKey = node.Guid;
 
       this.style.left = this.Node.Position.x;
       this.style.top = this.Node.Position.y;
 
       this.CreatePorts();
+      this.ApplyStyles();
     }
 
     private void CreatePorts() {
@@ -67,15 +70,51 @@ namespace Tenry.Common.BehaviorTree {
       }
     }
 
+    private void ApplyStyles() {
+      if (this.Node is ActionNode) {
+        this.AddToClassList("action");
+      } else if (this.Node is CompositeNode) {
+        this.AddToClassList("composite");
+      } else if (this.Node is DecoratorNode) {
+        this.AddToClassList("decorator");
+      } else if (this.Node is RootNode) {
+        this.AddToClassList("root");
+      }
+    }
+
     public override void SetPosition(Rect position) {
       base.SetPosition(position);
+      Undo.RecordObject(this.Node, "Behavior Tree (Set Position");
       this.Node.Position = new Vector2(position.xMin, position.yMin);
+      EditorUtility.SetDirty(this.Node);
     }
 
     public override void OnSelected() {
       base.OnSelected();
 
       this.Selected?.Invoke();
+    }
+
+    public void UpdateState() {
+      this.RemoveFromClassList("running");
+      this.RemoveFromClassList("success");
+      this.RemoveFromClassList("failure");
+
+      if (Application.isPlaying) {
+        switch (this.Node.Status) {
+          case NodeStatus.Running:
+            if (this.Node.Started) {
+              this.AddToClassList("running");
+            }
+            break;
+          case NodeStatus.Success:
+            this.AddToClassList("success");
+            break;
+          case NodeStatus.Failure:
+            this.AddToClassList("failure");
+            break;
+        }
+      }
     }
   }
 }

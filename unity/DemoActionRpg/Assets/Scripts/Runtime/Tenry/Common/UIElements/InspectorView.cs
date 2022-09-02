@@ -15,7 +15,11 @@ namespace Tenry.Common.UIElements {
       }
 
       this.editor = Editor.CreateEditor(target);
-      var container = new IMGUIContainer(() => { this.editor?.OnInspectorGUI(); });
+      var container = new IMGUIContainer(() => {
+        if (this.editor?.target != null) {
+          this.editor?.OnInspectorGUI();
+        }
+      });
       this.Add(container);
     }
   }

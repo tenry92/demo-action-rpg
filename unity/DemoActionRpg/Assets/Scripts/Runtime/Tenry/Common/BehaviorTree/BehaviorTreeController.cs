@@ -2,8 +2,15 @@ using UnityEngine;
 
 namespace Tenry.Common.BehaviorTree {
   public class BehaviorTreeController : MonoBehaviour {
+    #region Serialized Fields
     [SerializeField]
     private BehaviorTree tree;
+    #endregion
+
+    public BehaviorTree Tree {
+      get => this.tree;
+      set => this.tree = value;
+    }
 
     private void Awake() {
       var original = this.tree;

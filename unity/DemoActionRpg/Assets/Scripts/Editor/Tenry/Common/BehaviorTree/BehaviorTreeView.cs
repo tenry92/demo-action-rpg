@@ -24,6 +24,13 @@ namespace Tenry.Common.BehaviorTree {
 
       var styleSheet = AssetDatabase.LoadAssetAtPath<StyleSheet>("Assets/Scripts/Editor/Tenry/Common/BehaviorTree/BehaviorTreeEditor.uss");
       this.styleSheets.Add(styleSheet);
+
+      Undo.undoRedoPerformed += this.OnUndoRedo;
+    }
+
+    private void OnUndoRedo() {
+      this.PopulateView(this.tree);
+      AssetDatabase.SaveAssets();
     }
 
     private NodeView FindNodeViewByNode(Node node) {
@@ -36,7 +43,7 @@ namespace Tenry.Common.BehaviorTree {
 
         var types = TypeCache.GetTypesDerivedFrom<ActionNode>();
         foreach (var type in types) {
-          ev.menu.AppendAction(type.Name, action => this.CreateNode(type));
+          ev.menu.AppendAction(Node.GetUserFriendlyName(type), action => this.CreateNode(type));
         }
       }
 
@@ -47,7 +54,7 @@ namespace Tenry.Common.BehaviorTree {
 
         var types = TypeCache.GetTypesDerivedFrom<CompositeNode>();
         foreach (var type in types) {
-          ev.menu.AppendAction(type.Name, action => this.CreateNode(type));
+          ev.menu.AppendAction(Node.GetUserFriendlyName(type), action => this.CreateNode(type));
         }
       }
 
@@ -58,7 +65,7 @@ namespace Tenry.Common.BehaviorTree {
 
         var types = TypeCache.GetTypesDerivedFrom<DecoratorNode>();
         foreach (var type in types) {
-          ev.menu.AppendAction(type.Name, action => this.CreateNode(type));
+          ev.menu.AppendAction(Node.GetUserFriendlyName(type), action => this.CreateNode(type));
         }
       }
     }
@@ -147,6 +154,13 @@ namespace Tenry.Common.BehaviorTree {
         }
       }
 
+      if (change.movedElements != null) {
+        foreach (var node in this.nodes) {
+          var view = node as NodeView;
+          view.Node.SortChildren();
+        }
+      }
+
       return change;
     }
 
@@ -158,6 +172,13 @@ namespace Tenry.Common.BehaviorTree {
       };
 
       this.AddElement(nodeView);
+    }
+
+    public void UpdateNodeStates() {
+      foreach (var graphNode in this.nodes) {
+        var nodeView = graphNode as NodeView;
+        nodeView?.UpdateState();
+      }
     }
   }
 }

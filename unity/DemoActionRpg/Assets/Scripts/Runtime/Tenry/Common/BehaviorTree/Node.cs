@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 
 using UnityEngine;
 
@@ -48,6 +49,16 @@ namespace Tenry.Common.BehaviorTree {
       }
     }
 
+    public static string GetUserFriendlyName(System.Type type) {
+      var niceName = Regex.Replace(type.Name, "(\\B[A-Z])", " $1");
+
+      if (niceName.EndsWith(" Node")) {
+        niceName = niceName.Remove(niceName.Length - " Node".Length);
+      }
+
+      return niceName;
+    }
+
     public NodeStatus Evaluate() {
       if (!this.Started) {
         this.OnStart();
@@ -68,6 +79,14 @@ namespace Tenry.Common.BehaviorTree {
       return Instantiate(this);
     }
 
+    public void Traverse(System.Action<Node> visitor) {
+      visitor?.Invoke(this);
+
+      foreach (var child in this.GetChildren()) {
+        child.Traverse(visitor);
+      }
+    }
+
     protected abstract void OnStart();
 
     protected abstract void OnEnd();
@@ -79,5 +98,7 @@ namespace Tenry.Common.BehaviorTree {
     public abstract void RemoveChild(Node child);
 
     public abstract IEnumerable<Node> GetChildren();
+
+    public abstract void SortChildren();
   }
 }

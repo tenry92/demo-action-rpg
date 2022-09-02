@@ -37,5 +37,9 @@ namespace Tenry.Common.BehaviorTree {
     public override IEnumerable<Node> GetChildren() {
       return this.children.AsReadOnly();
     }
+
+    public override void SortChildren() {
+      this.children.Sort((a, b) => a.Position.x < b.Position.x ? -1 : 1);
+    }
   }
 }

@@ -56,11 +56,15 @@ namespace Tenry.Common.BehaviorTree {
     }
 
     public void AddChild(Node parent, Node child) {
+      Undo.RecordObject(parent, "Behavior Tree (Add Child)");
       parent.AddChild(child);
+      EditorUtility.SetDirty(parent);
     }
 
     public void RemoveChild(Node parent, Node child) {
+      Undo.RecordObject(parent, "Behavior Tree (Remove Child)");
       parent.RemoveChild(child);
+      EditorUtility.SetDirty(parent);
     }
 
     public List<Node> GetChildren(Node parent) {
@@ -71,7 +75,12 @@ namespace Tenry.Common.BehaviorTree {
       var copy = Instantiate(this);
       copy.Root = copy.Root.Clone();
 
-      // todo(?): properly clone this.nodes
+      copy.nodes = new List<Node>();
+
+      // todo(?): we are missing detached nodes
+      copy.Root.Traverse(node => {
+        copy.nodes.Add(node);
+      });
 
       return copy;
     }
@@ -81,17 +90,29 @@ namespace Tenry.Common.BehaviorTree {
       var node = ScriptableObject.CreateInstance(type) as Node;
       node.name = type.Name;
       node.Guid = GUID.Generate().ToString();
+
+      Undo.RecordObject(this, "Behavior Tree (Create Node)");
+
       this.nodes.Add(node);
 
-      AssetDatabase.AddObjectToAsset(node, this);
+      if (!Application.isPlaying) {
+        AssetDatabase.AddObjectToAsset(node, this);
+      }
+
+      Undo.RegisterCreatedObjectUndo(node, "Behavior Tree (Create Node)");
+
       AssetDatabase.SaveAssets();
 
       return node;
     }
 
     public void DeleteNode(Node node) {
+      Undo.RecordObject(this, "Behavior Tree (Delete Node)");
       this.nodes.Remove(node);
-      AssetDatabase.RemoveObjectFromAsset(node);
+
+      // AssetDatabase.RemoveObjectFromAsset(node);
+      Undo.DestroyObjectImmediate(node);
+
       AssetDatabase.SaveAssets();
     }
     #endif
