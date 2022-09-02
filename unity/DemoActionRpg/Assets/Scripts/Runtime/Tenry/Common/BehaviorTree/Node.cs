@@ -1,56 +1,71 @@
-using System.Collections;
 using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
+
+using UnityEngine;
 
 namespace Tenry.Common.BehaviorTree {
-  public abstract class Node : ICollection<Node> {
-    private CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
+  public abstract class Node : ScriptableObject {
+    #region Serialized Fields
+    [SerializeField]
+    [HideInInspector]
+    private Vector2 position;
 
-    protected List<Node> children = new List<Node>();
+    [SerializeField]
+    [HideInInspector]
+    private string guid;
+    #endregion
 
-    public int Count => this.children.Count;
+    public NodeStatus Status { get; protected set; } = NodeStatus.Running;
 
-    public bool IsReadOnly => false;
+    public bool Started { get; protected set; } = false;
 
-    public virtual string Name { get; }
-
-    public void Add(Node child) {
-      this.children.Add(child);
+    public string Guid {
+      get {
+        return this.guid;
+      }
+      set {
+        this.guid = value;
+      }
     }
 
-    public bool Remove(Node child) {
-      return this.children.Remove(child);
+    public Vector2 Position {
+      get {
+        return this.position;
+      }
+      set {
+        this.position = value;
+      }
     }
 
-    public void Clear() {
-      this.children.Clear();
+    public NodeStatus Evaluate() {
+      if (!this.Started) {
+        this.OnStart();
+        this.Started = true;
+      }
+
+      this.Status = this.OnUpdate();
+
+      if (this.Status != NodeStatus.Running) {
+        this.OnEnd();
+        this.Started = false;
+      }
+
+      return this.Status;
     }
 
-    public bool Contains(Node node) {
-      return this.children.Contains(node);
+    public virtual Node Clone() {
+      return Instantiate(this);
     }
 
-    public void CopyTo(Node[] array, int arrayIndex) {
-      this.children.CopyTo(array, arrayIndex);
-    }
+    protected abstract void OnStart();
 
-    public IEnumerator<Node> GetEnumerator() {
-      return this.children.GetEnumerator();
-    }
+    protected abstract void OnEnd();
 
-    IEnumerator IEnumerable.GetEnumerator() {
-      return this.children.GetEnumerator();
-    }
+    protected abstract NodeStatus OnUpdate();
 
-    public void Cancel() {
-      this.cancellationTokenSource.Cancel();
-    }
+    public abstract void AddChild(Node child);
 
-    public async Task<bool> Execute() {
-      return await this.Execute(this.cancellationTokenSource.Token);
-    }
+    public abstract void RemoveChild(Node child);
 
-    public abstract Task<bool> Execute(CancellationToken token);
+    public abstract IEnumerable<Node> GetChildren();
   }
 }

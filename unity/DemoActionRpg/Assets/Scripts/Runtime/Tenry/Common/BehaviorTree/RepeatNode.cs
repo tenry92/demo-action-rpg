@@ -1,20 +1,13 @@
-using System.Threading;
-using System.Threading.Tasks;
-
 namespace Tenry.Common.BehaviorTree {
-  public class RepeatNode : Node {
-    public override string Name => "Repeat";
+  public class RepeatNode : DecoratorNode {
+    protected override void OnStart() {}
 
-    public override async Task<bool> Execute(CancellationToken token) {
-      while (!token.IsCancellationRequested) {
-        if (this.children.Count > 0) {
-          await this.children[0].Execute(token);
-        }
+    protected override void OnEnd() {}
 
-        await Task.Yield();
-      }
+    protected override NodeStatus OnUpdate() {
+      this.Child.Evaluate();
 
-      return false;
+      return NodeStatus.Running;
     }
   }
 }

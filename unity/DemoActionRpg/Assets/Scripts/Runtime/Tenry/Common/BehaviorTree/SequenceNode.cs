@@ -1,22 +1,31 @@
-using System.Threading;
-using System.Threading.Tasks;
-
 namespace Tenry.Common.BehaviorTree {
-  public class SequenceNode : Node {
-    public override string Name => "Sequence";
+  public class SequenceNode : CompositeNode {
+    private int currentBranchIndex;
 
-    public override async Task<bool> Execute(CancellationToken token) {
-      foreach (var child in this) {
-        if (token.IsCancellationRequested) {
-          return false;
-        }
+    private Node CurrentBranchNode => this.Children[this.currentBranchIndex];
 
-        if (await child.Execute(token) == false) {
-          return false;
+    private bool HasReachedEnd => this.currentBranchIndex >= this.Children.Count;
+
+    protected override void OnStart() {
+      this.currentBranchIndex = 0;
+    }
+
+    protected override void OnEnd() {}
+
+    protected override NodeStatus OnUpdate() {
+      while (!this.HasReachedEnd) {
+        switch (this.CurrentBranchNode.Evaluate()) {
+          case NodeStatus.Running:
+            return NodeStatus.Running;
+          case NodeStatus.Failure:
+            return NodeStatus.Failure;
+          case NodeStatus.Success:
+            ++this.currentBranchIndex;
+            continue;
         }
       }
 
-      return true;
+      return NodeStatus.Success;
     }
   }
 }
