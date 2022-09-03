@@ -4,6 +4,7 @@ using System.Linq;
 
 using UnityEditor;
 using UnityEditor.Experimental.GraphView;
+using UnityEngine;
 using UnityEngine.UIElements;
 
 namespace Tenry.BehaviorTree {
@@ -38,12 +39,17 @@ namespace Tenry.BehaviorTree {
     }
 
     public override void BuildContextualMenu(ContextualMenuPopulateEvent ev) {
+      var viewTransform = this.contentViewContainer.transform;
+      var position = ev.localMousePosition;
+      position.x = (position.x - viewTransform.position.x) / viewTransform.scale.x;
+      position.y = (position.y - viewTransform.position.y) / viewTransform.scale.y;
+      
       {
         ev.menu.AppendAction("Actions", null, DropdownMenuAction.Status.Disabled);
 
         var types = TypeCache.GetTypesDerivedFrom<ActionNode>();
         foreach (var type in types) {
-          ev.menu.AppendAction(Node.GetUserFriendlyName(type), action => this.CreateNode(type));
+          ev.menu.AppendAction(Node.GetUserFriendlyName(type), action => this.CreateNode(type, position));
         }
       }
 
@@ -54,7 +60,7 @@ namespace Tenry.BehaviorTree {
 
         var types = TypeCache.GetTypesDerivedFrom<CompositeNode>();
         foreach (var type in types) {
-          ev.menu.AppendAction(Node.GetUserFriendlyName(type), action => this.CreateNode(type));
+          ev.menu.AppendAction(Node.GetUserFriendlyName(type), action => this.CreateNode(type, position));
         }
       }
 
@@ -65,13 +71,19 @@ namespace Tenry.BehaviorTree {
 
         var types = TypeCache.GetTypesDerivedFrom<DecoratorNode>();
         foreach (var type in types) {
-          ev.menu.AppendAction(Node.GetUserFriendlyName(type), action => this.CreateNode(type));
+          ev.menu.AppendAction(Node.GetUserFriendlyName(type), action => this.CreateNode(type, position));
         }
       }
     }
 
     private void CreateNode(System.Type type) {
       var node = this.tree.CreateNode(type);
+      this.CreateNodeView(node);
+    }
+
+    private void CreateNode(System.Type type, Vector2 position) {
+      var node = this.tree.CreateNode(type);
+      node.Position = position;
       this.CreateNodeView(node);
     }
 
@@ -154,7 +166,7 @@ namespace Tenry.BehaviorTree {
         }
       }
 
-      if (change.movedElements != null) {
+      if (change.edgesToCreate != null || change.movedElements != null) {
         foreach (var node in this.nodes) {
           var view = node as NodeView;
           view.Node.SortChildren();

@@ -33,17 +33,14 @@ namespace Tenry.BehaviorTree {
       get => this.controller;
       internal set {
         this.controller = value;
-        this.SetupNodeProperties(this.Root);
-      }
-    }
 
-    private void SetupNodeProperties(Node node) {
-      node.behaviorTree = this;
-      node.controller = this.controller;
-      node.gameObject = this.controller.gameObject;
-
-      foreach (var child in node.GetChildren()) {
-        this.SetupNodeProperties(child);
+        if (this.Root != null) {
+          this.Root.Traverse(node => {
+            node.behaviorTree = this;
+            node.controller = this.controller;
+            node.gameObject = this.controller.gameObject;
+          });
+        }
       }
     }
 
