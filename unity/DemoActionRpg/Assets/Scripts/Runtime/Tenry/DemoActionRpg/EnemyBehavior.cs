@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 using UnityEngine;
 
-using Tenry.Common.BehaviorTree;
+using Tenry.BehaviorTree;
 
 namespace Tenry.DemoActionRpg {
   public class EnemyBehavior : MonoBehaviour {

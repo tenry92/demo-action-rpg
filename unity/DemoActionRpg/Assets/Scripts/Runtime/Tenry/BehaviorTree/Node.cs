@@ -3,7 +3,7 @@ using System.Text.RegularExpressions;
 
 using UnityEngine;
 
-namespace Tenry.Common.BehaviorTree {
+namespace Tenry.BehaviorTree {
   public abstract class Node : ScriptableObject {
     #region Serialized Fields
     [SerializeField]

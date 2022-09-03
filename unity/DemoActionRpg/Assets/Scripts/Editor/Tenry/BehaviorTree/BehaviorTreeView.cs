@@ -6,7 +6,7 @@ using UnityEditor;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine.UIElements;
 
-namespace Tenry.Common.BehaviorTree {
+namespace Tenry.BehaviorTree {
   public class BehaviorTreeView : GraphView {
     public new class UxmlFactory : UxmlFactory<BehaviorTreeView, GraphView.UxmlTraits> {}
 
@@ -22,7 +22,7 @@ namespace Tenry.Common.BehaviorTree {
       this.AddManipulator(new SelectionDragger());
       this.AddManipulator(new RectangleSelector());
 
-      var styleSheet = AssetDatabase.LoadAssetAtPath<StyleSheet>("Assets/Scripts/Editor/Tenry/Common/BehaviorTree/BehaviorTreeEditor.uss");
+      var styleSheet = AssetDatabase.LoadAssetAtPath<StyleSheet>("Assets/Scripts/Editor/Tenry/BehaviorTree/BehaviorTreeEditor.uss");
       this.styleSheets.Add(styleSheet);
 
       Undo.undoRedoPerformed += this.OnUndoRedo;

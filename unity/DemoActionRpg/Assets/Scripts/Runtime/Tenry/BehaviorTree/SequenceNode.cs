@@ -1,5 +1,7 @@
-namespace Tenry.Common.BehaviorTree {
-  public class SelectorNode : CompositeNode {
+using System.Collections.Generic;
+
+namespace Tenry.BehaviorTree {
+  public class SequenceNode : CompositeNode {
     private int currentBranchIndex;
 
     private Node CurrentBranchNode => this.Children[this.currentBranchIndex];
@@ -22,11 +24,11 @@ namespace Tenry.Common.BehaviorTree {
             this.currentBranchIndex = branchIndex;
             return NodeStatus.Running;
           case NodeStatus.Failure:
+            this.currentBranchIndex = branchIndex;
+            return NodeStatus.Failure;
+          case NodeStatus.Success:
             this.currentBranchIndex = branchIndex + 1;
             break;
-          case NodeStatus.Success:
-            this.currentBranchIndex = branchIndex;
-            return NodeStatus.Success;
         }
       }
 
@@ -35,14 +37,14 @@ namespace Tenry.Common.BehaviorTree {
           case NodeStatus.Running:
             return NodeStatus.Running;
           case NodeStatus.Failure:
+            return NodeStatus.Failure;
+          case NodeStatus.Success:
             ++this.currentBranchIndex;
             continue;
-          case NodeStatus.Success:
-            return NodeStatus.Success;
         }
       }
 
-      return NodeStatus.Failure;
+      return NodeStatus.Success;
     }
   }
 }

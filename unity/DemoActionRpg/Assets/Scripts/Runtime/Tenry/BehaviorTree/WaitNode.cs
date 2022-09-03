@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Tenry.Common.BehaviorTree {
+namespace Tenry.BehaviorTree {
   public class WaitNode : ActionNode {
     #region Serialized Fields
     [SerializeField]

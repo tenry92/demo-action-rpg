@@ -5,7 +5,7 @@ using UnityEngine.UIElements;
 
 using Tenry.Common.UIElements;
 
-namespace Tenry.Common.BehaviorTree {
+namespace Tenry.BehaviorTree {
   public class BehaviorTreeEditor : EditorWindow {
     private BehaviorTreeView treeView;
 
@@ -53,7 +53,7 @@ namespace Tenry.Common.BehaviorTree {
       // Each editor window contains a root VisualElement object
       VisualElement root = rootVisualElement;
 
-      var basePath = "Assets/Scripts/Editor/Tenry/Common/BehaviorTree";
+      var basePath = "Assets/Scripts/Editor/Tenry/BehaviorTree";
 
       // Import UXML
       var visualTree = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>($"{basePath}/BehaviorTreeEditor.uxml");

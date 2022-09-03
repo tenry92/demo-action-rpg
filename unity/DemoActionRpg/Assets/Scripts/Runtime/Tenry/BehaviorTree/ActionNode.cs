@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Tenry.Common.BehaviorTree {
+namespace Tenry.BehaviorTree {
   public abstract class ActionNode : Node {
     public override void AddChild(Node child) {
       // nothing

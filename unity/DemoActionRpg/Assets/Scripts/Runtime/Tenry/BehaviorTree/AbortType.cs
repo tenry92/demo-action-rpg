@@ -1,6 +1,6 @@
 using System;
 
-namespace Tenry.Common.BehaviorTree {
+namespace Tenry.BehaviorTree {
   [Flags]
   public enum AbortType {
     None = 0x0,

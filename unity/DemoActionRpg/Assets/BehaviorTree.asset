@@ -35,7 +35,7 @@ MonoBehaviour:
   - {fileID: 4317722756968616033}
   - {fileID: -7059879515806776094}
   - {fileID: 582019247020188308}
-  abortType: 0
+  abortType: 2
 --- !u!114 &-7059879515806776094
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -162,7 +162,7 @@ MonoBehaviour:
   children:
   - {fileID: -2160168858361559096}
   - {fileID: -6792281471186361206}
-  abortType: 0
+  abortType: 2
 --- !u!114 &4968660783389964890
 MonoBehaviour:
   m_ObjectHideFlags: 0

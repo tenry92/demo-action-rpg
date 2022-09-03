@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Tenry.Common.BehaviorTree {
+namespace Tenry.BehaviorTree {
   public class BehaviorTreeController : MonoBehaviour {
     #region Serialized Fields
     [SerializeField]

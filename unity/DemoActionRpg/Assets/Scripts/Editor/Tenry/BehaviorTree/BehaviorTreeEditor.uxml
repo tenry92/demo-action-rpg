@@ -6,7 +6,7 @@
         </ui:VisualElement>
         <ui:VisualElement name="right-panel" style="flex-grow: 1;">
             <ui:Label text="Tree View" display-tooltip-when-elided="true" />
-            <Tenry.Common.BehaviorTree.BehaviorTreeView focusable="true" style="flex-grow: 1;" />
+            <Tenry.BehaviorTree.BehaviorTreeView focusable="true" style="flex-grow: 1;" />
         </ui:VisualElement>
     </Tenry.Common.UIElements.SplitView>
 </ui:UXML>

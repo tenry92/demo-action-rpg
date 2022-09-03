@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xs:schema xmlns:editor="UnityEditor.UIElements" xmlns:engine="UnityEngine.UIElements" xmlns="UnityEditor.Overlays" elementFormDefault="qualified" targetNamespace="Tenry.Common.BehaviorTree" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:schema xmlns:editor="UnityEditor.UIElements" xmlns:engine="UnityEngine.UIElements" xmlns="UnityEditor.Overlays" elementFormDefault="qualified" targetNamespace="Tenry.BehaviorTree" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:import schemaLocation="UnityEngine.UIElements.xsd" namespace="UnityEngine.UIElements" />
   <xs:complexType name="BehaviorTreeViewType">
     <xs:complexContent mixed="false">
@@ -21,5 +21,5 @@
       </xs:restriction>
     </xs:complexContent>
   </xs:complexType>
-  <xs:element name="BehaviorTreeView" substitutionGroup="engine:VisualElement" xmlns:q1="Tenry.Common.BehaviorTree" type="q1:BehaviorTreeViewType" />
+  <xs:element name="BehaviorTreeView" substitutionGroup="engine:VisualElement" xmlns:q1="Tenry.BehaviorTree" type="q1:BehaviorTreeViewType" />
 </xs:schema>

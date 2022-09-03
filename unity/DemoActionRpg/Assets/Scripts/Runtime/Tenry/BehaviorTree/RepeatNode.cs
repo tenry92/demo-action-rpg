@@ -1,4 +1,4 @@
-namespace Tenry.Common.BehaviorTree {
+namespace Tenry.BehaviorTree {
   public class RepeatNode : DecoratorNode {
     protected override void OnStart() {}
 

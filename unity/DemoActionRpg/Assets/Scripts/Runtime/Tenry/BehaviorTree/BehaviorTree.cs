@@ -7,7 +7,7 @@ using UnityEngine;
 using UnityEditor;
 #endif
 
-namespace Tenry.Common.BehaviorTree {
+namespace Tenry.BehaviorTree {
   [CreateAssetMenu()]
   public class BehaviorTree : ScriptableObject {
     #region Serialized Fields
@@ -110,7 +110,6 @@ namespace Tenry.Common.BehaviorTree {
       Undo.RecordObject(this, "Behavior Tree (Delete Node)");
       this.nodes.Remove(node);
 
-      // AssetDatabase.RemoveObjectFromAsset(node);
       Undo.DestroyObjectImmediate(node);
 
       AssetDatabase.SaveAssets();

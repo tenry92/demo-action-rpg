@@ -6,7 +6,7 @@ using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-namespace Tenry.Common.BehaviorTree {
+namespace Tenry.BehaviorTree {
   public class NodeView : UnityEditor.Experimental.GraphView.Node {
     public Node Node { get; private set; }
 
@@ -20,7 +20,7 @@ namespace Tenry.Common.BehaviorTree {
 
     internal Port Output => output;
 
-    public NodeView(Node node) : base("Assets/Scripts/Editor/Tenry/Common/BehaviorTree/NodeView.uxml") {
+    public NodeView(Node node) : base("Assets/Scripts/Editor/Tenry/BehaviorTree/NodeView.uxml") {
       this.Node = node;
       this.title = Node.GetUserFriendlyName(node.GetType());
       // todo: this.name = node.name;
