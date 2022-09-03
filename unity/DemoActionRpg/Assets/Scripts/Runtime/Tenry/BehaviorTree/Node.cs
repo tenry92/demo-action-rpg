@@ -34,6 +34,8 @@ namespace Tenry.BehaviorTree {
 
     public bool Started { get; protected set; } = false;
 
+    public bool IsRunning => this.Started == true && this.Status == NodeStatus.Running;
+
     public string Guid {
       get {
         return this.guid;
@@ -95,11 +97,16 @@ namespace Tenry.BehaviorTree {
       }
     }
 
-    public void Abort() {
-      if (this.Status == NodeStatus.Running) {
+    public virtual void Abort() {
+      if (this.IsRunning) {
         this.OnEnd();
-        this.Started = false;
+        this.ResetStatus();
       }
+    }
+
+    private void ResetStatus() {
+      this.Started = false;
+      this.Status = NodeStatus.Running;
     }
 
     protected abstract void OnStart();

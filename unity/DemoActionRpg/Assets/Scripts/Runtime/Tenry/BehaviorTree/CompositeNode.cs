@@ -27,6 +27,16 @@ namespace Tenry.BehaviorTree {
       return copy;
     }
 
+    public override void Abort() {
+      foreach (var child in this.children) {
+        if (child.IsRunning) {
+          child.Abort();
+        }
+      }
+
+      base.Abort();
+    }
+
     public override void AddChild(Node child) {
       // todo: disallow adding a (distant) parent to be added as a child
       // (or disconnect from parent otherwise?)

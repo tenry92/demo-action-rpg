@@ -19,6 +19,14 @@ namespace Tenry.BehaviorTree {
       return copy;
     }
 
+    public override void Abort() {
+      if (this.child != null && this.child.IsRunning) {
+        this.child.Abort();
+      }
+
+      base.Abort();
+    }
+
     public override void AddChild(Node child) {
       this.child = child;
     }
