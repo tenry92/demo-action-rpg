@@ -3,6 +3,7 @@ using UnityEngine;
 namespace Tenry.DemoActionRpg {
   public class Weapon : MonoBehaviour {
     #region Serialized Fields
+    [SerializeField]
     [Min(0.1f)]
     private float cooldown = 0.5f;
 

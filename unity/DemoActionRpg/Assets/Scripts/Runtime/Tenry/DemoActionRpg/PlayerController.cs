@@ -1,3 +1,5 @@
+using System.Threading.Tasks;
+
 using UnityEngine;
 
 namespace Tenry.DemoActionRpg {
@@ -136,22 +138,27 @@ namespace Tenry.DemoActionRpg {
       this.verticalSpeed = 0f;
     }
 
-    public void Attack() {
+    public async Task Attack() {
       if (this.IsAttacking) {
-        Debug.Log("Player is already attacking");
         return;
       }
 
       this.IsAttacking = true;
       this.weapon.WeaponActive = true;
       this.animator?.SetTrigger("MeleeAttack");
+      this.animator?.SetTrigger("Attack");
 
-      this.Invoke("OnAttackEnd", this.weapon.Cooldown);
-    }
+      await Task.Delay(Mathf.RoundToInt(this.weapon.Cooldown * 1000));
 
-    private void OnAttackEnd() {
       this.weapon.WeaponActive = false;
       this.IsAttacking = false;
+
+      // this.Invoke("OnAttackEnd", this.weapon.Cooldown);
     }
+
+    // private void OnAttackEnd() {
+    //   this.weapon.WeaponActive = false;
+    //   this.IsAttacking = false;
+    // }
   }
 }

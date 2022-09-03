@@ -49,6 +49,38 @@ MonoBehaviour:
   - {fileID: -6780551062251714641}
   - {fileID: -5755375744757076937}
   abortType: 0
+--- !u!114 &-4016504549278348854
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8355936da2514a541982071438f162d5, type: 3}
+  m_Name: AttackNode
+  m_EditorClassIdentifier: 
+  position: {x: -438.3499, y: 615}
+  guid: ad0b7f4c1f6cc204e96d7635e2b473a7
+  note: 
+--- !u!114 &-2121249403533223866
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f651e25aa08142346914ccd18879942c, type: 3}
+  m_Name: RepeatNode
+  m_EditorClassIdentifier: 
+  position: {x: -464.99994, y: 283}
+  guid: 63c7924c1f085704182b3e2fac6515f4
+  note: 
+  child: {fileID: 3672843535401994547}
+  endOnFailure: 1
 --- !u!114 &-1524956579299943380
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -61,10 +93,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7aca3f79b9cedb408e09e2496ce7c19, type: 3}
   m_Name: SelectorNode
   m_EditorClassIdentifier: 
-  position: {x: 4.500046, y: 141.25002}
+  position: {x: -5.0000277, y: 129.22862}
   guid: 6f72d2105c4db01408ce3ef1999a07fb
   note: 
   children:
+  - {fileID: -2121249403533223866}
   - {fileID: -5185725942790116031}
   - {fileID: -453758714128665119}
   abortType: 2
@@ -102,8 +135,47 @@ MonoBehaviour:
   - {fileID: -1524956579299943380}
   - {fileID: -5185725942790116031}
   - {fileID: -453758714128665119}
+  - {fileID: 3672843535401994547}
+  - {fileID: -4016504549278348854}
+  - {fileID: 8470221894007983502}
+  - {fileID: -2121249403533223866}
   root: {fileID: 8877475049037156519}
   Status: 0
+--- !u!114 &3672843535401994547
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2e47dafcd01a5e4784486fb1d9061ab, type: 3}
+  m_Name: SequenceNode
+  m_EditorClassIdentifier: 
+  position: {x: -473.3499, y: 434.99997}
+  guid: 45c3e55b8e5579b42806e4b0d5e08466
+  note: 
+  children:
+  - {fileID: 8470221894007983502}
+  - {fileID: -4016504549278348854}
+  abortType: 0
+--- !u!114 &8470221894007983502
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdb387633c75d544c8c18883f269f7ae, type: 3}
+  m_Name: DetectedPlayerInRange
+  m_EditorClassIdentifier: 
+  position: {x: -727.35, y: 607}
+  guid: 60552d39c8809e74cba9d1ef2a2e0a11
+  note: 
+  range: 1
 --- !u!114 &8877475049037156519
 MonoBehaviour:
   m_ObjectHideFlags: 0
