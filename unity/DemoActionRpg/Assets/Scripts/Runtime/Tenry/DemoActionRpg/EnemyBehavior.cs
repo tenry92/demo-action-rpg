@@ -6,6 +6,48 @@ using UnityEngine;
 using Tenry.BehaviorTree;
 
 namespace Tenry.DemoActionRpg {
+  public class SeekNode : ActionNode {
+    private EnemyBehavior enemyBehaviour;
+
+    private PlayerController controller;
+
+    protected override void OnStart() {
+      this.enemyBehaviour = this.GameObject.GetComponent<EnemyBehavior>();
+      this.controller = this.GameObject.GetComponent<PlayerController>();
+    }
+
+    protected override void OnEnd() {}
+
+    protected override NodeStatus OnUpdate() {
+      var seekFor = this.enemyBehaviour.SeekFor;
+      var directionVector = seekFor - this.GameObject.transform.position;
+      var direction = Vector3.SignedAngle(Vector3.forward, directionVector.normalized, Vector3.up);
+
+      this.controller.Move(direction);
+
+      return NodeStatus.Running;
+    }
+  }
+
+  public class CanSeePlayerNode : ActionNode {
+    private EnemyBehavior enemyBehaviour;
+
+    protected override void OnStart() {
+      this.enemyBehaviour = this.GameObject.GetComponent<EnemyBehavior>();
+    }
+
+    protected override void OnEnd() {}
+
+    protected override NodeStatus OnUpdate() {
+      if (this.enemyBehaviour.TryGetNearestPlayer(out var player, out var distance) && distance < 8f) {
+        this.enemyBehaviour.SeekFor = player.transform.position;
+        return NodeStatus.Success;
+      }
+
+      return NodeStatus.Failure;
+    }
+  }
+
   public class EnemyBehavior : MonoBehaviour {
     #region Serialized Fields
     [SerializeField]
@@ -17,6 +59,8 @@ namespace Tenry.DemoActionRpg {
     private Animator animator;
 
     private PlayerController controller;
+
+    public Vector3 SeekFor { get; set; }
 
     private void Awake() {
       this.damage = this.GetComponent<Damageable>();

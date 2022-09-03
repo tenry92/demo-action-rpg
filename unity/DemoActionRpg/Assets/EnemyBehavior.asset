@@ -48,12 +48,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2e47dafcd01a5e4784486fb1d9061ab, type: 3}
   m_Name: SequenceNode
   m_EditorClassIdentifier: 
-  position: {x: 357.5, y: 577}
+  position: {x: 357.5, y: 586}
   guid: 2393606264055b34d9d6e0c9f592a959
   note: Seek
   children:
-  - {fileID: 4968660783389964890}
-  - {fileID: 5916316927296185638}
+  - {fileID: -4720868227687757236}
+  - {fileID: -4131278566645036728}
   abortType: 2
 --- !u!114 &-6792281471186361206
 MonoBehaviour:
@@ -71,6 +71,21 @@ MonoBehaviour:
   guid: d26b3481c0236494ca677a3563078457
   note: Attack
   duration: 1
+--- !u!114 &-4720868227687757236
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: CanSeePlayerNode
+  m_EditorClassIdentifier: Tenry.DemoActionRpg:Tenry.DemoActionRpg:CanSeePlayerNode
+  position: {x: 287.50003, y: 764.25006}
+  guid: eaa2ad8a5091de847a3ab3a35651b609
+  note: 
 --- !u!114 &-4488936348174473682
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -87,6 +102,21 @@ MonoBehaviour:
   guid: 16ca66dbdbf1cf0408ffaadcebc44eaf
   note: 
   child: {fileID: -7694374478489024107}
+--- !u!114 &-4131278566645036728
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: SeekNode
+  m_EditorClassIdentifier: Tenry.DemoActionRpg:Tenry.DemoActionRpg:SeekNode
+  position: {x: 479.00003, y: 759.60004}
+  guid: 94acc75073a5b9b478a1aa9cdb24bc6f
+  note: 
 --- !u!114 &-2160168858361559096
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -113,7 +143,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c7463ad0349261a448f8e98dccb718e9, type: 3}
-  m_Name: BehaviorTree
+  m_Name: EnemyBehavior
   m_EditorClassIdentifier: 
   nodes:
   - {fileID: -8654018872402167731}
@@ -124,8 +154,8 @@ MonoBehaviour:
   - {fileID: 582019247020188308}
   - {fileID: -2160168858361559096}
   - {fileID: -6792281471186361206}
-  - {fileID: 4968660783389964890}
-  - {fileID: 5916316927296185638}
+  - {fileID: -4131278566645036728}
+  - {fileID: -4720868227687757236}
   root: {fileID: -8654018872402167731}
   Status: 0
 --- !u!114 &582019247020188308
@@ -140,7 +170,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: caef0fc4c215c1c4eb4bbdfb5f0cfff9, type: 3}
   m_Name: DebugNode
   m_EditorClassIdentifier: 
-  position: {x: 599.40015, y: 594.0001}
+  position: {x: 602, y: 594}
   guid: c87f1b65976c679488dc4d9b2940d961
   note: Idle
   emitStatus: 0
@@ -163,35 +193,3 @@ MonoBehaviour:
   - {fileID: -2160168858361559096}
   - {fileID: -6792281471186361206}
   abortType: 2
---- !u!114 &4968660783389964890
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: caef0fc4c215c1c4eb4bbdfb5f0cfff9, type: 3}
-  m_Name: DebugNode
-  m_EditorClassIdentifier: 
-  position: {x: 320, y: 748.9095}
-  guid: c4107e4a5583a9f49bdab38c7d4e74ea
-  note: Visible?
-  emitStatus: 1
---- !u!114 &5916316927296185638
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: caef0fc4c215c1c4eb4bbdfb5f0cfff9, type: 3}
-  m_Name: DebugNode
-  m_EditorClassIdentifier: 
-  position: {x: 432.99997, y: 757.0001}
-  guid: b1d4517e951744a4d80be78ac1712287
-  note: Seek
-  emitStatus: 0
