@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
 using UnityEngine;
@@ -26,25 +25,6 @@ namespace Tenry.DemoActionRpg {
       this.controller.Move(direction);
 
       return NodeStatus.Running;
-    }
-  }
-
-  public class CanSeePlayerNode : ActionNode {
-    private EnemyBehavior enemyBehaviour;
-
-    protected override void OnStart() {
-      this.enemyBehaviour = this.GameObject.GetComponent<EnemyBehavior>();
-    }
-
-    protected override void OnEnd() {}
-
-    protected override NodeStatus OnUpdate() {
-      if (this.enemyBehaviour.TryGetNearestPlayer(out var player, out var distance) && distance < 8f) {
-        this.enemyBehaviour.SeekFor = player.transform.position;
-        return NodeStatus.Success;
-      }
-
-      return NodeStatus.Failure;
     }
   }
 
@@ -121,36 +101,6 @@ namespace Tenry.DemoActionRpg {
 
     private void AlertObservers() {
       Debug.Log("AlertObservers");
-    }
-
-    public bool TryGetNearestPlayer(out GameObject player, out float distance) {
-      player = null;
-      distance = Mathf.Infinity;
-
-      var players = GameObject.FindGameObjectsWithTag("Player");
-
-      if (players.Length == 0) {
-        return false;
-      }
-
-      for (int i = 0; i < players.Length; ++i) {
-        var distanceToPlayer = Vector3.Distance(this.transform.position, players[i].transform.position);
-
-        if (distanceToPlayer < distance) {
-          player = players[i];
-          distance = distanceToPlayer;
-        }
-      }
-
-      return true;
-    }
-
-    public float GetDistanceToPlayer() {
-      if (this.TryGetNearestPlayer(out var player, out var distance)) {
-        return distance;
-      }
-
-      return Mathf.Infinity;
     }
   }
 }
