@@ -143,6 +143,8 @@ namespace Tenry.DemoActionRpg {
         return;
       }
 
+      Debug.Log($"{this.gameObject.name} attacks!");
+
       this.IsAttacking = true;
       this.weapon.WeaponActive = true;
       this.animator?.SetTrigger("Attack");

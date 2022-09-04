@@ -1,5 +1,20 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-6507840156131798964
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63850ef966dccc0489d07d87c2df069d, type: 3}
+  m_Name: IdleNode
+  m_EditorClassIdentifier: 
+  position: {x: -339.00003, y: 803.6401}
+  guid: c4a22b589df12c14984cb157d85d352c
+  note: 
 --- !u!114 &-5755375744757076937
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -61,11 +76,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   position: {x: -69.90008, y: 279.05002}
   guid: 0df78406f4412954191275f849407a55
-  note: 
+  note: Seek
   children:
   - {fileID: 3631273382111412170}
   - {fileID: -5755375744757076937}
   abortType: 0
+--- !u!114 &-5169032642300356647
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7aca3f79b9cedb408e09e2496ce7c19, type: 3}
+  m_Name: SelectorNode
+  m_EditorClassIdentifier: 
+  position: {x: -446.50003, y: 617.5}
+  guid: e47cff83c3126864fac19365dd530f49
+  note: 
+  children:
+  - {fileID: 7300108262361103666}
+  - {fileID: -6507840156131798964}
+  abortType: 2
 --- !u!114 &-4016504549278348854
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -78,7 +112,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8355936da2514a541982071438f162d5, type: 3}
   m_Name: AttackNode
   m_EditorClassIdentifier: 
-  position: {x: -395.0001, y: 617}
+  position: {x: -527.00006, y: 1042.6401}
   guid: ad0b7f4c1f6cc204e96d7635e2b473a7
   note: 
 --- !u!114 &-2121249403533223866
@@ -95,7 +129,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   position: {x: -464.99994, y: 283}
   guid: 63c7924c1f085704182b3e2fac6515f4
-  note: 
+  note: Attack
   child: {fileID: 3672843535401994547}
   endOnFailure: 1
 --- !u!114 &-1524956579299943380
@@ -156,6 +190,9 @@ MonoBehaviour:
   - {fileID: -2121249403533223866}
   - {fileID: 3631273382111412170}
   - {fileID: 2556709520893314896}
+  - {fileID: 7300108262361103666}
+  - {fileID: -6507840156131798964}
+  - {fileID: -5169032642300356647}
   root: {fileID: 8877475049037156519}
   Status: 0
 --- !u!114 &2556709520893314896
@@ -170,7 +207,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdb387633c75d544c8c18883f269f7ae, type: 3}
   m_Name: DetectPlayerNode
   m_EditorClassIdentifier: 
-  position: {x: -600, y: 625}
+  position: {x: -736.1526, y: 662.09503}
   guid: a1f2192ab49ef29438c467fc7cfc765b
   note: 
   range: 1.2
@@ -202,13 +239,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2e47dafcd01a5e4784486fb1d9061ab, type: 3}
   m_Name: SequenceNode
   m_EditorClassIdentifier: 
-  position: {x: -473.3499, y: 434.99997}
+  position: {x: -470.49997, y: 443}
   guid: 45c3e55b8e5579b42806e4b0d5e08466
   note: 
   children:
   - {fileID: 2556709520893314896}
-  - {fileID: -4016504549278348854}
+  - {fileID: -5169032642300356647}
   abortType: 0
+--- !u!114 &7300108262361103666
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19e23c9b2d678464191c75571bf5d2b1, type: 3}
+  m_Name: CooldownNode
+  m_EditorClassIdentifier: 
+  position: {x: -519.00006, y: 843.6401}
+  guid: c27e1f3e14cdadc4f9852374c0bc8241
+  note: 
+  child: {fileID: -4016504549278348854}
+  cooldown: 2
 --- !u!114 &8877475049037156519
 MonoBehaviour:
   m_ObjectHideFlags: 0

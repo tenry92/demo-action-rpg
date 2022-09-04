@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 using UnityEngine;
 
 namespace Tenry.DemoActionRpg {
@@ -16,6 +18,7 @@ namespace Tenry.DemoActionRpg {
         return this.collider.enabled;
       }
       set {
+        this.damagedTargets.Clear();
         this.collider.enabled = value;
       }
     }
@@ -33,12 +36,31 @@ namespace Tenry.DemoActionRpg {
 
     private new Collider collider;
 
+    private HashSet<Damageable> damagedTargets = new HashSet<Damageable>();
+
     private void Awake() {
       this.collider = this.GetComponent<Collider>();
     }
 
     private void Start() {
       this.collider.enabled = false;
+    }
+
+    private void OnTriggerStay(Collider other) {
+      var target = other.GetComponent<Damageable>();
+
+      if (this.CanDamage(target)) {
+        target.Damage(1);
+        this.damagedTargets.Add(target);
+      }
+    }
+
+    private bool CanDamage(Damageable target) {
+      if (target == null || this.damagedTargets.Contains(target)) {
+        return false;
+      }
+
+      return (this.DamageTargets & target.DamageableType) != DamageableTypes.None;
     }
 
     #if UNITY_EDITOR

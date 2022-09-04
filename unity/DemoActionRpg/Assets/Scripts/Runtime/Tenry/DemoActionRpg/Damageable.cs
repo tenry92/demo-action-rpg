@@ -9,9 +9,6 @@ namespace Tenry.DemoActionRpg {
     private int maxHealth;
 
     [SerializeField]
-    private float damageCooldown = 1f;
-
-    [SerializeField]
     private FloatingText damageTextPrefab;
 
     [SerializeField]
@@ -47,11 +44,11 @@ namespace Tenry.DemoActionRpg {
 
     private float activeDamageCooldown = 0f;
 
-    public bool IsCooldownActive => this.activeDamageCooldown > 0f;
-
     public bool IsAlive => this.health > 0;
 
     public bool IsDead => !this.IsAlive;
+
+    public DamageableTypes DamageableType => this.damageableType;
 
     public event Action<int> Damaged;
 
@@ -73,43 +70,20 @@ namespace Tenry.DemoActionRpg {
       this.Damaged -= this.SpawnDamageText;
     }
 
-    private void OnTriggerEnter(Collider other) {
-      // Debug.Log($"{this.gameObject.name}@OnTriggerEnter -> {other.gameObject.name}");
-      var weapon = other.GetComponent<Weapon>();
-
-      if (weapon != null) {
-        if (weapon.WeaponActive && (weapon.DamageTargets & this.damageableType) != DamageableTypes.None) {
-          this.Damage(1);
-        } else {
-          Debug.Log("Weapon is not active");
-        }
-      }
-    }
-
-    private void Damage(int amount) {
+    public void Damage(int amount) {
       if (this.IsDead) {
         Debug.Log("Is already dead");
-        return;
-      }
-
-      if (this.IsCooldownActive) {
-        Debug.Log("Cooldown active");
         return;
       }
 
       amount = Mathf.Min(this.Health, amount);
 
       this.Health -= amount;
-      this.SetCooldown();
       this.Damaged?.Invoke(amount);
 
       if (this.damageEffectPrefab != null) {
-        Instantiate(this.damageEffectPrefab, damageTextSpawnPoint?.position ?? this.transform.position, Quaternion.identity);
+        Instantiate(this.damageEffectPrefab, this.damageTextSpawnPoint?.position ?? this.transform.position, Quaternion.identity);
       }
-    }
-
-    private void SetCooldown() {
-      this.activeDamageCooldown = this.damageCooldown;
     }
 
     private void SpawnDamageText(int damage) {
@@ -117,7 +91,7 @@ namespace Tenry.DemoActionRpg {
         return;
       }
 
-      var damageText = Instantiate(this.damageTextPrefab, damageTextSpawnPoint?.position ?? this.transform.position, Quaternion.identity);
+      var damageText = Instantiate(this.damageTextPrefab, this.damageTextSpawnPoint?.position ?? this.transform.position, Quaternion.identity);
       damageText.Text = $"-{damage}";
     }
   }

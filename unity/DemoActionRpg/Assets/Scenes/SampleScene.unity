@@ -322,7 +322,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 5
-  damageCooldown: 0.5
   damageTextPrefab: {fileID: 8921454389798267681, guid: 47e4794c12f377845b65969cf139612e,
     type: 3}
   damageTextSpawnPoint: {fileID: 1361297610}
@@ -2441,7 +2440,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 0
-  m_Radius: 0.8
+  m_Radius: 0.75
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0.5, z: 0}
@@ -2473,7 +2472,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f14d7fbd825a2644484396a0e132a699, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cooldown: 0.5
+  cooldown: 1
   damageTargets: 1
 --- !u!1001 &1101207554
 PrefabInstance:
@@ -4843,6 +4842,22 @@ PrefabInstance:
       propertyPath: damageableBy
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 1774613729330542955, guid: a934e4d3ad2f34845aa9a721f32eb37e,
+        type: 3}
+      propertyPath: damageTextPrefab
+      value: 
+      objectReference: {fileID: 8921454389798267681, guid: 47e4794c12f377845b65969cf139612e,
+        type: 3}
+    - target: {fileID: 1774613729330542955, guid: a934e4d3ad2f34845aa9a721f32eb37e,
+        type: 3}
+      propertyPath: damageEffectPrefab
+      value: 
+      objectReference: {fileID: 100004, guid: f95ff734540a0d749be6571b6cb5b37f, type: 3}
+    - target: {fileID: 1774613729330542955, guid: a934e4d3ad2f34845aa9a721f32eb37e,
+        type: 3}
+      propertyPath: damageTextSpawnPoint
+      value: 
+      objectReference: {fileID: 140809671}
     - target: {fileID: 3806421141888166282, guid: a934e4d3ad2f34845aa9a721f32eb37e,
         type: 3}
       propertyPath: m_RootOrder
@@ -4913,6 +4928,11 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 4728692724483100203, guid: a934e4d3ad2f34845aa9a721f32eb37e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5046353096155059107, guid: a934e4d3ad2f34845aa9a721f32eb37e,
         type: 3}
       propertyPath: damageTargets
@@ -4965,7 +4985,7 @@ PrefabInstance:
     - target: {fileID: 5906950446355611762, guid: b50d846b6a3c5a545af1d394384054bf,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.115916885
+      value: 0.1159169
       objectReference: {fileID: 0}
     - target: {fileID: 5906950446355611762, guid: b50d846b6a3c5a545af1d394384054bf,
         type: 3}
@@ -5049,7 +5069,7 @@ PrefabInstance:
     - target: {fileID: 8588678655220123984, guid: b2e9b85da0ec6ed459b2fe517443d7a3,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.115916885
+      value: 0.1159169
       objectReference: {fileID: 0}
     - target: {fileID: 8588678655220123984, guid: b2e9b85da0ec6ed459b2fe517443d7a3,
         type: 3}

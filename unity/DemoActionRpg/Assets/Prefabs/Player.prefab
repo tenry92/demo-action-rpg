@@ -83,11 +83,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 20
-  damageCooldown: 1
   damageTextPrefab: {fileID: 0}
   damageTextSpawnPoint: {fileID: 0}
   damageEffectPrefab: {fileID: 0}
-  damageableType: 4
+  damageableType: 1
 --- !u!1001 &6191895956361910835
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -225,4 +224,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f14d7fbd825a2644484396a0e132a699, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cooldown: 0.5
   damageTargets: 0
