@@ -21,7 +21,7 @@ namespace Tenry.DemoActionRpg {
     }
 
     private void UpdateHealthBar() {
-      this.healthBar.style.flexGrow = ((float) this.reflectHealthOf.Health) / this.reflectHealthOf.MaxHealth;
+      this.healthBar.style.width = new Length(((float) this.reflectHealthOf.Health) / this.reflectHealthOf.MaxHealth * 100, LengthUnit.Percent);
     }
   }
 }
