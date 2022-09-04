@@ -61,8 +61,10 @@ namespace Tenry.DemoActionRpg {
       this.respawnPosition = this.transform.position;
 
       Debug.Assert(this.model != null);
-      Debug.Assert(this.characterController = this.GetComponent<CharacterController>());
-      Debug.Assert(this.animator = this.GetComponentInChildren<Animator>());
+      this.characterController = this.GetComponent<CharacterController>();
+      Debug.Assert(this.characterController != null);
+      this.animator = this.GetComponentInChildren<Animator>();
+      Debug.Assert(this.animator != null);
       this.weapon = this.GetComponentInChildren<Weapon>();
     }
 

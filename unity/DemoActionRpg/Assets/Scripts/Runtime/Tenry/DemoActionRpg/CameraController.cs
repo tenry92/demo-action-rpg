@@ -19,7 +19,8 @@ namespace Tenry.DemoActionRpg {
     private CinemachineVirtualCamera virtualCamera;
 
     private void Awake() {
-      Debug.Assert(this.virtualCamera = this.GetComponent<CinemachineVirtualCamera>());
+      this.virtualCamera = this.GetComponent<CinemachineVirtualCamera>();
+      Debug.Assert(this.virtualCamera != null);
     }
 
     private void OnValidate() {

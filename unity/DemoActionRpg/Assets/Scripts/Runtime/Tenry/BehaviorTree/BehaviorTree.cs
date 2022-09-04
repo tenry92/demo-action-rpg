@@ -54,18 +54,6 @@ namespace Tenry.BehaviorTree {
       return this.Status;
     }
 
-    public void AddChild(Node parent, Node child) {
-      Undo.RecordObject(parent, "Behavior Tree (Add Child)");
-      parent.AddChild(child);
-      EditorUtility.SetDirty(parent);
-    }
-
-    public void RemoveChild(Node parent, Node child) {
-      Undo.RecordObject(parent, "Behavior Tree (Remove Child)");
-      parent.RemoveChild(child);
-      EditorUtility.SetDirty(parent);
-    }
-
     public List<Node> GetChildren(Node parent) {
       return parent.GetChildren().ToList();
     }
@@ -85,6 +73,18 @@ namespace Tenry.BehaviorTree {
     }
 
     #if UNITY_EDITOR
+    public void AddChild(Node parent, Node child) {
+      Undo.RecordObject(parent, "Behavior Tree (Add Child)");
+      parent.AddChild(child);
+      EditorUtility.SetDirty(parent);
+    }
+
+    public void RemoveChild(Node parent, Node child) {
+      Undo.RecordObject(parent, "Behavior Tree (Remove Child)");
+      parent.RemoveChild(child);
+      EditorUtility.SetDirty(parent);
+    }
+
     public Node CreateNode(System.Type type) {
       var node = ScriptableObject.CreateInstance(type) as Node;
       node.name = type.Name;

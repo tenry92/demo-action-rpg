@@ -12,7 +12,8 @@ namespace Tenry.DemoActionRpg {
     private new UniversalAdditionalLightData light;
 
     private void Awake() {
-      Debug.Assert(this.light = this.GetComponent<UniversalAdditionalLightData>());
+      this.light = this.GetComponent<UniversalAdditionalLightData>();
+      Debug.Assert(this.light);
     }
 
     private void Update() {

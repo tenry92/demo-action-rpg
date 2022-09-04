@@ -19,7 +19,8 @@ namespace Tenry.DemoActionRpg {
     private void Awake() {
       Debug.Assert(this.moveAction != null);
       Debug.Assert(this.attackAction != null);
-      Debug.Assert(this.playerController = this.GetComponent<PlayerController>());
+      this.playerController = this.GetComponent<PlayerController>();
+      Debug.Assert(this.playerController != null);
     }
 
     private void OnEnable() {

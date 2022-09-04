@@ -14,7 +14,8 @@ namespace Tenry.DemoActionRpg {
     private CameraController cameraController;
 
     private void Awake() {
-      Debug.Assert(this.cameraController = this.GetComponent<CameraController>());
+      this.cameraController = this.GetComponent<CameraController>();
+      Debug.Assert(this.cameraController != null);
     }
 
     private void OnEnable() {
