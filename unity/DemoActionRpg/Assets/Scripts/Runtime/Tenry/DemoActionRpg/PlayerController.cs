@@ -145,20 +145,12 @@ namespace Tenry.DemoActionRpg {
 
       this.IsAttacking = true;
       this.weapon.WeaponActive = true;
-      this.animator?.SetTrigger("MeleeAttack");
       this.animator?.SetTrigger("Attack");
 
       await Task.Delay(Mathf.RoundToInt(this.weapon.Cooldown * 1000));
 
       this.weapon.WeaponActive = false;
       this.IsAttacking = false;
-
-      // this.Invoke("OnAttackEnd", this.weapon.Cooldown);
     }
-
-    // private void OnAttackEnd() {
-    //   this.weapon.WeaponActive = false;
-    //   this.IsAttacking = false;
-    // }
   }
 }

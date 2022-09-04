@@ -4,12 +4,12 @@ using Tenry.BehaviorTree;
 
 namespace Tenry.DemoActionRpg.BehaviorTree {
   public class AttackNode : ActionNode {
-    private PlayerController controller;
+    private PlayerController playerController;
 
     private Task task = null;
 
     protected override void OnStart() {
-      this.controller = this.GameObject.GetComponent<PlayerController>();
+      this.playerController = this.GameObject.GetComponent<PlayerController>();
       this.task = null;
     }
 
@@ -17,7 +17,7 @@ namespace Tenry.DemoActionRpg.BehaviorTree {
 
     protected override NodeStatus OnUpdate() {
       if (this.task == null) {
-        this.task = this.controller.Attack();
+        this.task = this.playerController.Attack();
       }
 
       if (this.task.IsCompleted) {

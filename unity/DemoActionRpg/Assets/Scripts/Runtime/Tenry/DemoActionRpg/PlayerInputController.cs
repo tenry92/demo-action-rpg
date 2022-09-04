@@ -56,8 +56,8 @@ namespace Tenry.DemoActionRpg {
       yield return this.attackAction;
     }
 
-    private void OnAttack(InputAction.CallbackContext context) {
-      this.playerController.Attack();
+    private async void OnAttack(InputAction.CallbackContext context) {
+      await this.playerController.Attack();
     }
   }
 }
