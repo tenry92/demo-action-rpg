@@ -44,6 +44,8 @@ namespace Tenry.BehaviorTree {
       }
     }
 
+    public Blackboard Blackboard { get; private set; }
+
     public NodeStatus Update() {
       if (this.Root.Status == NodeStatus.Running) {
         this.Status = this.Root.Evaluate();
@@ -70,8 +72,8 @@ namespace Tenry.BehaviorTree {
 
     public BehaviorTree Clone() {
       var copy = Instantiate(this);
+      copy.Blackboard = new Blackboard();
       copy.Root = copy.Root.Clone();
-
       copy.nodes = new List<Node>();
 
       // todo(?): we are missing detached nodes

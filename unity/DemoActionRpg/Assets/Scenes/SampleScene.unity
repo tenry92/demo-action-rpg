@@ -409,20 +409,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tree: {fileID: 11400000, guid: 06c88d2883c618a409b55c08573995d9, type: 2}
---- !u!114 &28855982
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 28855971}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 27178b3adbc7e104db45a40cc2ef4ad1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  detectionRange: 8
-  maxDistance: 16
 --- !u!1001 &70669310
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2454,7 +2440,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 1075055735}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.8
   m_Height: 1
   m_Direction: 1
@@ -2487,6 +2473,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f14d7fbd825a2644484396a0e132a699, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cooldown: 0.5
   damageTargets: 1
 --- !u!1001 &1101207554
 PrefabInstance:

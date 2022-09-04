@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 
 using UnityEngine;
 
@@ -22,7 +23,7 @@ namespace Tenry.BehaviorTree {
 
     public override Node Clone() {
       var copy = Instantiate(this);
-      copy.children = this.children.ConvertAll(child => child.Clone());
+      copy.children = this.children.ConvertAll(child => child?.Clone());
 
       return copy;
     }
@@ -53,10 +54,13 @@ namespace Tenry.BehaviorTree {
     }
 
     public override IEnumerable<Node> GetChildren() {
-      return this.children.AsReadOnly();
+      return this.children.Where(child => child != null);
     }
 
     public override void SortChildren() {
+      // remove nulls
+      this.children = this.children.Where(child => child != null).ToList<Node>();
+
       this.children.Sort((a, b) => a.Position.x < b.Position.x ? -1 : 1);
     }
 

@@ -30,6 +30,8 @@ namespace Tenry.BehaviorTree {
 
     public BehaviorTreeController Controller => this.controller;
 
+    protected Blackboard Blackboard => this.BehaviorTree.Blackboard;
+
     public NodeStatus Status { get; protected set; } = NodeStatus.Running;
 
     public bool Started { get; protected set; } = false;

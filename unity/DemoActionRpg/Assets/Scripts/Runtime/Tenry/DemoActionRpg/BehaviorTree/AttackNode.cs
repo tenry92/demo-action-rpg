@@ -4,14 +4,11 @@ using Tenry.BehaviorTree;
 
 namespace Tenry.DemoActionRpg.BehaviorTree {
   public class AttackNode : ActionNode {
-    private PlayerDetector detector;
-
     private PlayerController controller;
 
     private Task task = null;
 
     protected override void OnStart() {
-      this.detector = this.GameObject.GetComponent<PlayerDetector>();
       this.controller = this.GameObject.GetComponent<PlayerController>();
       this.task = null;
     }
