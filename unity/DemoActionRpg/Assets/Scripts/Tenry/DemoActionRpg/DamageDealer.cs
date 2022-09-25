@@ -6,11 +6,7 @@ namespace Tenry.DemoActionRpg {
   public class DamageDealer : MonoBehaviour {
     #region Serialized Fields
     [SerializeField]
-    [Min(0.1f)]
-    private float cooldown = 0.5f;
-
-    [SerializeField]
-    private DamageableTypes damageTargets;
+    private bool hurtsPlayer;
     #endregion
 
     public bool WeaponActive {
@@ -23,16 +19,7 @@ namespace Tenry.DemoActionRpg {
       }
     }
 
-    public DamageableTypes DamageTargets {
-      get {
-        return this.damageTargets;
-      }
-      set {
-        this.damageTargets = value;
-      }
-    }
-
-    public float Cooldown => this.cooldown;
+    public bool HurtsPlayer => this.hurtsPlayer;
 
     private new Collider collider;
 
@@ -56,11 +43,19 @@ namespace Tenry.DemoActionRpg {
     }
 
     private bool CanDamage(Damageable target) {
-      if (target == null || this.damagedTargets.Contains(target)) {
+      if (target == null) {
         return false;
       }
 
-      return (this.DamageTargets & target.DamageableType) != DamageableTypes.None;
+      if (this.damagedTargets.Contains(target)) {
+        return false;
+      }
+
+      if (this.hurtsPlayer) {
+        return target.tag == "Player";
+      } else {
+        return target.tag != "Player";
+      }
     }
 
     #if UNITY_EDITOR
@@ -68,16 +63,10 @@ namespace Tenry.DemoActionRpg {
       var collider = this.GetComponent<Collider>();
 
       if (collider != null) {
-        switch (LayerMask.LayerToName(this.gameObject.layer)) {
-          case "Player":
-            Gizmos.color = new Color(1f, 0.5f, 0f);
-            break;
-          case "Enemy":
-            Gizmos.color = Color.red;
-            break;
-          default:
-            Gizmos.color = Color.gray;
-            break;
+        if (this.hurtsPlayer) {
+          Gizmos.color = Color.red;
+        } else {
+          Gizmos.color = new Color(1f, 0.5f, 0f);
         }
 
         Gizmos.matrix = this.transform.localToWorldMatrix;

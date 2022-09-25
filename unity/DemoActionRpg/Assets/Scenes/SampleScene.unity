@@ -176,11 +176,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Slime_01_King
       objectReference: {fileID: 0}
-    - target: {fileID: 873531700701352353, guid: 28d0a30d6aed6fc4c8ca473413f70c24,
-        type: 3}
-      propertyPath: m_Layer
-      value: 7
-      objectReference: {fileID: 0}
     - target: {fileID: 2156295224627675165, guid: 28d0a30d6aed6fc4c8ca473413f70c24,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -326,7 +321,6 @@ MonoBehaviour:
     type: 3}
   damageTextSpawnPoint: {fileID: 1361297610}
   damageEffectPrefab: {fileID: 100004, guid: f95ff734540a0d749be6571b6cb5b37f, type: 3}
-  damageableType: 2
 --- !u!114 &28855976
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2408,8 +2402,8 @@ GameObject:
   - component: {fileID: 1075055738}
   - component: {fileID: 1075055737}
   - component: {fileID: 1075055739}
-  m_Layer: 7
-  m_Name: Weapon
+  m_Layer: 0
+  m_Name: DamageDealer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2472,8 +2466,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f14d7fbd825a2644484396a0e132a699, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cooldown: 1
-  damageTargets: 1
+  hurtsPlayer: 1
 --- !u!1001 &1101207554
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3410,7 +3403,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1462339469}
   - component: {fileID: 1462339470}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Hitbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4264,7 +4257,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1931573018}
   - component: {fileID: 1931573019}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Hitbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4920,13 +4913,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3806421141888166283, guid: a934e4d3ad2f34845aa9a721f32eb37e,
         type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 3806421141888166283, guid: a934e4d3ad2f34845aa9a721f32eb37e,
-        type: 3}
       propertyPath: m_TagString
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 4728692724483100203, guid: a934e4d3ad2f34845aa9a721f32eb37e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4728692724483100203, guid: a934e4d3ad2f34845aa9a721f32eb37e,
         type: 3}

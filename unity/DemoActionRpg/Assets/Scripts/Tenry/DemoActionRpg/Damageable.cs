@@ -16,9 +16,6 @@ namespace Tenry.DemoActionRpg {
 
     [SerializeField]
     private GameObject damageEffectPrefab;
-
-    [SerializeField]
-    private DamageableTypes damageableType = DamageableTypes.Object;
     #endregion
 
     private int health;
@@ -47,8 +44,6 @@ namespace Tenry.DemoActionRpg {
     public bool IsAlive => this.health > 0;
 
     public bool IsDead => !this.IsAlive;
-
-    public DamageableTypes DamageableType => this.damageableType;
 
     public event Action<int> Damaged;
 

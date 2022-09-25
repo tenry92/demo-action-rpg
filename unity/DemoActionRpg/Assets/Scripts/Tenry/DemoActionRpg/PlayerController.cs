@@ -151,7 +151,7 @@ namespace Tenry.DemoActionRpg {
       this.weapon.WeaponActive = true;
       this.animator?.SetTrigger("Attack");
 
-      await Task.Delay(Mathf.RoundToInt(this.weapon.Cooldown * 1000));
+      await Task.Delay(Mathf.RoundToInt(0.5f * 1000));
 
       this.weapon.WeaponActive = false;
       this.IsAttacking = false;
