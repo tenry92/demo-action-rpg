@@ -4,7 +4,7 @@ namespace Tenry.DemoActionRpg {
   public class Destroyable : MonoBehaviour {
     private void OnTriggerEnter(Collider other) {
       if (other.tag == "Weapon") {
-        var weapon = other.GetComponent<Weapon>();
+        var weapon = other.GetComponent<DamageDealer>();
         Debug.Assert(weapon != null);
 
         if (weapon.WeaponActive) {

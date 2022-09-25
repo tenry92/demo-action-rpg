@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Tenry.DemoActionRpg {
-  public class Weapon : MonoBehaviour {
+  public class DamageDealer : MonoBehaviour {
     #region Serialized Fields
     [SerializeField]
     [Min(0.1f)]

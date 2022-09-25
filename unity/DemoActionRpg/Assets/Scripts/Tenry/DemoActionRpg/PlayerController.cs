@@ -47,7 +47,7 @@ namespace Tenry.DemoActionRpg {
 
     private Vector3 respawnPosition;
 
-    private Weapon weapon;
+    private DamageDealer weapon;
 
     private bool didMove = false;
 
@@ -65,7 +65,7 @@ namespace Tenry.DemoActionRpg {
       Debug.Assert(this.characterController != null);
       this.animator = this.GetComponentInChildren<Animator>();
       Debug.Assert(this.animator != null);
-      this.weapon = this.GetComponentInChildren<Weapon>();
+      this.weapon = this.GetComponentInChildren<DamageDealer>();
     }
 
     private void LateUpdate() {
