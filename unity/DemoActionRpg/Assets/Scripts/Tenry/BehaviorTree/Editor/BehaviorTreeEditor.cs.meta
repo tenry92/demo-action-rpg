@@ -3,7 +3,12 @@ guid: b8458749e0f2eca4ba2b61823db76c69
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - m_ViewDataDictionary: {instanceID: 0}
+  - document: {fileID: 9197481963319205126, guid: a03da86b426acee4aa8a64dd4b8f674c,
+      type: 3}
+  - stylesheet: {fileID: 7433441132597879392, guid: 2bad916c4252df64e90e08e046f9da97,
+      type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

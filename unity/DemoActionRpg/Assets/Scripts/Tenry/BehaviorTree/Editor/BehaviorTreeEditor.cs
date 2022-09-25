@@ -7,6 +7,11 @@ using Tenry.Common.Editor.UIElements;
 
 namespace Tenry.BehaviorTree.Editor {
   public class BehaviorTreeEditor : EditorWindow {
+    #region Serialized Fields
+    [SerializeField]
+    private VisualTreeAsset document;
+    #endregion
+
     private BehaviorTreeView treeView;
 
     private InspectorView inspectorView;
@@ -53,16 +58,9 @@ namespace Tenry.BehaviorTree.Editor {
       // Each editor window contains a root VisualElement object
       VisualElement root = rootVisualElement;
 
-      var basePath = "Assets/Scripts/Tenry/BehaviorTree/Editor";
-
       // Import UXML
-      var visualTree = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>($"{basePath}/BehaviorTreeEditor.uxml");
+      var visualTree = this.document;
       visualTree.CloneTree(root);
-
-      // A stylesheet can be added to a VisualElement.
-      // The style will be applied to the VisualElement and all of its children.
-      var styleSheet = AssetDatabase.LoadAssetAtPath<StyleSheet>($"{basePath}/BehaviorTreeEditor.uss");
-      root.styleSheets.Add(styleSheet);
 
       this.treeView = root.Q<BehaviorTreeView>();
       this.inspectorView = root.Q<InspectorView>();

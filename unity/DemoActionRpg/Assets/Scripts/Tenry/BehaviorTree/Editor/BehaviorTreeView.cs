@@ -25,7 +25,7 @@ namespace Tenry.BehaviorTree.Editor {
       this.AddManipulator(new SelectionDragger());
       this.AddManipulator(new RectangleSelector());
 
-      var styleSheet = AssetDatabase.LoadAssetAtPath<StyleSheet>("Assets/Scripts/Tenry/BehaviorTree/Editor/BehaviorTreeEditor.uss");
+      var styleSheet = AssetDatabase.LoadAssetAtPath<StyleSheet>("Assets/Scripts/Tenry/BehaviorTree/Editor/BehaviorTreeView.uss");
       this.styleSheets.Add(styleSheet);
 
       Undo.undoRedoPerformed += this.OnUndoRedo;
