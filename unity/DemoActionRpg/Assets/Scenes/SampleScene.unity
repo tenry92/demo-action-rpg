@@ -304,23 +304,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &28855975
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 28855971}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 126f073fdeeb2764da52427da293d3d4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 5
-  damageTextPrefab: {fileID: 8921454389798267681, guid: 47e4794c12f377845b65969cf139612e,
-    type: 3}
-  damageTextSpawnPoint: {fileID: 1361297610}
-  damageEffectPrefab: {fileID: 100004, guid: f95ff734540a0d749be6571b6cb5b37f, type: 3}
 --- !u!114 &28855976
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -598,34 +581,6 @@ MonoBehaviour:
       m_Action: Attack
       m_Flags: 0
     m_Flags: 0
---- !u!114 &140809675 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1774613729330542955, guid: a934e4d3ad2f34845aa9a721f32eb37e,
-    type: 3}
-  m_PrefabInstance: {fileID: 3806421141751561293}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 140809670}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 126f073fdeeb2764da52427da293d3d4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!54 &140809678
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 140809670}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1001 &159570721
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3403,6 +3358,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1462339469}
   - component: {fileID: 1462339470}
+  - component: {fileID: 1462339471}
   m_Layer: 0
   m_Name: Hitbox
   m_TagString: Untagged
@@ -3438,6 +3394,23 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.8, y: 0.7616744, z: 0.8}
   m_Center: {x: -0, y: 0.3616544, z: 0}
+--- !u!114 &1462339471
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1462339468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 126f073fdeeb2764da52427da293d3d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 5
+  damageTextPrefab: {fileID: 8921454389798267681, guid: 47e4794c12f377845b65969cf139612e,
+    type: 3}
+  damageTextSpawnPoint: {fileID: 1361297610}
+  damageEffectPrefab: {fileID: 100004, guid: f95ff734540a0d749be6571b6cb5b37f, type: 3}
 --- !u!1001 &1471453514
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3654,7 +3627,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97c82a2ca9d23bf478d27fd4207f9567, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  reflectHealthOf: {fileID: 140809675}
+  reflectHealthOf: {fileID: 1931573021}
 --- !u!4 &1650504601 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4032784818553696, guid: 645e0ccb96eef934aa12bd4c02a4bd66,
@@ -4257,9 +4230,11 @@ GameObject:
   m_Component:
   - component: {fileID: 1931573018}
   - component: {fileID: 1931573019}
+  - component: {fileID: 1931573021}
+  - component: {fileID: 1931573020}
   m_Layer: 0
   m_Name: Hitbox
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4293,6 +4268,39 @@ CapsuleCollider:
   m_Height: 1.5
   m_Direction: 1
   m_Center: {x: 0, y: 0.75, z: 0}
+--- !u!54 &1931573020
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1931573017}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &1931573021
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1931573017}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 126f073fdeeb2764da52427da293d3d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 20
+  damageTextPrefab: {fileID: 8921454389798267681, guid: 47e4794c12f377845b65969cf139612e,
+    type: 3}
+  damageTextSpawnPoint: {fileID: 140809671}
+  damageEffectPrefab: {fileID: 100004, guid: f95ff734540a0d749be6571b6cb5b37f, type: 3}
 --- !u!1001 &1964090261
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4830,27 +4838,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1774613729330542955, guid: a934e4d3ad2f34845aa9a721f32eb37e,
-        type: 3}
-      propertyPath: damageableBy
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1774613729330542955, guid: a934e4d3ad2f34845aa9a721f32eb37e,
-        type: 3}
-      propertyPath: damageTextPrefab
-      value: 
-      objectReference: {fileID: 8921454389798267681, guid: 47e4794c12f377845b65969cf139612e,
-        type: 3}
-    - target: {fileID: 1774613729330542955, guid: a934e4d3ad2f34845aa9a721f32eb37e,
-        type: 3}
-      propertyPath: damageEffectPrefab
-      value: 
-      objectReference: {fileID: 100004, guid: f95ff734540a0d749be6571b6cb5b37f, type: 3}
-    - target: {fileID: 1774613729330542955, guid: a934e4d3ad2f34845aa9a721f32eb37e,
-        type: 3}
-      propertyPath: damageTextSpawnPoint
-      value: 
-      objectReference: {fileID: 140809671}
     - target: {fileID: 3806421141888166282, guid: a934e4d3ad2f34845aa9a721f32eb37e,
         type: 3}
       propertyPath: m_RootOrder

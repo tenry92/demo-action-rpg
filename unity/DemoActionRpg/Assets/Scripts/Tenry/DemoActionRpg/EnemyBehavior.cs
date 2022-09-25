@@ -43,7 +43,7 @@ namespace Tenry.DemoActionRpg {
     public Vector3 SeekFor { get; set; }
 
     private void Awake() {
-      this.damage = this.GetComponent<Damageable>();
+      this.damage = this.GetComponentInChildren<Damageable>();
       this.animator = this.GetComponent<Animator>();
       this.controller = this.GetComponent<PlayerController>();
     }
