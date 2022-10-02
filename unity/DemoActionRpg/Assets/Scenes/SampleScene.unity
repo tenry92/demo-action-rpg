@@ -515,7 +515,7 @@ MonoBehaviour:
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings:
-    - m_Name: 2D Vector
+    - m_Name: WSAD
       m_Id: d2f890e7-33c3-4ac8-9c8c-e6e9043655bf
       m_Path: 2DVector
       m_Interactions: 
@@ -555,9 +555,57 @@ MonoBehaviour:
       m_Groups: 
       m_Action: Move
       m_Flags: 8
+    - m_Name: Arrow Keys
+      m_Id: f5193742-607b-4c22-9da3-3eececd13c54
+      m_Path: 2DVector
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Move
+      m_Flags: 4
+    - m_Name: up
+      m_Id: 67243db9-afa9-4beb-b6bd-73e08a0639d1
+      m_Path: <Keyboard>/upArrow
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Move
+      m_Flags: 8
+    - m_Name: down
+      m_Id: 193a5847-622d-4802-accd-e47f37a96afe
+      m_Path: <Keyboard>/downArrow
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Move
+      m_Flags: 8
+    - m_Name: left
+      m_Id: 6193b737-9624-405a-ac1d-b826e991824d
+      m_Path: <Keyboard>/leftArrow
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Move
+      m_Flags: 8
+    - m_Name: right
+      m_Id: f4334d45-bdb3-435c-9aa5-6486480d9d08
+      m_Path: <Keyboard>/rightArrow
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Move
+      m_Flags: 8
     - m_Name: 
-      m_Id: c2ee176a-c772-462e-8e7b-5a4ed9d85df0
+      m_Id: 862c906d-959a-41ea-8a7f-8f2c52c7465f
       m_Path: <Gamepad>/leftStick
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Move
+      m_Flags: 0
+    - m_Name: 
+      m_Id: c490a32c-83ed-4a24-bc45-19a05d5075e5
+      m_Path: <Gamepad>/dpad
       m_Interactions: 
       m_Processors: 
       m_Groups: 
@@ -575,6 +623,22 @@ MonoBehaviour:
     - m_Name: 
       m_Id: d8c4874b-ab37-477f-ad34-c627f259d4ca
       m_Path: <Mouse>/leftButton
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Attack
+      m_Flags: 0
+    - m_Name: 
+      m_Id: 9365f158-13ad-4e9d-b090-cb31724382d2
+      m_Path: <Keyboard>/space
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Attack
+      m_Flags: 0
+    - m_Name: 
+      m_Id: 7d751f77-ff18-4d81-a189-3106b2624bea
+      m_Path: <Gamepad>/buttonSouth
       m_Interactions: 
       m_Processors: 
       m_Groups: 
@@ -4965,7 +5029,7 @@ PrefabInstance:
     - target: {fileID: 5906950446355611762, guid: b50d846b6a3c5a545af1d394384054bf,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.1159169
+      value: 0.115916885
       objectReference: {fileID: 0}
     - target: {fileID: 5906950446355611762, guid: b50d846b6a3c5a545af1d394384054bf,
         type: 3}
@@ -5049,7 +5113,7 @@ PrefabInstance:
     - target: {fileID: 8588678655220123984, guid: b2e9b85da0ec6ed459b2fe517443d7a3,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.1159169
+      value: 0.115916885
       objectReference: {fileID: 0}
     - target: {fileID: 8588678655220123984, guid: b2e9b85da0ec6ed459b2fe517443d7a3,
         type: 3}
@@ -5081,5 +5145,10 @@ PrefabInstance:
       propertyPath: m_LookAt
       value: 
       objectReference: {fileID: 140809671}
+    - target: {fileID: 8588678655220123987, guid: b2e9b85da0ec6ed459b2fe517443d7a3,
+        type: 3}
+      propertyPath: m_Lens.m_SensorSize.x
+      value: 1.9269565
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b2e9b85da0ec6ed459b2fe517443d7a3, type: 3}

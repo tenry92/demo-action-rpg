@@ -211,4 +211,12 @@ MonoBehaviour:
       m_Groups: 
       m_Action: Zoom
       m_Flags: 0
+    - m_Name: 
+      m_Id: 65552565-e897-4820-b608-1b41547bdbc4
+      m_Path: <Gamepad>/rightStick/y
+      m_Interactions: 
+      m_Processors: Normalize(min=-120,max=120)
+      m_Groups: 
+      m_Action: Zoom
+      m_Flags: 0
     m_Flags: 0
