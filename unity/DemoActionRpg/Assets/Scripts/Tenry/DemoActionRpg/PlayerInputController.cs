@@ -6,37 +6,30 @@ using UnityEngine.InputSystem;
 namespace Tenry.DemoActionRpg {
   [RequireComponent(typeof(PlayerController))]
   public class PlayerInputController : MonoBehaviour {
-    #region Serialized Fields
-    [SerializeField]
-    private InputAction moveAction;
-
-    [SerializeField]
-    private InputAction attackAction;
-    #endregion
-
     private PlayerController playerController;
 
+    private InputAction moveAction;
+
+    private InputAction attackAction;
+
     private void Awake() {
-      Debug.Assert(this.moveAction != null);
-      Debug.Assert(this.attackAction != null);
       this.playerController = this.GetComponent<PlayerController>();
       Debug.Assert(this.playerController != null);
     }
 
     private void OnEnable() {
-      foreach (var action in this.GetAllActions()) {
-        action?.Enable();
-      }
+      var map = GameController.Instance.InputManager.ListenToMap("Game");
+
+      moveAction = map.FindAction("Move");
+      attackAction = map.FindAction("Attack");
 
       this.attackAction.performed += this.OnAttack;
     }
 
     private void OnDisable() {
-      foreach (var action in this.GetAllActions()) {
-        action?.Disable();
-      }
+      GameController.Instance.InputManager.UnlistenToMap("Game");
 
-      this.attackAction.performed -= this.OnAttack;
+      attackAction.performed -= this.OnAttack;
     }
 
     private void Update() {

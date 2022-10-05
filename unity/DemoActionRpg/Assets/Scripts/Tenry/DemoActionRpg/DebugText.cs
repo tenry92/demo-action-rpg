@@ -1,5 +1,6 @@
-using System.Collections.Generic;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 using UnityEngine;
 using TMPro;
@@ -9,6 +10,8 @@ using Tenry.Common;
 namespace Tenry.DemoActionRpg {
   public class DebugText : MonoBehaviour {
     private List<string> linesToShow = new ();
+
+    private List<KeyValuePair<string, float>> persistentLines = new ();
 
     private static DebugText instance;
 
@@ -32,6 +35,8 @@ namespace Tenry.DemoActionRpg {
     }
 
     private void Update() {
+      this.persistentLines = this.persistentLines.Where(entry => entry.Value > Time.unscaledTime).ToList();
+
       if (this.framerateMeasure != null) {
         float framerate = this.framerateMeasure.AverageFramerate;
 
@@ -44,7 +49,9 @@ namespace Tenry.DemoActionRpg {
     }
 
     private void LateUpdate() {
-      this.text.text = String.Join("\n", this.linesToShow);
+      var lines = this.linesToShow.Concat(this.persistentLines.ConvertAll(entry => entry.Key));
+
+      this.text.text = String.Join("\n", lines);
       this.linesToShow.Clear();
     }
 
@@ -54,6 +61,14 @@ namespace Tenry.DemoActionRpg {
 
     public void Log(string key, string value) {
       this.linesToShow.Add($"<color=white>{key}</color> <b>{value}</b>");
+    }
+
+    public void LogPersistent(string text, float duration = Mathf.Infinity) {
+      this.persistentLines.Add(new (text, Time.unscaledTime + duration));
+    }
+
+    public void LogPersistent(string key, string value, float duration = Mathf.Infinity) {
+      this.persistentLines.Add(new ($"<color=white>{key}</color> <b>{value}</b>", Time.unscaledTime + duration));
     }
   }
 }
