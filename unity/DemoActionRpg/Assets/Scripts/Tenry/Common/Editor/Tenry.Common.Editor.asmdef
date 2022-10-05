@@ -1,0 +1,18 @@
+{
+    "name": "Tenry.Common.Editor",
+    "rootNamespace": "Tenry.Common.Editor",
+    "references": [
+        "GUID:32e03bb1e278f9240a401aba921c94f0"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
