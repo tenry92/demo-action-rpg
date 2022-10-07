@@ -32,7 +32,7 @@ namespace Tenry.DemoActionRpg {
             var layout = InputSystem.TryFindMatchingLayout(device.description);
 
             if (layout != null) {
-              DebugText.Instance.Log($"Device #{deviceIndex}: {layout}");
+              DebugText.Instance?.Log($"Device #{deviceIndex}: {layout}");
             }
 
             break;
