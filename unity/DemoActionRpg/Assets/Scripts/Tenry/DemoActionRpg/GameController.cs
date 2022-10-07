@@ -13,6 +13,8 @@ namespace Tenry.DemoActionRpg {
         Destroy(this);
       }
 
+      DontDestroyOnLoad(this.gameObject);
+
       Instance = this;
       InputManager = GetComponentInChildren<InputManager>();
       Debug.Log(InputManager);
