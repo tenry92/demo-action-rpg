@@ -8,6 +8,9 @@ namespace Tenry.DemoActionRpg {
     #region Serialized Fields
     [SerializeField]
     private TMP_Text text;
+
+    [SerializeField]
+    private Variables.Switch playerInputEnabledSwitch;
     #endregion
 
     public static void ShowMessage(string message) {
@@ -22,6 +25,8 @@ namespace Tenry.DemoActionRpg {
     }
 
     public void Show(string message) {
+      playerInputEnabledSwitch.Value = false;
+
       this.text.text = message;
 
       var canvasGroup = this.GetComponent<CanvasGroup>();
@@ -37,6 +42,24 @@ namespace Tenry.DemoActionRpg {
       }
 
       this.gameObject.SetActive(true);
+    }
+
+    public void Hide() {
+      playerInputEnabledSwitch.Value = true;
+
+      var canvasGroup = this.GetComponent<CanvasGroup>();
+
+      if (canvasGroup != null) {
+        canvasGroup.alpha = 0f;
+      }
+      
+      var typewriter = this.text.GetComponent<Typewriter>();
+
+      if (typewriter != null) {
+        typewriter.enabled = false;
+      }
+
+      this.gameObject.SetActive(false);
     }
   }
 }

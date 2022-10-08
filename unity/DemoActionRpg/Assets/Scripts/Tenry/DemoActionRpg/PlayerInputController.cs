@@ -6,6 +6,11 @@ using UnityEngine.InputSystem;
 namespace Tenry.DemoActionRpg {
   [RequireComponent(typeof(PlayerController))]
   public class PlayerInputController : MonoBehaviour {
+    #region Serialized Fields
+    [SerializeField]
+    private Variables.Switch enabledSwitch;
+    #endregion
+
     private PlayerController playerController;
 
     private InputAction moveAction;
@@ -15,6 +20,10 @@ namespace Tenry.DemoActionRpg {
     private void Awake() {
       this.playerController = this.GetComponent<PlayerController>();
       Debug.Assert(this.playerController != null);
+
+      if (enabledSwitch != null) {
+        enabled = enabledSwitch.Value;
+      }
     }
 
     private void OnEnable() {
@@ -29,7 +38,9 @@ namespace Tenry.DemoActionRpg {
     private void OnDisable() {
       GameController.Instance.InputManager.UnlistenToMap("Game");
 
-      attackAction.performed -= this.OnAttack;
+      if (attackAction != null) {
+        attackAction.performed -= this.OnAttack;
+      }
     }
 
     private void Update() {
