@@ -19,5 +19,17 @@ namespace Tenry.DemoActionRpg {
       InputManager = GetComponentInChildren<InputManager>();
       Debug.Log(InputManager);
     }
+
+    public void ExitGame() {
+      #if UNITY_EDITOR
+        if (Application.isEditor) {
+          UnityEditor.EditorApplication.isPlaying = false;
+        } else {
+          Application.Quit();
+        }
+      #else
+        Application.Quit();
+      #endif
+    }
   }
 }

@@ -799,6 +799,52 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 1201892967}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1703585212 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8822749461222604286, guid: db1b5132dd131ff449090482eee2d29e,
+    type: 3}
+  m_PrefabInstance: {fileID: 828313268}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1703585213 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8822749461222604284, guid: db1b5132dd131ff449090482eee2d29e,
+    type: 3}
+  m_PrefabInstance: {fileID: 828313268}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1703585212}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2613b8f6ac0047849b4c7dfe366d313d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1703585215
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1703585212}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d43c597277e94de4594a488fdd11c5c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  voidEvent: {fileID: 11400000, guid: 660bd0fadbf0b7345b51dcdec8dca931, type: 2}
+  eventTriggered:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1703585213}
+        m_TargetAssemblyTypeName: Tenry.DemoActionRpg.GameController, Tenry.DemoActionRpg
+        m_MethodName: ExitGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1001 &1889197522
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -920,6 +966,42 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3345750709593347482, guid: 7513de494809b964e8f1c5d745a82fd7,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3345750709593347482, guid: 7513de494809b964e8f1c5d745a82fd7,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3345750709593347482, guid: 7513de494809b964e8f1c5d745a82fd7,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 11400000, guid: 660bd0fadbf0b7345b51dcdec8dca931,
+        type: 2}
+    - target: {fileID: 3345750709593347482, guid: 7513de494809b964e8f1c5d745a82fd7,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3345750709593347482, guid: 7513de494809b964e8f1c5d745a82fd7,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Trigger
+      objectReference: {fileID: 0}
+    - target: {fileID: 3345750709593347482, guid: 7513de494809b964e8f1c5d745a82fd7,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Tenry.DemoActionRpg.VoidEvent, Tenry.DemoActionRpg
+      objectReference: {fileID: 0}
+    - target: {fileID: 3345750709593347482, guid: 7513de494809b964e8f1c5d745a82fd7,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7513de494809b964e8f1c5d745a82fd7, type: 3}
