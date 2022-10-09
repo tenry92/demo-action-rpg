@@ -71,6 +71,8 @@ MonoBehaviour:
   acceleration: 15
   gravity: 10
   model: {fileID: 3784655599388619047}
+  bombPrefab: {fileID: 6537472070660027671, guid: c08c5c2aec7d88e45838f768e3ee0162,
+    type: 3}
 --- !u!114 &6204600993177781234
 MonoBehaviour:
   m_ObjectHideFlags: 0

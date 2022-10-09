@@ -21,6 +21,9 @@ namespace Tenry.DemoActionRpg {
 
     [SerializeField]
     private Transform model;
+
+    [SerializeField]
+    private GameObject bombPrefab;
     #endregion
 
     private CharacterController characterController;
@@ -155,6 +158,10 @@ namespace Tenry.DemoActionRpg {
 
       this.weapon.WeaponActive = false;
       this.IsAttacking = false;
+    }
+
+    public void UseItem1() {
+      Instantiate(bombPrefab, transform.position, Quaternion.identity);
     }
   }
 }

@@ -17,6 +17,8 @@ namespace Tenry.DemoActionRpg {
 
     private InputAction attackAction;
 
+    private InputAction item1Action;
+
     private void Awake() {
       this.playerController = this.GetComponent<PlayerController>();
       Debug.Assert(this.playerController != null);
@@ -31,8 +33,10 @@ namespace Tenry.DemoActionRpg {
 
       moveAction = map.FindAction("Move");
       attackAction = map.FindAction("Attack");
+      item1Action = map.FindAction("Item 1");
 
       this.attackAction.performed += this.OnAttack;
+      this.item1Action.performed += this.OnUseItem1;
     }
 
     private void OnDisable() {
@@ -40,6 +44,10 @@ namespace Tenry.DemoActionRpg {
 
       if (attackAction != null) {
         attackAction.performed -= this.OnAttack;
+      }
+
+      if (item1Action != null) {
+        item1Action.performed -= this.OnUseItem1;
       }
     }
 
@@ -63,6 +71,10 @@ namespace Tenry.DemoActionRpg {
 
     private async void OnAttack(InputAction.CallbackContext context) {
       await this.playerController.Attack();
+    }
+
+    private void OnUseItem1(InputAction.CallbackContext context) {
+      this.playerController.UseItem1();
     }
   }
 }
