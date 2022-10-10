@@ -24,6 +24,9 @@ namespace Tenry.DemoActionRpg {
 
     [SerializeField]
     private GameObject bombPrefab;
+
+    [SerializeField]
+    private ObjectPoolLink bombPool;
     #endregion
 
     private CharacterController characterController;
@@ -161,7 +164,11 @@ namespace Tenry.DemoActionRpg {
     }
 
     public void UseItem1() {
-      Instantiate(bombPrefab, transform.position, Quaternion.identity);
+      // Instantiate(bombPrefab, transform.position, Quaternion.identity);
+
+      var bomb = bombPool.Pool.Get();
+      bomb.transform.position = transform.position;
+      bomb.transform.rotation = Quaternion.identity;
     }
   }
 }

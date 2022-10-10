@@ -10,12 +10,19 @@ namespace Tenry.DemoActionRpg {
     private GameObject explosionPrefab;
     #endregion
 
-    private void Start() {
+    private void OnEnable() {
       Invoke("Explode", explodeInSeconds);
     }
 
     public void Explode() {
-      Destroy(this.gameObject);
+      var returnToPool = this.GetComponent<ReturnToPool>();
+
+      if (returnToPool) {
+        returnToPool.Return();
+      } else {
+        Destroy(this.gameObject);
+      }
+
       Instantiate(explosionPrefab, transform.position, Quaternion.identity);
     }
   }

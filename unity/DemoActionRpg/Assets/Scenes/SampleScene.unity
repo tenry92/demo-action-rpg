@@ -342,6 +342,7 @@ MonoBehaviour:
   gravity: 10
   model: {fileID: 28855977}
   bombPrefab: {fileID: 0}
+  bombPool: {fileID: 0}
 --- !u!143 &28855979
 CharacterController:
   m_ObjectHideFlags: 0
@@ -5375,6 +5376,12 @@ PrefabInstance:
       propertyPath: eventTriggered.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 3806421141888166276, guid: a934e4d3ad2f34845aa9a721f32eb37e,
+        type: 3}
+      propertyPath: bombPool
+      value: 
+      objectReference: {fileID: 11400000, guid: 576534e9138792849aa406ad5fe47ff3,
+        type: 2}
     - target: {fileID: 3806421141888166282, guid: a934e4d3ad2f34845aa9a721f32eb37e,
         type: 3}
       propertyPath: m_RootOrder
@@ -5504,7 +5511,7 @@ PrefabInstance:
     - target: {fileID: 5906950446355611762, guid: b50d846b6a3c5a545af1d394384054bf,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.115916885
+      value: 0.1159169
       objectReference: {fileID: 0}
     - target: {fileID: 5906950446355611762, guid: b50d846b6a3c5a545af1d394384054bf,
         type: 3}
@@ -5717,7 +5724,7 @@ PrefabInstance:
     - target: {fileID: 8588678655220123984, guid: b2e9b85da0ec6ed459b2fe517443d7a3,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.115916885
+      value: 0.1159169
       objectReference: {fileID: 0}
     - target: {fileID: 8588678655220123984, guid: b2e9b85da0ec6ed459b2fe517443d7a3,
         type: 3}
