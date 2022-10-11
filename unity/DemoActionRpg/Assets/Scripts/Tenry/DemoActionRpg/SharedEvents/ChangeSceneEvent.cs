@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 using UnityEngine;
 
-namespace Tenry.DemoActionRpg {
+namespace Tenry.DemoActionRpg.SharedEvents {
   [CreateAssetMenu(menuName = "Demo Action RPG/Events/ChangeSceneEvent", fileName = "ChangeSceneEvent")]
   public class ChangeSceneEvent : ScriptableObject {
     private List<ChangeSceneEventListener> listeners = new ();

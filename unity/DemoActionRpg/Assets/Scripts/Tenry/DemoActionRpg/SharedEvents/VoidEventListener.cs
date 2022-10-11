@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Tenry.DemoActionRpg {
+namespace Tenry.DemoActionRpg.SharedEvents {
   public class VoidEventListener : MonoBehaviour {
     #region Serialized Fields
     [SerializeField]

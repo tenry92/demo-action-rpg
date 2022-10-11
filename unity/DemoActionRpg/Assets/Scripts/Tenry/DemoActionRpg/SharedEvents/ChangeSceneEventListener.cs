@@ -1,9 +1,7 @@
-using System.Collections.Generic;
-
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Tenry.DemoActionRpg {
+namespace Tenry.DemoActionRpg.SharedEvents {
   public class ChangeSceneEventListener : MonoBehaviour {
     #region Serialized Fields
     [SerializeField]

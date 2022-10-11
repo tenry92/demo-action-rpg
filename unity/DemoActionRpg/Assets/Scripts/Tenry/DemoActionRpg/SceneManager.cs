@@ -5,7 +5,7 @@ using UnitySceneManager = UnityEngine.SceneManagement.SceneManager;
 namespace Tenry.DemoActionRpg {
   public class SceneManager : MonoBehaviour {
     private void OnEnable() {
-      var changeSceneEventListener = GetComponent<ChangeSceneEventListener>();
+      var changeSceneEventListener = GetComponent<SharedEvents.ChangeSceneEventListener>();
 
       if (changeSceneEventListener) {
         changeSceneEventListener.EventTriggered.AddListener(TransitionToScene);
@@ -15,7 +15,7 @@ namespace Tenry.DemoActionRpg {
     }
 
     private void OnDisable() {
-      var changeSceneEventListener = GetComponent<ChangeSceneEventListener>();
+      var changeSceneEventListener = GetComponent<SharedEvents.ChangeSceneEventListener>();
 
       if (changeSceneEventListener) {
         changeSceneEventListener.EventTriggered.RemoveListener(TransitionToScene);
