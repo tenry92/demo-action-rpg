@@ -23,7 +23,7 @@ namespace Tenry.DemoActionRpg {
     private Transform model;
 
     [SerializeField]
-    private ObjectPoolLink bombPool;
+    private Pool.ObjectPoolLink bombPool;
     #endregion
 
     private CharacterController characterController;

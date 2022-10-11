@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Pool;
 
-namespace Tenry.DemoActionRpg {
+namespace Tenry.DemoActionRpg.Pool {
   /// <summary>
   /// This component is added to pool items so they know where they came from.
   /// </summary>

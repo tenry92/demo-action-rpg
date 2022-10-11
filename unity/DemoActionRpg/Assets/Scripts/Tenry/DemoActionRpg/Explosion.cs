@@ -10,7 +10,7 @@ namespace Tenry.DemoActionRpg {
 
     private void Update() {
       if (particleSystem != null && !particleSystem.IsAlive()) {
-        var returnToPool = this.GetComponent<ReturnToPool>();
+        var returnToPool = this.GetComponent<Pool.ReturnToPool>();
 
         if (returnToPool) {
           returnToPool.Return();

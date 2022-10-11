@@ -7,7 +7,7 @@ namespace Tenry.DemoActionRpg {
     private float explodeInSeconds = 3f;
 
     [SerializeField]
-    private ObjectPoolLink explosionPool;
+    private Pool.ObjectPoolLink explosionPool;
     #endregion
 
     private void OnEnable() {
@@ -15,7 +15,7 @@ namespace Tenry.DemoActionRpg {
     }
 
     public void Explode() {
-      var returnToPool = this.GetComponent<ReturnToPool>();
+      var returnToPool = this.GetComponent<Pool.ReturnToPool>();
 
       if (returnToPool) {
         returnToPool.Return();

@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Pool;
 
-namespace Tenry.DemoActionRpg {
+namespace Tenry.DemoActionRpg.Pool {
   public class ObjectPoolController : MonoBehaviour {
     public ObjectPoolLink Link { get; set; }
 

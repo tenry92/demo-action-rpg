@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Pool;
 
-namespace Tenry.DemoActionRpg {
+namespace Tenry.DemoActionRpg.Pool {
   [CreateAssetMenu(menuName = "Demo Action RPG/Object Pool Link", fileName = "ObjectPool")]
   public class ObjectPoolLink : ScriptableObject {
     public enum PoolType {
