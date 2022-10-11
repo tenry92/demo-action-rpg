@@ -24,8 +24,6 @@ namespace Tenry.Common {
         return;
       }
 
-      Debug.Log($"filterTag: »{this.filterTag}«");
-
       if (this.filterTag != "" && this.filterTag != "Untagged") {
         if (other.tag != this.filterTag) {
           return;

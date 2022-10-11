@@ -12,14 +12,6 @@ namespace Tenry.DemoActionRpg {
 
     private Dictionary<InputActionMap, int> referenceCount = new ();
 
-    private void OnEnable() {
-      InputSystem.onDeviceChange += LogDeviceChange;
-    }
-
-    private void OnDisable() {
-      InputSystem.onDeviceChange -= LogDeviceChange;
-    }
-
     private void Update() {
       for (int deviceIndex = 0; deviceIndex < InputSystem.devices.Count; ++deviceIndex) {
         var device = InputSystem.devices[deviceIndex];
@@ -39,21 +31,6 @@ namespace Tenry.DemoActionRpg {
           }
         }
       }
-    }
-
-    private void LogDeviceChange(InputDevice device, InputDeviceChange change) {
-      switch (change) {
-        case InputDeviceChange.Added:
-          Debug.Log($"Device {device} added");
-          break;
-        case InputDeviceChange.Removed:
-          Debug.Log($"Device {device} removed");
-          break;
-      }
-
-      var layout = InputSystem.TryFindMatchingLayout(device.description);
-
-      Debug.Log($"layout: {layout}");
     }
 
     public InputActionMap ListenToMap(string mapName) {
