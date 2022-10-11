@@ -2,10 +2,10 @@ using UnityEngine;
 using UnityEngine.Events;
 
 namespace Tenry.DemoActionRpg.SharedEvents {
-  public class ChangeSceneEventListener : MonoBehaviour {
+  public class StringEventListener : MonoBehaviour {
     #region Serialized Fields
     [SerializeField]
-    private ChangeSceneEvent changeSceneEvent;
+    private StringEvent stringEvent;
 
     [SerializeField]
     private UnityEvent<string> eventTriggered;
@@ -14,11 +14,11 @@ namespace Tenry.DemoActionRpg.SharedEvents {
     public UnityEvent<string> EventTriggered => eventTriggered;
 
     private void OnEnable() {
-      changeSceneEvent.AddListener(this);
+      stringEvent.AddListener(this);
     }
 
     private void OnDisable() {
-      changeSceneEvent.RemoveListener(this);
+      stringEvent.RemoveListener(this);
     }
 
     public void OnEventTriggered(string sceneName) {

@@ -5,20 +5,20 @@ using UnitySceneManager = UnityEngine.SceneManagement.SceneManager;
 namespace Tenry.DemoActionRpg {
   public class SceneManager : MonoBehaviour {
     private void OnEnable() {
-      var changeSceneEventListener = GetComponent<SharedEvents.ChangeSceneEventListener>();
+      var eventListener = GetComponent<SharedEvents.StringEventListener>();
 
-      if (changeSceneEventListener) {
-        changeSceneEventListener.EventTriggered.AddListener(TransitionToScene);
+      if (eventListener) {
+        eventListener.EventTriggered.AddListener(TransitionToScene);
       }
 
       UnitySceneManager.sceneLoaded += OnSceneLoaded;
     }
 
     private void OnDisable() {
-      var changeSceneEventListener = GetComponent<SharedEvents.ChangeSceneEventListener>();
+      var eventListener = GetComponent<SharedEvents.StringEventListener>();
 
-      if (changeSceneEventListener) {
-        changeSceneEventListener.EventTriggered.RemoveListener(TransitionToScene);
+      if (eventListener) {
+        eventListener.EventTriggered.RemoveListener(TransitionToScene);
       }
 
       UnitySceneManager.sceneLoaded -= OnSceneLoaded;

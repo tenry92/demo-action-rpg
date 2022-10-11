@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Tenry.DemoActionRpg.SharedEvents {
-  [CreateAssetMenu(menuName = "Demo Action RPG/Events/VoidEvent", fileName = "Void Event")]
+  [CreateAssetMenu(menuName = "Demo Action RPG/Events/Void Event", fileName = "VoidEvent")]
   public class VoidEvent : ScriptableObject {
     private List<VoidEventListener> listeners = new ();
 
