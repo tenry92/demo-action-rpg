@@ -7,7 +7,7 @@ namespace Tenry.DemoActionRpg {
     private float explodeInSeconds = 3f;
 
     [SerializeField]
-    private GameObject explosionPrefab;
+    private ObjectPoolLink explosionPool;
     #endregion
 
     private void OnEnable() {
@@ -23,7 +23,9 @@ namespace Tenry.DemoActionRpg {
         Destroy(this.gameObject);
       }
 
-      Instantiate(explosionPrefab, transform.position, Quaternion.identity);
+      var explosion = explosionPool.Pool.Get();
+      explosion.transform.position = transform.position;
+      explosion.transform.rotation = Quaternion.identity;
     }
   }
 }

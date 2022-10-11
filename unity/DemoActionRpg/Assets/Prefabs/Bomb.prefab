@@ -46,8 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explodeInSeconds: 3
-  explosionPrefab: {fileID: 6925799877556595181, guid: 6058968402137e34ebed97dd825a6e15,
-    type: 3}
+  explosionPool: {fileID: 11400000, guid: c17f1fefe0bcc524486ae6defa81f0f5, type: 2}
 --- !u!1001 &5285117073750671239
 PrefabInstance:
   m_ObjectHideFlags: 0

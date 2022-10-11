@@ -10,7 +10,13 @@ namespace Tenry.DemoActionRpg {
 
     private void Update() {
       if (particleSystem != null && !particleSystem.IsAlive()) {
-        Destroy(this.gameObject);
+        var returnToPool = this.GetComponent<ReturnToPool>();
+
+        if (returnToPool) {
+          returnToPool.Return();
+        } else {
+          Destroy(this.gameObject);
+        }
       }
     }
   }
