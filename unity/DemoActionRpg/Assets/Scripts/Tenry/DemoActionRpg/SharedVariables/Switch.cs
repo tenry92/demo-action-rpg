@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 using UnityEngine;
 
-namespace Tenry.DemoActionRpg.Variables {
+namespace Tenry.DemoActionRpg.SharedVariables {
   [CreateAssetMenu(menuName = "Demo Action RPG/Variables/Switch", fileName = "Switch")]
   public class Switch : ScriptableObject {
     #region Serialized Fields

@@ -10,7 +10,7 @@ namespace Tenry.DemoActionRpg {
     private TMP_Text text;
 
     [SerializeField]
-    private Variables.Switch playerInputEnabledSwitch;
+    private SharedVariables.Switch playerInputEnabledSwitch;
     #endregion
 
     public static void ShowMessage(string message) {

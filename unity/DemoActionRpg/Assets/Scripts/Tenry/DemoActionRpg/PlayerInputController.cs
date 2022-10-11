@@ -8,7 +8,7 @@ namespace Tenry.DemoActionRpg {
   public class PlayerInputController : MonoBehaviour {
     #region Serialized Fields
     [SerializeField]
-    private Variables.Switch enabledSwitch;
+    private SharedVariables.Switch enabledSwitch;
     #endregion
 
     private PlayerController playerController;

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Tenry.DemoActionRpg.Variables {
+namespace Tenry.DemoActionRpg.SharedVariables {
   public class SwitchListener : MonoBehaviour {
     #region Serialized Fields
     [SerializeField]
