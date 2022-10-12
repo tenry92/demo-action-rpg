@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6881645897560623719}
   - component: {fileID: 2688925704407275390}
   - component: {fileID: 5666024299392394651}
+  - component: {fileID: 3174630883890809276}
   m_Layer: 0
   m_Name: Explosion
   m_TagString: Untagged
@@ -60,7 +61,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f14d7fbd825a2644484396a0e132a699, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hurtsPlayer: 1
+  damageType: {fileID: 11400000, guid: b51df209a958ca345bc5951097031125, type: 2}
+  damage: 3
 --- !u!114 &5666024299392394651
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -73,6 +75,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d8e2d458c6cfc046a6e96c3307aa4cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!54 &3174630883890809276
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6925799877556595181}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1001 &595091170608549141
 PrefabInstance:
   m_ObjectHideFlags: 0

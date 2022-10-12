@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 
 using UnityEngine;
 
@@ -16,6 +17,12 @@ namespace Tenry.DemoActionRpg {
 
     [SerializeField]
     private GameObject damageEffectPrefab;
+
+    [SerializeField]
+    private DamageType[] damagedBy;
+
+    [SerializeField]
+    private bool destroyOnDeath = false;
     #endregion
 
     private int health;
@@ -33,6 +40,10 @@ namespace Tenry.DemoActionRpg {
 
         if (this.health == 0) {
           this.Destroyed?.Invoke();
+
+          if (this.destroyOnDeath) {
+            this.gameObject.SetActive(false);
+          }
         }
       }
     }
@@ -63,6 +74,14 @@ namespace Tenry.DemoActionRpg {
 
     private void OnDisable() {
       this.Damaged -= this.SpawnDamageText;
+    }
+
+    public bool CanTakeDamageFrom(DamageType type) {
+      if (damagedBy == null) {
+        return false;
+      }
+
+      return damagedBy.Contains(type);
     }
 
     public void Damage(int amount) {

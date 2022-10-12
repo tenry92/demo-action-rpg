@@ -69,6 +69,7 @@ namespace Tenry.DemoActionRpg {
       this.animator = this.GetComponentInChildren<Animator>();
       Debug.Assert(this.animator != null);
       this.weapon = this.GetComponentInChildren<DamageDealer>();
+      this.weapon.gameObject.SetActive(false);
     }
 
     private void LateUpdate() {
@@ -149,12 +150,12 @@ namespace Tenry.DemoActionRpg {
       }
 
       this.IsAttacking = true;
-      this.weapon.WeaponActive = true;
+      this.weapon.gameObject.SetActive(true);
       this.animator?.SetTrigger("Attack");
 
       await Task.Delay(Mathf.RoundToInt(0.5f * 1000));
 
-      this.weapon.WeaponActive = false;
+      this.weapon.gameObject.SetActive(false);
       this.IsAttacking = false;
     }
 

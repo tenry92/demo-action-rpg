@@ -6,38 +6,29 @@ namespace Tenry.DemoActionRpg {
   public class DamageDealer : MonoBehaviour {
     #region Serialized Fields
     [SerializeField]
-    private bool hurtsPlayer;
+    private DamageType damageType;
+
+    [SerializeField]
+    [Min(1)]
+    private int damage = 1;
     #endregion
 
-    public bool WeaponActive {
-      get {
-        return this.collider.enabled;
-      }
-      set {
-        this.damagedTargets.Clear();
-        this.collider.enabled = value;
-      }
-    }
-
-    public bool HurtsPlayer => this.hurtsPlayer;
-
-    private new Collider collider;
-
     private HashSet<Damageable> damagedTargets = new HashSet<Damageable>();
-
-    private void Awake() {
-      this.collider = this.GetComponent<Collider>();
-    }
-
-    private void Start() {
-      this.collider.enabled = false;
-    }
 
     private void OnTriggerStay(Collider other) {
       var target = other.GetComponent<Damageable>();
 
       if (this.CanDamage(target)) {
-        target.Damage(1);
+        target.Damage(damage);
+        this.damagedTargets.Add(target);
+      }
+    }
+
+    private void OnTriggerEnter(Collider other) {
+      var target = other.GetComponent<Damageable>();
+
+      if (this.CanDamage(target)) {
+        target.Damage(damage);
         this.damagedTargets.Add(target);
       }
     }
@@ -51,11 +42,7 @@ namespace Tenry.DemoActionRpg {
         return false;
       }
 
-      if (this.hurtsPlayer) {
-        return target.tag == "Player";
-      } else {
-        return target.tag != "Player";
-      }
+      return target.CanTakeDamageFrom(damageType);
     }
 
     #if UNITY_EDITOR
@@ -63,12 +50,7 @@ namespace Tenry.DemoActionRpg {
       var collider = this.GetComponent<Collider>();
 
       if (collider != null) {
-        if (this.hurtsPlayer) {
-          Gizmos.color = Color.red;
-        } else {
-          Gizmos.color = new Color(1f, 0.5f, 0f);
-        }
-
+        Gizmos.color = new Color(1f, 0.5f, 0f);
         Gizmos.matrix = this.transform.localToWorldMatrix;
 
         var capsuleCollider = collider as CapsuleCollider;
