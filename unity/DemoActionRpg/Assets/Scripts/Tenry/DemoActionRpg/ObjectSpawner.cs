@@ -32,5 +32,35 @@ namespace Tenry.DemoActionRpg {
     public void Spawn() {
       Spawn(out _);
     }
+
+    #if UNITY_EDITOR
+    private void OnDrawGizmos() {
+      Mesh mesh = null;
+      Transform meshTransform = null;
+
+      if (usePool && pool != null && pool.Prefab != null) {
+        var meshFilter = pool.Prefab.GetComponentInChildren<MeshFilter>();
+        if (meshFilter != null) {
+          mesh = meshFilter.sharedMesh;
+          meshTransform = meshFilter.transform;
+        }
+      }
+
+      if (!usePool && prefab != null) {
+        var meshFilter = prefab.GetComponentInChildren<MeshFilter>();
+        if (meshFilter != null) {
+          mesh = meshFilter.sharedMesh;
+          meshTransform = meshFilter.transform;
+        }
+      }
+
+      if (mesh != null) {
+        Gizmos.color = new Color(0f, 0.5f, 1f);
+        Gizmos.matrix = this.transform.localToWorldMatrix * meshTransform.localToWorldMatrix;
+
+        Gizmos.DrawWireMesh(mesh);
+      }
+    }
+    #endif
   }
 }
