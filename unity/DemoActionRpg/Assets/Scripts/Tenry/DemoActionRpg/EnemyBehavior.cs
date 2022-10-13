@@ -58,15 +58,15 @@ namespace Tenry.DemoActionRpg {
 
     private void OnEnable() {
       if (this.damage != null) {
-        this.damage.Damaged += this.OnDamage;
-        this.damage.Destroyed += this.Perish;
+        this.damage.Damaged.AddListener(this.OnDamage);
+        this.damage.Destroyed.AddListener(this.Perish);
       }
     }
 
     private void OnDisable() {
       if (this.damage != null) {
-        this.damage.Damaged -= this.OnDamage;
-        this.damage.Destroyed -= this.Perish;
+        this.damage.Damaged.RemoveListener(this.OnDamage);
+        this.damage.Destroyed.RemoveListener(this.Perish);
       }
     }
 

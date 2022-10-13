@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Tenry.DemoActionRpg {
   public class Damageable : MonoBehaviour {
@@ -56,9 +57,9 @@ namespace Tenry.DemoActionRpg {
 
     public bool IsDead => !this.IsAlive;
 
-    public event Action<int> Damaged;
+    public UnityEvent<int> Damaged;
 
-    public event Action Destroyed;
+    public UnityEvent Destroyed;
 
     private void Awake() {
       this.health = this.maxHealth;
@@ -68,13 +69,13 @@ namespace Tenry.DemoActionRpg {
       this.activeDamageCooldown = Mathf.Clamp(this.activeDamageCooldown - Time.deltaTime, 0f, this.activeDamageCooldown);
     }
 
-    private void OnEnable() {
-      this.Damaged += this.SpawnDamageText;
-    }
+    // private void OnEnable() {
+    //   this.Damaged.AddListener(this.SpawnDamageText);
+    // }
 
-    private void OnDisable() {
-      this.Damaged -= this.SpawnDamageText;
-    }
+    // private void OnDisable() {
+    //   this.Damaged.RemoveListener(this.SpawnDamageText);
+    // }
 
     public bool CanTakeDamageFrom(DamageType type) {
       if (damagedBy == null) {
@@ -95,18 +96,18 @@ namespace Tenry.DemoActionRpg {
       this.Health -= amount;
       this.Damaged?.Invoke(amount);
 
-      if (this.damageEffectPrefab != null) {
-        Instantiate(this.damageEffectPrefab, this.damageTextSpawnPoint?.position ?? this.transform.position, Quaternion.identity);
-      }
+      // if (this.damageEffectPrefab != null) {
+      //   Instantiate(this.damageEffectPrefab, this.damageTextSpawnPoint?.position ?? this.transform.position, Quaternion.identity);
+      // }
     }
 
-    private void SpawnDamageText(int damage) {
-      if (this.damageTextPrefab == null) {
-        return;
-      }
+    // private void SpawnDamageText(int damage) {
+    //   if (this.damageTextPrefab == null) {
+    //     return;
+    //   }
 
-      var damageText = Instantiate(this.damageTextPrefab, this.damageTextSpawnPoint?.position ?? this.transform.position, Quaternion.identity);
-      damageText.Text = $"-{damage}";
-    }
+    //   var damageText = Instantiate(this.damageTextPrefab, this.damageTextSpawnPoint?.position ?? this.transform.position, Quaternion.identity);
+    //   damageText.Text = $"-{damage}";
+    // }
   }
 }
