@@ -24,6 +24,9 @@ namespace Tenry.DemoActionRpg {
 
     [SerializeField]
     private Pool.ObjectPoolLink bombPool;
+
+    [SerializeField]
+    private Pool.ObjectPoolLink boomerangPool;
     #endregion
 
     private CharacterController characterController;
@@ -163,6 +166,13 @@ namespace Tenry.DemoActionRpg {
       var bomb = bombPool.Pool.Get();
       bomb.transform.position = transform.position;
       bomb.transform.rotation = Quaternion.identity;
+    }
+
+    public void UseItem2() {
+      var go = boomerangPool.Pool.Get();
+      var boomerang = go.GetComponent<Boomerang>();
+      boomerang.transform.rotation = transform.rotation;
+      boomerang.SetHome(transform);
     }
   }
 }
