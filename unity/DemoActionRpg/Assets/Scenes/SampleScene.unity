@@ -340,7 +340,6 @@ MonoBehaviour:
   angularSpeed: 540
   acceleration: 15
   gravity: 10
-  model: {fileID: 28855977}
   bombPool: {fileID: 0}
   boomerangPool: {fileID: 0}
 --- !u!143 &28855979
@@ -5688,7 +5687,7 @@ PrefabInstance:
     - target: {fileID: 5906950446355611762, guid: b50d846b6a3c5a545af1d394384054bf,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.115916885
+      value: 0.1159169
       objectReference: {fileID: 0}
     - target: {fileID: 5906950446355611762, guid: b50d846b6a3c5a545af1d394384054bf,
         type: 3}
@@ -5901,7 +5900,7 @@ PrefabInstance:
     - target: {fileID: 8588678655220123984, guid: b2e9b85da0ec6ed459b2fe517443d7a3,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.115916885
+      value: 0.1159169
       objectReference: {fileID: 0}
     - target: {fileID: 8588678655220123984, guid: b2e9b85da0ec6ed459b2fe517443d7a3,
         type: 3}
@@ -5925,18 +5924,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8588678655220123987, guid: b2e9b85da0ec6ed459b2fe517443d7a3,
         type: 3}
-      propertyPath: m_Follow
-      value: 
-      objectReference: {fileID: 140809671}
-    - target: {fileID: 8588678655220123987, guid: b2e9b85da0ec6ed459b2fe517443d7a3,
-        type: 3}
       propertyPath: m_LookAt
       value: 
       objectReference: {fileID: 140809671}
     - target: {fileID: 8588678655220123987, guid: b2e9b85da0ec6ed459b2fe517443d7a3,
         type: 3}
       propertyPath: m_Lens.m_SensorSize.x
-      value: 1.9269565
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b2e9b85da0ec6ed459b2fe517443d7a3, type: 3}

@@ -20,9 +20,6 @@ namespace Tenry.DemoActionRpg {
     private float gravity = 10f;
 
     [SerializeField]
-    private Transform model;
-
-    [SerializeField]
     private Pool.ObjectPoolLink bombPool;
 
     [SerializeField]
@@ -61,12 +58,11 @@ namespace Tenry.DemoActionRpg {
 
     public bool IsAttacking { get; set; }
 
-    public Vector3 MovementDirection => Quaternion.AngleAxis(this.direction, Vector3.up) * Vector3.forward;
+    // public Vector3 MovementDirection => Quaternion.AngleAxis(this.direction, Vector3.up) * Vector3.forward;
 
     private void Awake() {
       this.respawnPosition = this.transform.position;
 
-      Debug.Assert(this.model != null);
       this.characterController = this.GetComponent<CharacterController>();
       Debug.Assert(this.characterController != null);
       this.animator = this.GetComponentInChildren<Animator>();
@@ -102,7 +98,7 @@ namespace Tenry.DemoActionRpg {
         this.speed = 0f;
       }
 
-      var moveVector = this.MovementDirection * this.speed + Vector3.down * this.FallingSpeed;
+      var moveVector = this.transform.forward * this.speed + Vector3.down * this.FallingSpeed;
       this.characterController.Move(moveVector * Time.deltaTime);
     }
 
@@ -121,8 +117,8 @@ namespace Tenry.DemoActionRpg {
     private void Turn(float desiredDirection) {
       this.direction = Mathf.MoveTowardsAngle(this.direction, desiredDirection, this.angularSpeed * Time.deltaTime);
 
-      var targetRotation = Quaternion.LookRotation(this.MovementDirection, Vector3.up);
-      this.model.transform.rotation = Quaternion.RotateTowards(this.model.transform.rotation, targetRotation, this.angularSpeed * Time.deltaTime);
+      var targetRotation = Quaternion.LookRotation(Quaternion.AngleAxis(this.direction, Vector3.up) * Vector3.forward, Vector3.up);
+      this.transform.rotation = Quaternion.RotateTowards(this.transform.rotation, targetRotation, this.angularSpeed * Time.deltaTime);
     }
 
     public void Move(float direction, float speed = 1f) {

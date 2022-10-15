@@ -55,7 +55,7 @@ namespace Tenry.DemoActionRpg {
     public void SetHome(Transform transform) {
       home = transform;
       startPosition = home.position;
-      farTarget = startPosition + Vector3.forward * distance;
+      farTarget = startPosition + transform.forward * distance;
     }
 
     #if UNITY_EDITOR
@@ -67,7 +67,7 @@ namespace Tenry.DemoActionRpg {
         Gizmos.color = MoreColors.Brown.WithAlpha(0.5f);
         Gizmos.DrawSphere(farTarget, 1f);
       }
-      
+
       Gizmos.color = MoreColors.PowderBlue;
       Gizmos.matrix = this.transform.localToWorldMatrix;
 
