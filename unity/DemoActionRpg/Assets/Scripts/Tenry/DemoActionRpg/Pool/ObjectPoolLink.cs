@@ -36,7 +36,7 @@ namespace Tenry.DemoActionRpg.Pool {
       }
     }
 
-    public GameObject Prefab;
+    public GameObject Prefab => prefab;
 
     public PoolType Type => poolType;
 
@@ -45,7 +45,7 @@ namespace Tenry.DemoActionRpg.Pool {
     public int MaxSize => maxSize;
 
     private void CreatePoolController() {
-      var go = new GameObject("ObjectPool");
+      var go = new GameObject($"ObjectPool ({prefab.name})");
       poolController = go.AddComponent<ObjectPoolController>();
       poolController.Link = this;
     }

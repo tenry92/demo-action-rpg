@@ -12,8 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97da80d4d2481d846baf6f7f68790d1c, type: 3}
   m_Name: BoomerangPool
   m_EditorClassIdentifier: 
-  prefab: {fileID: 0}
+  prefab: {fileID: 6960841575184228151, guid: a92bf01cca9f42e4fa5fa964a7568377, type: 3}
   poolType: 0
   defaultCapacity: 10
   maxSize: 10000
-  Prefab: {fileID: 6960841575184228151, guid: a92bf01cca9f42e4fa5fa964a7568377, type: 3}

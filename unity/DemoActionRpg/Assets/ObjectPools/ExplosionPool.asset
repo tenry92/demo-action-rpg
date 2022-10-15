@@ -12,8 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97da80d4d2481d846baf6f7f68790d1c, type: 3}
   m_Name: ExplosionPool
   m_EditorClassIdentifier: 
-  prefab: {fileID: 0}
+  prefab: {fileID: 6925799877556595181, guid: 6058968402137e34ebed97dd825a6e15, type: 3}
   poolType: 0
   defaultCapacity: 10
   maxSize: 10000
-  Prefab: {fileID: 6925799877556595181, guid: 6058968402137e34ebed97dd825a6e15, type: 3}
