@@ -167,7 +167,7 @@ namespace Tenry.DemoActionRpg {
     public void UseItem2() {
       boomerangSpawner.Spawn(out var go);
       var boomerang = go.GetComponent<Boomerang>();
-      boomerang.SetHome(transform);
+      boomerang.SetHome(boomerangSpawner.transform);
     }
   }
 }
