@@ -341,7 +341,7 @@ MonoBehaviour:
   acceleration: 15
   gravity: 10
   bombPool: {fileID: 0}
-  boomerangPool: {fileID: 0}
+  boomerangSpawner: {fileID: 0}
 --- !u!143 &28855979
 CharacterController:
   m_ObjectHideFlags: 0
@@ -3894,6 +3894,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4500da6a464da55408dd1ff2324163a7, type: 3}
+--- !u!114 &1414459850 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5252999080749378357, guid: a934e4d3ad2f34845aa9a721f32eb37e,
+    type: 3}
+  m_PrefabInstance: {fileID: 3806421141751561293}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6168bcd7f202d142bd39064b97f86f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1428897147
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5553,11 +5565,21 @@ PrefabInstance:
       propertyPath: eventTriggered.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 314470170329919868, guid: a934e4d3ad2f34845aa9a721f32eb37e,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.585
+      objectReference: {fileID: 0}
     - target: {fileID: 3000368108532114994, guid: a934e4d3ad2f34845aa9a721f32eb37e,
         type: 3}
       propertyPath: eventTriggered.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 3806421141888166276, guid: a934e4d3ad2f34845aa9a721f32eb37e,
+        type: 3}
+      propertyPath: boomerangSpawner
+      value: 
+      objectReference: {fileID: 1414459850}
     - target: {fileID: 3806421141888166282, guid: a934e4d3ad2f34845aa9a721f32eb37e,
         type: 3}
       propertyPath: m_RootOrder

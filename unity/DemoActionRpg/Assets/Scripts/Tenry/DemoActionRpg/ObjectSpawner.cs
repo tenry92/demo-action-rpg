@@ -56,7 +56,9 @@ namespace Tenry.DemoActionRpg {
 
       if (mesh != null) {
         Gizmos.color = new Color(0f, 0.5f, 1f);
-        Gizmos.matrix = this.transform.localToWorldMatrix * meshTransform.localToWorldMatrix;
+        var rotation = Matrix4x4.Rotate(meshTransform.rotation);
+        var scale = Matrix4x4.Scale(meshTransform.lossyScale);
+        Gizmos.matrix = this.transform.localToWorldMatrix * rotation * scale;
 
         Gizmos.DrawWireMesh(mesh);
       }
