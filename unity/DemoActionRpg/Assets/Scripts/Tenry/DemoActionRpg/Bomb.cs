@@ -1,5 +1,7 @@
 using UnityEngine;
 
+using Tenry.DemoActionRpg.Pool;
+
 namespace Tenry.DemoActionRpg {
   public class Bomb : MonoBehaviour {
     #region Serialized Fields
@@ -15,13 +17,7 @@ namespace Tenry.DemoActionRpg {
     }
 
     public void Explode() {
-      var returnToPool = this.GetComponent<Pool.ReturnToPool>();
-
-      if (returnToPool) {
-        returnToPool.Return();
-      } else {
-        Destroy(this.gameObject);
-      }
+      gameObject.ReturnToPoolOrDestroy();
 
       var explosion = explosionPool.Pool.Get();
       explosion.transform.position = transform.position;

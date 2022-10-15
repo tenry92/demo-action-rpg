@@ -1,5 +1,7 @@
 using UnityEngine;
 
+using Tenry.DemoActionRpg.Pool;
+
 namespace Tenry.DemoActionRpg {
   public class Explosion : MonoBehaviour {
     private new ParticleSystem particleSystem;
@@ -10,13 +12,7 @@ namespace Tenry.DemoActionRpg {
 
     private void Update() {
       if (particleSystem != null && !particleSystem.IsAlive()) {
-        var returnToPool = this.GetComponent<Pool.ReturnToPool>();
-
-        if (returnToPool) {
-          returnToPool.Return();
-        } else {
-          Destroy(this.gameObject);
-        }
+        gameObject.ReturnToPoolOrDestroy();
       }
     }
   }

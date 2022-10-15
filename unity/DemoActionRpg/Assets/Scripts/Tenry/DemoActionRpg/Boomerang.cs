@@ -2,6 +2,8 @@ using UnityEngine;
 
 using Tenry.Utils;
 
+using Tenry.DemoActionRpg.Pool;
+
 namespace Tenry.DemoActionRpg {
   public class Boomerang : MonoBehaviour {
     #region Serialized Fields
@@ -39,13 +41,7 @@ namespace Tenry.DemoActionRpg {
         pos = Vector3.Lerp(farTarget, home.position, (time % duration) / duration);
 
         if (time >= 2 * duration) {
-          var returnToPool = this.GetComponent<Pool.ReturnToPool>();
-
-          if (returnToPool) {
-            returnToPool.Return();
-          } else {
-            Destroy(this.gameObject);
-          }
+          gameObject.ReturnToPoolOrDestroy();
         }
       }
 
