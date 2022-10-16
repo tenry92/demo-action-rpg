@@ -22,11 +22,8 @@ namespace Tenry.DemoActionRpg {
 
     private float time;
 
-    private bool returning = false;
-
     private void OnEnable() {
       time = 0f;
-      returning = false;
     }
 
     private void Update() {
