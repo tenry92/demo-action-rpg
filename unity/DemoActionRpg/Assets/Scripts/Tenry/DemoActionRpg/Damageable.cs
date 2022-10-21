@@ -24,6 +24,9 @@ namespace Tenry.DemoActionRpg {
 
     [SerializeField]
     private bool destroyOnDeath = false;
+
+    [SerializeField]
+    private AudioSource hurtAudioSource;
     #endregion
 
     private int health;
@@ -93,8 +96,14 @@ namespace Tenry.DemoActionRpg {
 
       amount = Mathf.Min(this.Health, amount);
 
-      this.Health -= amount;
-      this.Damaged?.Invoke(amount);
+      if (amount > 0) {
+        if (this.hurtAudioSource != null) {
+          this.hurtAudioSource.Play();
+        }
+
+        this.Health -= amount;
+        this.Damaged?.Invoke(amount);
+      }
 
       // if (this.damageEffectPrefab != null) {
       //   Instantiate(this.damageEffectPrefab, this.damageTextSpawnPoint?.position ?? this.transform.position, Quaternion.identity);
