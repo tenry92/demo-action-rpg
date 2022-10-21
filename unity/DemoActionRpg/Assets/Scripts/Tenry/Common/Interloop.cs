@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Audio;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -19,6 +20,9 @@ namespace Tenry.Common {
     [SerializeField]
     [Tooltip("Loop end point in seconds.")]
     private double loopEnd = 0;
+
+    [SerializeField]
+    private AudioMixerGroup output;
     #endregion
 
     // the source that is currently playing
@@ -53,6 +57,9 @@ namespace Tenry.Common {
       backSource = gameObject.AddComponent<AudioSource>();
       OffsetInSeconds = 0;
       IsPlaying = false;
+
+      frontSource.outputAudioMixerGroup = output;
+      backSource.outputAudioMixerGroup = output;
     }
 
     #if UNITY_EDITOR

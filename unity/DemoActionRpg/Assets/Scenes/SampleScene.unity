@@ -419,6 +419,7 @@ MonoBehaviour:
   clip: {fileID: 8300000, guid: edaf62738e89ff042a8dc684a0798576, type: 3}
   loopStart: 4.307666666666667
   loopEnd: 81.45066666666666
+  output: {fileID: 6844632608858731888, guid: 82bc5694ae052994685050311398b5f9, type: 2}
 --- !u!4 &37411604
 Transform:
   m_ObjectHideFlags: 0
