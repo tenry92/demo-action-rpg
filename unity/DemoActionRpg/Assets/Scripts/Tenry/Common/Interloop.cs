@@ -1,25 +1,11 @@
 using UnityEngine;
 using UnityEngine.Audio;
 
-#if UNITY_EDITOR
-using UnityEditor;
-
-using Tenry.Utils.Editor;
-#endif
-
 namespace Tenry.Common {
   public class Interloop : MonoBehaviour {
     #region Serialized Fields
     [SerializeField]
-    private AudioClip clip;
-
-    [SerializeField]
-    [Tooltip("Loop start point in seconds.")]
-    private double loopStart = 0;
-
-    [SerializeField]
-    [Tooltip("Loop end point in seconds.")]
-    private double loopEnd = 0;
+    private InterloopTrack track;
 
     [SerializeField]
     private AudioMixerGroup output;
@@ -31,10 +17,6 @@ namespace Tenry.Common {
     // the source that will play next
     private AudioSource backSource;
 
-    private double IntroLength => loopStart;
-
-    private double LoopLength => loopEnd - loopStart;
-
     // DSP time when to schedule the next section
     private double nextSchedule;
 
@@ -42,11 +24,7 @@ namespace Tenry.Common {
 
     public bool IsPlaying { get; private set; }
 
-    public AudioClip Clip => clip;
-
-    public double LoopStart => loopStart;
-
-    public double LoopEnd => loopEnd;
+    public InterloopTrack Track => track;
 
     private void SwapSources() {
       (frontSource, backSource) = (backSource, frontSource);
@@ -61,45 +39,6 @@ namespace Tenry.Common {
       frontSource.outputAudioMixerGroup = output;
       backSource.outputAudioMixerGroup = output;
     }
-
-    #if UNITY_EDITOR
-    private void OnValidate() {
-      if (loopStart != 0 || loopEnd != 0) {
-        return;
-      }
-
-      SetLoopPointsFromClip();
-    }
-
-    private void SetLoopPointsFromClip() {
-      if (clip == null) {
-        return;
-      }
-
-      var assetPath = AssetDatabase.GetAssetPath(clip.GetInstanceID());
-
-      if (!OggInfo.TryParseInfoFromFile(PathUtility.ToAbsolutePath(assetPath), out var info)) {
-        return;
-      }
-
-      var frequency = info.AudioSampleRate;
-      var metaLoopStart = -1;
-      var metaLoopLength = -1;
-
-      if (info.TryGetMetadata("LOOPSTART", out var startString)) {
-        metaLoopStart = System.Int32.Parse(startString);
-      }
-
-      if (info.TryGetMetadata("LOOPLENGTH", out var lengthString)) {
-        metaLoopLength = System.Int32.Parse(lengthString);
-      }
-
-      if (metaLoopStart >= 0 && metaLoopLength > 0) {
-        loopStart = ((float) metaLoopStart) / frequency;
-        loopEnd = ((float) metaLoopStart + metaLoopLength) / frequency;
-      }
-    }
-    #endif
 
     private void Update() {
       if (IsPlaying) {
@@ -120,7 +59,7 @@ namespace Tenry.Common {
     }
 
     private void ScheduleLoop() {
-      ScheduleSection(loopStart, loopEnd);
+      ScheduleSection(track.LoopStart, track.LoopEnd);
     }
 
     private void OnDisable() {
@@ -134,13 +73,13 @@ namespace Tenry.Common {
     public void Play() {
       nextSchedule = AudioSettings.dspTime + 0.1;
 
-      frontSource.clip = clip;
-      backSource.clip = clip;
+      frontSource.clip = track.Clip;
+      backSource.clip = track.Clip;
 
-      if (OffsetInSeconds < loopStart) {
-        ScheduleSection(OffsetInSeconds, loopStart);
+      if (OffsetInSeconds < track.LoopStart) {
+        ScheduleSection(OffsetInSeconds, track.LoopStart);
       } else {
-        ScheduleSection(OffsetInSeconds, loopEnd);
+        ScheduleSection(OffsetInSeconds, track.LoopEnd);
       }
 
       SwapSources();

@@ -6,31 +6,24 @@ using Tenry.Utils;
 namespace Tenry.Common.Editor {
   [CustomEditor(typeof(Interloop))]
   public class InterloopEditor : UnityEditor.Editor {
-    private static float GetRelativeOffset(AudioClip clip, double offset) {
-      return ((float) offset) / clip.length;
-    }
-
-    private static void DrawRelativeLine(Rect r, float offset, Color color) {
-      r = new Rect(r.x + r.width * offset, r.y, 1f, r.height);
-      EditorGUI.DrawRect(r, color);
-    }
+    private InterloopTrackEditor trackEditor;
 
     public override void OnInspectorGUI() {
       DrawDefaultInspector();
 
       var interloop = target as Interloop;
 
-      if (interloop == null) {
+      if (interloop == null || interloop.Track == null) {
         return;
       }
 
-      Rect r = EditorGUILayout.GetControlRect();
-      EditorGUI.DrawRect(r, MoreColors.SteelBlue);
+      UnityEditor.Editor editor = trackEditor;
+      UnityEditor.Editor.CreateCachedEditor(interloop.Track, typeof(InterloopTrackEditor), ref editor);
+      trackEditor = editor as InterloopTrackEditor;
 
-      DrawRelativeLine(r, GetRelativeOffset(interloop.Clip, interloop.LoopStart), MoreColors.Coral);
-      DrawRelativeLine(r, GetRelativeOffset(interloop.Clip, interloop.LoopEnd), MoreColors.OrangeRed);
-
-      DrawRelativeLine(r, GetRelativeOffset(interloop.Clip, interloop.OffsetInSeconds), MoreColors.Red);
+      if (trackEditor != null) {
+        trackEditor.DrawBar((float) interloop.OffsetInSeconds);
+      }
 
       if (!Application.isPlaying || !interloop.isActiveAndEnabled) {
         return;

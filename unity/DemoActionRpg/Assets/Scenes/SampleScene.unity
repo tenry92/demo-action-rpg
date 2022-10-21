@@ -416,9 +416,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76a7fa26d484e404bb43533cb65e99d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clip: {fileID: 8300000, guid: edaf62738e89ff042a8dc684a0798576, type: 3}
-  loopStart: 4.307666666666667
-  loopEnd: 81.45066666666666
+  track: {fileID: 11400000, guid: f1b0c80f83125ec48ac5cd01c0bc6033, type: 2}
   output: {fileID: 6844632608858731888, guid: 82bc5694ae052994685050311398b5f9, type: 2}
 --- !u!4 &37411604
 Transform:
