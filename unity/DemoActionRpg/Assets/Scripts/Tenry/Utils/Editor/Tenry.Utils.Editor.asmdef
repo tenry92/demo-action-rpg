@@ -1,10 +1,7 @@
 {
-    "name": "Tenry.Common.Editor",
-    "rootNamespace": "Tenry.Common.Editor",
-    "references": [
-        "GUID:32e03bb1e278f9240a401aba921c94f0",
-        "GUID:9dc207e1660a8584ab3bc4666d003102"
-    ],
+    "name": "Tenry.Utils.Editor",
+    "rootNamespace": "Tenry.Utils.Editor",
+    "references": [],
     "includePlatforms": [
         "Editor"
     ],
