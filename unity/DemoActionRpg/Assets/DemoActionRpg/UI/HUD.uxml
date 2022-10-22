@@ -1,7 +1,0 @@
-<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <ui:VisualElement name="Screen" style="padding-left: 2%; padding-right: 2%; padding-top: 2%; padding-bottom: 2%;">
-        <ui:VisualElement name="HealthBarContainer" style="background-image: url(&apos;project://database/Assets/ThirdParty/RPG&amp;Fantasy%20Mobile%20GUI/panel_elements/box_slider.png?fileID=2800000&amp;guid=a9de040de46f589f7873100a0550cdd7&amp;type=3#box_slider&apos;); flex-direction: row; padding-left: 46px; padding-right: 46px; padding-top: 32px; padding-bottom: 32px; width: 507px; height: 100px; scale: 0.5 0.5; transform-origin: left top;">
-            <ui:VisualElement name="HealthBar" style="background-image: url(&apos;project://database/Assets/ThirdParty/RPG&amp;Fantasy%20Mobile%20GUI/panel_elements/box_slider_fill_02.png?fileID=2800000&amp;guid=d06fa5eb5de6dcbb782d9dc3a56766b2&amp;type=3#box_slider_fill_02&apos;); width: 100%; opacity: 0.9;" />
-        </ui:VisualElement>
-    </ui:VisualElement>
-</ui:UXML>

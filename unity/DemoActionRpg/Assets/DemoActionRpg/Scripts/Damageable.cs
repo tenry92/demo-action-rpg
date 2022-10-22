@@ -41,6 +41,7 @@ namespace Tenry.DemoActionRpg {
         }
 
         health = Mathf.Clamp(value, 0, maxHealth);
+        Changed?.Invoke();
 
         if (health == 0) {
           Destroyed?.Invoke();
@@ -59,6 +60,8 @@ namespace Tenry.DemoActionRpg {
     public bool IsAlive => health > 0;
 
     public bool IsDead => !IsAlive;
+
+    public UnityEvent Changed;
 
     public UnityEvent<int> Damaged;
 
