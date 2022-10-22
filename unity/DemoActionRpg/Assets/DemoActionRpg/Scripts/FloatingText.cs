@@ -1,6 +1,5 @@
-using UnityEngine;
-
 using TMPro;
+using UnityEngine;
 
 namespace Tenry.DemoActionRpg {
   public class FloatingText : MonoBehaviour {

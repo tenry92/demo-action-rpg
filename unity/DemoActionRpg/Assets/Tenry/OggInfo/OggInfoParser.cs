@@ -13,7 +13,7 @@ namespace Tenry {
 
     public string[] UserComments { get; private set; }
 
-    private Dictionary<string, string> userCommentsDictionary = new ();
+    private Dictionary<string, string> userCommentsDictionary = new();
 
     private class PageHeader {
       public string CapturePattern;
@@ -76,7 +76,7 @@ namespace Tenry {
         var framing = reader.ReadByte();
       }
     }
-    
+
     private class VorbisTextCommentHeader {
       public string VendorString;
 

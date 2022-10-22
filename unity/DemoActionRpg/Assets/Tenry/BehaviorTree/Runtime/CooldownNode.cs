@@ -10,9 +10,9 @@ namespace Tenry.BehaviorTree.Runtime {
 
     private float readyAt = 0f;
 
-    protected override void OnStart() {}
+    protected override void OnStart() { }
 
-    protected override void OnEnd() {}
+    protected override void OnEnd() { }
 
     protected override NodeStatus OnUpdate() {
       if (Time.time < readyAt) {

@@ -1,9 +1,8 @@
+using Tenry.Common.Editor.UIElements;
 using UnityEditor;
 using UnityEditor.Callbacks;
 using UnityEngine;
 using UnityEngine.UIElements;
-
-using Tenry.Common.Editor.UIElements;
 
 namespace Tenry.BehaviorTree.Editor {
   public class BehaviorTreeEditor : EditorWindow {

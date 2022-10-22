@@ -19,9 +19,9 @@ namespace Tenry.BehaviorTree.Runtime {
       return copy;
     }
 
-    protected override void OnStart() {}
+    protected override void OnStart() { }
 
-    protected override void OnEnd() {}
+    protected override void OnEnd() { }
 
     protected override NodeStatus OnUpdate() {
       return Child.Evaluate();
@@ -43,6 +43,6 @@ namespace Tenry.BehaviorTree.Runtime {
       }
     }
 
-    public override void SortChildren() {}
+    public override void SortChildren() { }
   }
 }

@@ -2,16 +2,15 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-using UnityEngine;
-using TMPro;
-
 using Tenry.Common;
+using TMPro;
+using UnityEngine;
 
 namespace Tenry.DemoActionRpg {
   public class DebugText : MonoBehaviour {
-    private readonly List<string> linesToShow = new ();
+    private readonly List<string> linesToShow = new();
 
-    private List<KeyValuePair<string, float>> persistentLines = new ();
+    private List<KeyValuePair<string, float>> persistentLines = new();
 
     private static DebugText instance;
 
@@ -64,11 +63,11 @@ namespace Tenry.DemoActionRpg {
     }
 
     public void LogPersistent(string text, float duration = Mathf.Infinity) {
-      persistentLines.Add(new (text, Time.unscaledTime + duration));
+      persistentLines.Add(new(text, Time.unscaledTime + duration));
     }
 
     public void LogPersistent(string key, string value, float duration = Mathf.Infinity) {
-      persistentLines.Add(new ($"<color=white>{key}</color> <b>{value}</b>", Time.unscaledTime + duration));
+      persistentLines.Add(new($"<color=white>{key}</color> <b>{value}</b>", Time.unscaledTime + duration));
     }
   }
 }

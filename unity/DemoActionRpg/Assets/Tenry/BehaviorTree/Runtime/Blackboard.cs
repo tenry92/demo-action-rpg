@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace Tenry.BehaviorTree.Runtime {
   public class Blackboard {
-    private readonly Dictionary<string, object> data = new ();
+    private readonly Dictionary<string, object> data = new();
 
     public bool TryGet<T>(string key, out T result) {
       if (data.TryGetValue(key, out var value)) {

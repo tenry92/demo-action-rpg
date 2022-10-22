@@ -43,6 +43,6 @@ namespace Tenry.BehaviorTree.Runtime {
       }
     }
 
-    public override void SortChildren() {}
+    public override void SortChildren() { }
   }
 }

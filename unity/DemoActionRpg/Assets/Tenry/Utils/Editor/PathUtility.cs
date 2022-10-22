@@ -2,7 +2,6 @@ using System;
 using System.IO;
 
 using UnityEngine;
-using UnityEditor;
 
 namespace Tenry.Utils.Editor {
   public static class PathUtility {

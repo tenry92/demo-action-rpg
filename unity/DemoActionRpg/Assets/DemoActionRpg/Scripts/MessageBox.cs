@@ -1,7 +1,6 @@
-using UnityEngine;
-using TMPro;
-
 using Tenry.Common;
+using TMPro;
+using UnityEngine;
 
 namespace Tenry.DemoActionRpg {
   public class MessageBox : MonoBehaviour {
@@ -34,7 +33,7 @@ namespace Tenry.DemoActionRpg {
       if (canvasGroup != null) {
         canvasGroup.alpha = 1f;
       }
-      
+
       var typewriter = text.GetComponent<Typewriter>();
 
       if (typewriter != null) {
@@ -52,7 +51,7 @@ namespace Tenry.DemoActionRpg {
       if (canvasGroup != null) {
         canvasGroup.alpha = 0f;
       }
-      
+
       var typewriter = text.GetComponent<Typewriter>();
 
       if (typewriter != null) {

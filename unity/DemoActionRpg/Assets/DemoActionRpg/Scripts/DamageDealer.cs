@@ -13,7 +13,7 @@ namespace Tenry.DemoActionRpg {
     private int damage = 1;
     #endregion
 
-    private readonly HashSet<Damageable> damagedTargets = new ();
+    private readonly HashSet<Damageable> damagedTargets = new();
 
     private void OnTriggerStay(Collider other) {
       var target = other.GetComponent<Damageable>();
@@ -45,7 +45,7 @@ namespace Tenry.DemoActionRpg {
       return target.CanTakeDamageFrom(damageType);
     }
 
-    #if UNITY_EDITOR
+#if UNITY_EDITOR
     private void OnDrawGizmos() {
       var collider = GetComponent<Collider>();
 
@@ -68,6 +68,6 @@ namespace Tenry.DemoActionRpg {
         }
       }
     }
-    #endif
+#endif
   }
 }

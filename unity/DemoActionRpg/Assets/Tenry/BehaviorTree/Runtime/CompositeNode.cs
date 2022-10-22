@@ -8,7 +8,7 @@ namespace Tenry.BehaviorTree.Runtime {
     #region Serialized Fields
     [SerializeField]
     [HideInInspector]
-    private List<Node> children = new ();
+    private List<Node> children = new();
 
     [SerializeField]
     private AbortType abortType = AbortType.None;
@@ -66,7 +66,7 @@ namespace Tenry.BehaviorTree.Runtime {
 
     protected bool CheckAbort(int lastBranchIndex, out int abortingBranchIndex) {
       abortingBranchIndex = -1;
-      
+
       if (AbortType.HasFlag(AbortType.Self)) {
         for (abortingBranchIndex = 0; abortingBranchIndex <= lastBranchIndex; ++abortingBranchIndex) {
           var previousBranchNode = Children[abortingBranchIndex];

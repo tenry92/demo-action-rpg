@@ -1,6 +1,6 @@
-using UnityEngine;
-
 using Tenry.BehaviorTree.Runtime;
+
+using UnityEngine;
 
 namespace Tenry.DemoActionRpg.BehaviorTree {
   public class DetectPlayerNode : ActionNode {
@@ -9,9 +9,9 @@ namespace Tenry.DemoActionRpg.BehaviorTree {
     private float range = 1f;
     #endregion
 
-    protected override void OnStart() {}
+    protected override void OnStart() { }
 
-    protected override void OnEnd() {}
+    protected override void OnEnd() { }
 
     protected override NodeStatus OnUpdate() {
       if (TryGetNearestPlayer(out var player, out var distance) && distance <= range) {

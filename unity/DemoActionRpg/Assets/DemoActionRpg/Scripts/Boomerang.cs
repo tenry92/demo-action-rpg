@@ -1,8 +1,6 @@
-using UnityEngine;
-
-using Tenry.Utils;
-
 using Tenry.DemoActionRpg.Pool;
+using Tenry.Utils;
+using UnityEngine;
 
 namespace Tenry.DemoActionRpg {
   public class Boomerang : MonoBehaviour {
@@ -51,7 +49,7 @@ namespace Tenry.DemoActionRpg {
       farTarget = startPosition + transform.forward * distance;
     }
 
-    #if UNITY_EDITOR
+#if UNITY_EDITOR
     private void OnDrawGizmos() {
       if (Application.isPlaying) {
         Gizmos.color = MoreColors.RoyalBlue.WithAlpha(0.5f);
@@ -66,6 +64,6 @@ namespace Tenry.DemoActionRpg {
 
       Gizmos.DrawLine(Vector3.zero, Vector3.forward * distance);
     }
-    #endif
+#endif
   }
 }

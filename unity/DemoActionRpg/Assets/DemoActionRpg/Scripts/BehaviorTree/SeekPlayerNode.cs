@@ -1,6 +1,6 @@
-using UnityEngine;
-
 using Tenry.BehaviorTree.Runtime;
+
+using UnityEngine;
 
 namespace Tenry.DemoActionRpg.BehaviorTree {
   public class SeekPlayerNode : ActionNode {
@@ -10,7 +10,7 @@ namespace Tenry.DemoActionRpg.BehaviorTree {
       playerController = GameObject.GetComponent<PlayerController>();
     }
 
-    protected override void OnEnd() {}
+    protected override void OnEnd() { }
 
     protected override NodeStatus OnUpdate() {
       if (!Blackboard.TryGet<GameObject>("SeekTarget", out var seekTarget)) {

@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-
 namespace Tenry.BehaviorTree.Runtime {
   public class SequenceNode : CompositeNode {
     private int currentBranchIndex;
@@ -12,7 +10,7 @@ namespace Tenry.BehaviorTree.Runtime {
       currentBranchIndex = 0;
     }
 
-    protected override void OnEnd() {}
+    protected override void OnEnd() { }
 
     protected override NodeStatus OnUpdate() {
       if (CheckAbort(currentBranchIndex - 1, out int branchIndex)) {

@@ -24,7 +24,7 @@ namespace Tenry.BehaviorTree.Runtime {
       startTime = Time.time;
     }
 
-    protected override void OnEnd() {}
+    protected override void OnEnd() { }
 
     protected override NodeStatus OnUpdate() {
       if (Time.time - startTime >= Duration) {

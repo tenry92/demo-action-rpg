@@ -2,16 +2,15 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
+using Tenry.BehaviorTree.Runtime;
 using UnityEditor;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-using Tenry.BehaviorTree.Runtime;
-
 namespace Tenry.BehaviorTree.Editor {
   public class BehaviorTreeView : GraphView {
-    public new class UxmlFactory : UxmlFactory<BehaviorTreeView, GraphView.UxmlTraits> {}
+    public new class UxmlFactory : UxmlFactory<BehaviorTreeView, GraphView.UxmlTraits> { }
 
     private Runtime.BehaviorTree tree;
 
@@ -45,7 +44,7 @@ namespace Tenry.BehaviorTree.Editor {
       var position = ev.localMousePosition;
       position.x = (position.x - viewTransform.position.x) / viewTransform.scale.x;
       position.y = (position.y - viewTransform.position.y) / viewTransform.scale.y;
-      
+
       {
         ev.menu.AppendAction("Actions", null, DropdownMenuAction.Status.Disabled);
 

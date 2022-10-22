@@ -10,7 +10,7 @@ namespace Tenry.DemoActionRpg {
     private InputActionAsset controls;
     #endregion
 
-    private readonly Dictionary<InputActionMap, int> referenceCount = new ();
+    private readonly Dictionary<InputActionMap, int> referenceCount = new();
 
     private void Update() {
       for (int deviceIndex = 0; deviceIndex < InputSystem.devices.Count; ++deviceIndex) {
@@ -21,14 +21,14 @@ namespace Tenry.DemoActionRpg {
           case "Mouse":
             break;
           default: {
-            var layout = InputSystem.TryFindMatchingLayout(device.description);
+              var layout = InputSystem.TryFindMatchingLayout(device.description);
 
-            if (layout != null) {
-              DebugText.Instance?.Log($"Device #{deviceIndex}: {layout}");
+              if (layout != null) {
+                DebugText.Instance?.Log($"Device #{deviceIndex}: {layout}");
+              }
+
+              break;
             }
-
-            break;
-          }
         }
       }
     }

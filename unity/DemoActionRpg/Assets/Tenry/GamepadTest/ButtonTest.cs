@@ -22,7 +22,7 @@ namespace Tenry.GamepadTest {
     private void OnDisable() {
       action.Disable();
     }
-    
+
     private void Update() {
       image.enabled = action.IsPressed();
     }

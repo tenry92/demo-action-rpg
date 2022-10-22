@@ -7,9 +7,9 @@ namespace Tenry.BehaviorTree.Runtime {
     private bool endOnFailure = false;
     #endregion
 
-    protected override void OnStart() {}
+    protected override void OnStart() { }
 
-    protected override void OnEnd() {}
+    protected override void OnEnd() { }
 
     protected override NodeStatus OnUpdate() {
       var status = Child.Evaluate();

@@ -1,5 +1,5 @@
-using UnityEngine;
 using UnityEditor;
+using UnityEngine;
 
 namespace Tenry.DemoActionRpg.Editor {
   [CustomEditor(typeof(ObjectSpawner))]

@@ -72,7 +72,7 @@ namespace Tenry.BehaviorTree.Runtime {
       return copy;
     }
 
-    #if UNITY_EDITOR
+#if UNITY_EDITOR
     public void AddChild(Node parent, Node child) {
       Undo.RecordObject(parent, "Behavior Tree (Add Child)");
       parent.AddChild(child);
@@ -113,6 +113,6 @@ namespace Tenry.BehaviorTree.Runtime {
 
       AssetDatabase.SaveAssets();
     }
-    #endif
+#endif
   }
 }

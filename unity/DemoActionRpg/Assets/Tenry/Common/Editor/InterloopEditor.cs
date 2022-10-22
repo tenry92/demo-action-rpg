@@ -1,7 +1,5 @@
-using UnityEngine;
 using UnityEditor;
-
-using Tenry.Utils;
+using UnityEngine;
 
 namespace Tenry.Common.Editor {
   [CustomEditor(typeof(Interloop))]

@@ -13,7 +13,7 @@ namespace Tenry.DemoActionRpg.BehaviorTree {
       task = null;
     }
 
-    protected override void OnEnd() {}
+    protected override void OnEnd() { }
 
     protected override NodeStatus OnUpdate() {
       if (task == null) {

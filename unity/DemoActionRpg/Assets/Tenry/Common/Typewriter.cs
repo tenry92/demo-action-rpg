@@ -1,8 +1,8 @@
 using System.Text;
 
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
-using TMPro;
 
 namespace Tenry.Common {
   [RequireComponent(typeof(RectTransform))]

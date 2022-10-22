@@ -30,7 +30,7 @@ namespace Tenry.Common {
 
     public double LoopLength => loopEnd - loopStart;
 
-    #if UNITY_EDITOR
+#if UNITY_EDITOR
     private void OnValidate() {
       if (loopStart != 0 || loopEnd != 0) {
         return;
@@ -67,6 +67,6 @@ namespace Tenry.Common {
         loopEnd = ((float) metaLoopStart + metaLoopLength) / frequency;
       }
     }
-    #endif
+#endif
   }
 }

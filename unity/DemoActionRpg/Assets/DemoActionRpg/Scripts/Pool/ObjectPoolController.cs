@@ -17,11 +17,11 @@ namespace Tenry.DemoActionRpg.Pool {
       }
     }
 
-    #if UNITY_EDITOR
+#if UNITY_EDITOR
     private string baseName;
-    #endif
+#endif
 
-    #if UNITY_EDITOR
+#if UNITY_EDITOR
     private void Awake() {
       baseName = gameObject.name;
 
@@ -31,7 +31,7 @@ namespace Tenry.DemoActionRpg.Pool {
     private void UpdateObjectName() {
       gameObject.name = $"{baseName} [{pool.CountInactive}]";
     }
-    #endif
+#endif
 
     private void CreatePool() {
       if (Link.Type == ObjectPoolLink.PoolType.Stack) {

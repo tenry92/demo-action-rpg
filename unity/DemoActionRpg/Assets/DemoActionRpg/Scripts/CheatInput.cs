@@ -17,13 +17,13 @@ namespace Tenry.DemoActionRpg {
 
     [SerializeField]
     private Direction[] code;
-    
+
     [SerializeField]
     private UnityEvent activated;
     #endregion
 
     private InputAction up;
-    
+
     private InputAction down;
 
     private InputAction left;

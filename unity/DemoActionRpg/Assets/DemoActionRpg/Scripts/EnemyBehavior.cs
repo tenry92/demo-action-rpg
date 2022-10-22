@@ -1,8 +1,7 @@
 using System.Threading.Tasks;
 
-using UnityEngine;
-
 using Tenry.BehaviorTree.Runtime;
+using UnityEngine;
 
 namespace Tenry.DemoActionRpg {
   public class SeekNode : ActionNode {
@@ -15,7 +14,7 @@ namespace Tenry.DemoActionRpg {
       controller = GameObject.GetComponent<PlayerController>();
     }
 
-    protected override void OnEnd() {}
+    protected override void OnEnd() { }
 
     protected override NodeStatus OnUpdate() {
       var seekFor = enemyBehaviour.SeekFor;
@@ -46,11 +45,11 @@ namespace Tenry.DemoActionRpg {
     }
 
     private void Start() {
-      
+
     }
 
     private void Update() {
-      
+
     }
 
     private void OnEnable() {

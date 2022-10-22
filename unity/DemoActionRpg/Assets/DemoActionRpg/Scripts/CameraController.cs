@@ -1,6 +1,5 @@
-using UnityEngine;
-
 using Cinemachine;
+using UnityEngine;
 
 namespace Tenry.DemoActionRpg {
   [RequireComponent(typeof(CinemachineVirtualCamera))]

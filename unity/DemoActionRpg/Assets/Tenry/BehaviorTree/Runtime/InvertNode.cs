@@ -1,8 +1,8 @@
 namespace Tenry.BehaviorTree.Runtime {
   public class InvertNode : DecoratorNode {
-    protected override void OnStart() {}
+    protected override void OnStart() { }
 
-    protected override void OnEnd() {}
+    protected override void OnEnd() { }
 
     protected override NodeStatus OnUpdate() {
       return Child.Evaluate() switch {

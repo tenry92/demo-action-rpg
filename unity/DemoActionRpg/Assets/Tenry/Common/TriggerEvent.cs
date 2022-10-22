@@ -1,8 +1,6 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-using Tenry.Common;
-
 namespace Tenry.Common {
   public class TriggerEvent : MonoBehaviour {
     #region Serialized Fields

@@ -19,15 +19,15 @@ namespace Tenry.DemoActionRpg {
     }
 
     public void ExitGame() {
-      #if UNITY_EDITOR
-        if (Application.isEditor) {
-          UnityEditor.EditorApplication.isPlaying = false;
-        } else {
-          Application.Quit();
-        }
-      #else
+#if UNITY_EDITOR
+      if (Application.isEditor) {
+        UnityEditor.EditorApplication.isPlaying = false;
+      } else {
         Application.Quit();
-      #endif
+      }
+#else
+        Application.Quit();
+#endif
     }
   }
 }

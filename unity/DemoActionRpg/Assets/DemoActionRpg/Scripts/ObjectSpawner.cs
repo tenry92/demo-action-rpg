@@ -33,7 +33,7 @@ namespace Tenry.DemoActionRpg {
       Spawn(out _);
     }
 
-    #if UNITY_EDITOR
+#if UNITY_EDITOR
     private void OnDrawGizmos() {
       Mesh mesh = null;
       Transform meshTransform = null;
@@ -63,6 +63,6 @@ namespace Tenry.DemoActionRpg {
         Gizmos.DrawWireMesh(mesh);
       }
     }
-    #endif
+#endif
   }
 }

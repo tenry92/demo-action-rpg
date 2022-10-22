@@ -7,7 +7,7 @@ namespace Tenry.Common.Editor {
     public override void OnGUI(Rect position, SerializedProperty property, GUIContent label) {
       if (property.propertyType == SerializedPropertyType.String) {
         EditorGUI.BeginProperty(position, label, property);
-        
+
         property.stringValue = EditorGUI.TagField(position, label, property.stringValue);
       } else {
         EditorGUI.PropertyField(position, property, label);

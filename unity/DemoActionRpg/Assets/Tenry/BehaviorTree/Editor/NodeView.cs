@@ -1,12 +1,11 @@
 using System;
 
+using Tenry.BehaviorTree.Runtime;
 using UnityEditor;
 using UnityEditor.Experimental.GraphView;
 using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
-
-using Tenry.BehaviorTree.Runtime;
 
 namespace Tenry.BehaviorTree.Editor {
   public class NodeView : UnityEditor.Experimental.GraphView.Node {

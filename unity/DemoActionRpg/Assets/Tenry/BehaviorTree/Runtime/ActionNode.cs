@@ -14,6 +14,6 @@ namespace Tenry.BehaviorTree.Runtime {
       return new List<Node>();
     }
 
-    public override void SortChildren() {}
+    public override void SortChildren() { }
   }
 }
