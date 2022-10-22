@@ -15,6 +15,10 @@ namespace Tenry.DemoActionRpg {
 
     private readonly HashSet<Damageable> damagedTargets = new();
 
+    private void OnEnable() {
+      damagedTargets.Clear();
+    }
+
     private void OnTriggerStay(Collider other) {
       var target = other.GetComponent<Damageable>();
 
