@@ -59,13 +59,11 @@ namespace Tenry.DemoActionRpg.Pool {
     private GameObject CreateObject() {
       var go = Instantiate(Link.Prefab);
 
-      ReturnToPool returnToPool;
-
-      if (!go.TryGetComponent<ReturnToPool>(out returnToPool)) {
+      if (!go.TryGetComponent<ReturnToPool>(out var returnToPool)) {
         returnToPool = go.AddComponent<ReturnToPool>();
       }
 
-      returnToPool.Pool = this.Pool;
+      returnToPool.Pool = Pool;
 
       return go;
     }
@@ -76,7 +74,7 @@ namespace Tenry.DemoActionRpg.Pool {
 
     private void OnReturnedToPool(GameObject go) {
       go.SetActive(false);
-      go.transform.SetParent(this.transform, false);
+      go.transform.SetParent(transform, false);
     }
 
     private void OnTakeFromPool(GameObject go) {

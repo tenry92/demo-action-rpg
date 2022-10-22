@@ -37,19 +37,19 @@ namespace Tenry.BehaviorTree.Editor {
     }
 
     private void OnEnable() {
-      EditorApplication.playModeStateChanged -= this.OnPlayModeStateChanged;
-      EditorApplication.playModeStateChanged += this.OnPlayModeStateChanged;
+      EditorApplication.playModeStateChanged -= OnPlayModeStateChanged;
+      EditorApplication.playModeStateChanged += OnPlayModeStateChanged;
     }
 
     private void OnDisable() {
-      EditorApplication.playModeStateChanged -= this.OnPlayModeStateChanged;
+      EditorApplication.playModeStateChanged -= OnPlayModeStateChanged;
     }
 
     private void OnPlayModeStateChanged(PlayModeStateChange change) {
       switch (change) {
         case PlayModeStateChange.EnteredEditMode:
         case PlayModeStateChange.EnteredPlayMode:
-          this.LoadActiveTree();
+          LoadActiveTree();
           break;
       }
     }
@@ -59,15 +59,15 @@ namespace Tenry.BehaviorTree.Editor {
       VisualElement root = rootVisualElement;
 
       // Import UXML
-      var visualTree = this.document;
+      var visualTree = document;
       visualTree.CloneTree(root);
 
-      this.treeView = root.Q<BehaviorTreeView>();
-      this.inspectorView = root.Q<InspectorView>();
+      treeView = root.Q<BehaviorTreeView>();
+      inspectorView = root.Q<InspectorView>();
 
-      this.treeView.NodeSelected = this.OnNodeSelectionChanged;
+      treeView.NodeSelected = OnNodeSelectionChanged;
 
-      this.LoadActiveTree();
+      LoadActiveTree();
     }
 
     private void LoadActiveTree() {
@@ -82,21 +82,21 @@ namespace Tenry.BehaviorTree.Editor {
 
       if (tree != null) {
         if (Application.isPlaying || AssetDatabase.CanOpenAssetInEditor(tree.GetInstanceID())) {
-          this.treeView?.PopulateView(tree);
+          treeView?.PopulateView(tree);
         }
       }
     }
 
     private void OnSelectionChange() {
-      this.LoadActiveTree();
+      LoadActiveTree();
     }
 
     private void OnNodeSelectionChanged(Runtime.Node node) {
-      this.inspectorView.Inspect(node);
+      inspectorView.Inspect(node);
     }
 
     private void OnInspectorUpdate() {
-      this.treeView?.UpdateNodeStates();
+      treeView?.UpdateNodeStates();
     }
   }
 }

@@ -10,7 +10,7 @@ namespace Tenry.DemoActionRpg.SharedVariables {
     private bool value = false;
     #endregion
 
-    private List<SwitchListener> listeners = new ();
+    private readonly List<SwitchListener> listeners = new ();
 
     public bool Value {
       get => value;

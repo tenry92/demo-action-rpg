@@ -19,17 +19,17 @@ namespace Tenry.DemoActionRpg {
     private CinemachineVirtualCamera virtualCamera;
 
     private void Awake() {
-      this.virtualCamera = this.GetComponent<CinemachineVirtualCamera>();
-      Debug.Assert(this.virtualCamera != null);
+      virtualCamera = GetComponent<CinemachineVirtualCamera>();
+      Debug.Assert(virtualCamera != null);
     }
 
     private void OnValidate() {
-      if (this.orthoMin < 0.1f) {
-        this.orthoMin = 0.1f;
+      if (orthoMin < 0.1f) {
+        orthoMin = 0.1f;
       }
 
-      if (this.orthoMax < this.orthoMin) {
-        this.orthoMax = this.orthoMin;
+      if (orthoMax < orthoMin) {
+        orthoMax = orthoMin;
       }
     }
 
@@ -37,11 +37,11 @@ namespace Tenry.DemoActionRpg {
     /// A positive value zooms in, a negative value zooms out.
     /// </summary>
     public void Zoom(float delta) {
-      var ortho = this.virtualCamera.m_Lens.OrthographicSize;
+      var ortho = virtualCamera.m_Lens.OrthographicSize;
 
-      ortho = Mathf.Clamp(ortho - delta * this.zoomSpeed, this.orthoMin, this.orthoMax);
+      ortho = Mathf.Clamp(ortho - delta * zoomSpeed, orthoMin, orthoMax);
 
-      this.virtualCamera.m_Lens.OrthographicSize = ortho;
+      virtualCamera.m_Lens.OrthographicSize = ortho;
     }
   }
 }

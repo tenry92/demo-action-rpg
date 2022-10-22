@@ -14,32 +14,32 @@ namespace Tenry.DemoActionRpg {
     private CameraController cameraController;
 
     private void Awake() {
-      this.cameraController = this.GetComponent<CameraController>();
-      Debug.Assert(this.cameraController != null);
+      cameraController = GetComponent<CameraController>();
+      Debug.Assert(cameraController != null);
     }
 
     private void OnEnable() {
-      foreach (var action in this.GetAllActions()) {
+      foreach (var action in GetAllActions()) {
         action?.Enable();
       }
     }
 
     private void OnDisable() {
-      foreach (var action in this.GetAllActions()) {
+      foreach (var action in GetAllActions()) {
         action?.Disable();
       }
     }
 
     private void Update() {
-      var zoom = this.zoomAction.ReadValue<float>();
+      var zoom = zoomAction.ReadValue<float>();
 
       if (zoom != 0f) {
-        this.cameraController.Zoom(zoom * Time.deltaTime);
+        cameraController.Zoom(zoom * Time.deltaTime);
       }
     }
 
     private IEnumerable<InputAction> GetAllActions() {
-      yield return this.zoomAction;
+      yield return zoomAction;
     }
   }
 }

@@ -39,14 +39,14 @@ namespace Tenry.DemoActionRpg {
 
     private float FallingSpeed {
       get {
-        return -this.verticalSpeed;
+        return -verticalSpeed;
       }
       set {
-        this.verticalSpeed = -value;
+        verticalSpeed = -value;
       }
     }
 
-    private bool IsFalling => this.FallingSpeed > 0f;
+    private bool IsFalling => FallingSpeed > 0f;
 
     private Vector3 respawnPosition;
 
@@ -54,83 +54,81 @@ namespace Tenry.DemoActionRpg {
 
     private bool didMove = false;
 
-    public float MaxMoveSpeed => this.moveSpeed;
+    public float MaxMoveSpeed => moveSpeed;
 
     public bool IsAttacking { get; set; }
 
-    // public Vector3 MovementDirection => Quaternion.AngleAxis(this.direction, Vector3.up) * Vector3.forward;
-
     private void Awake() {
-      this.respawnPosition = this.transform.position;
+      respawnPosition = transform.position;
 
-      this.characterController = this.GetComponent<CharacterController>();
-      Debug.Assert(this.characterController != null);
-      this.animator = this.GetComponentInChildren<Animator>();
-      Debug.Assert(this.animator != null);
-      this.weapon = this.GetComponentInChildren<DamageDealer>();
-      this.weapon.gameObject.SetActive(false);
+      characterController = GetComponent<CharacterController>();
+      Debug.Assert(characterController != null);
+      animator = GetComponentInChildren<Animator>();
+      Debug.Assert(animator != null);
+      weapon = GetComponentInChildren<DamageDealer>();
+      weapon.gameObject.SetActive(false);
     }
 
     private void LateUpdate() {
-      if (!this.didMove) {
-        this.Decelarate();
+      if (!didMove) {
+        Decelarate();
       } else {
-        this.didMove = false;
+        didMove = false;
       }
 
-      this.UpdateMovement();
-      this.UpdateAnimation();
+      UpdateMovement();
+      UpdateAnimation();
 
-      if (this.FallingSpeed > 50f) {
+      if (FallingSpeed > 50f) {
         // we assume the player is falling endlessly, so do a respawn
-        this.Respawn();
+        Respawn();
       }
     }
 
     private void UpdateMovement() {
-      if (this.characterController.isGrounded) {
-        this.StopFalling();
+      if (characterController.isGrounded) {
+        StopFalling();
       } else {
-        this.FallingSpeed += this.gravity * Time.deltaTime;
+        FallingSpeed += gravity * Time.deltaTime;
       }
 
-      if (this.IsAttacking) {
-        this.speed = 0f;
+      if (IsAttacking) {
+        speed = 0f;
       }
 
-      var moveVector = this.transform.forward * this.speed + Vector3.down * this.FallingSpeed;
-      this.characterController.Move(moveVector * Time.deltaTime);
+      var moveVector = transform.forward * speed + Vector3.down * FallingSpeed;
+      characterController.Move(moveVector * Time.deltaTime);
     }
 
     private void UpdateAnimation() {
-      this.animator?.SetFloat("Speed", this.speed);
+      animator?.SetFloat("Speed", speed);
     }
 
     private void Accelerate(float desiredSpeed) {
-      this.speed = Mathf.MoveTowards(this.speed, desiredSpeed, this.acceleration * Time.deltaTime);
+      speed = Mathf.MoveTowards(speed, desiredSpeed, acceleration * Time.deltaTime);
     }
 
     private void Decelarate() {
-      this.Accelerate(0f);
+      Accelerate(0f);
     }
 
     private void Turn(float desiredDirection) {
-      this.direction = Mathf.MoveTowardsAngle(this.direction, desiredDirection, this.angularSpeed * Time.deltaTime);
+      direction = Mathf.MoveTowardsAngle(direction, desiredDirection, angularSpeed * Time.deltaTime);
 
-      var targetRotation = Quaternion.LookRotation(Quaternion.AngleAxis(this.direction, Vector3.up) * Vector3.forward, Vector3.up);
-      this.transform.rotation = Quaternion.RotateTowards(this.transform.rotation, targetRotation, this.angularSpeed * Time.deltaTime);
+      var targetRotation = Quaternion.LookRotation(Quaternion.AngleAxis(direction, Vector3.up) * Vector3.forward, Vector3.up);
+      transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, angularSpeed * Time.deltaTime);
     }
 
     public void Move(float direction, float speed = 1f) {
-      var desiredSpeed = this.MaxMoveSpeed * speed;
-      this.Accelerate(desiredSpeed);
-      this.Turn(direction);
-      this.didMove = true;
+      var desiredSpeed = MaxMoveSpeed * speed;
+      Accelerate(desiredSpeed);
+      Turn(direction);
+      didMove = true;
     }
 
     public void StopFalling() {
-      if (this.IsFalling) {
-        this.verticalSpeed = 0f;
+      if (IsFalling) {
+        verticalSpeed = 0f;
       }
     }
 
@@ -138,24 +136,24 @@ namespace Tenry.DemoActionRpg {
     /// Respawn at last checkpoint.
     /// </summary>
     public void Respawn() {
-      this.transform.position = this.respawnPosition;
-      this.speed = 0f;
-      this.verticalSpeed = 0f;
+      transform.position = respawnPosition;
+      speed = 0f;
+      verticalSpeed = 0f;
     }
 
     public async Task Attack() {
-      if (this.IsAttacking) {
+      if (IsAttacking) {
         return;
       }
 
-      this.IsAttacking = true;
-      this.weapon.gameObject.SetActive(true);
-      this.animator?.SetTrigger("Attack");
+      IsAttacking = true;
+      weapon.gameObject.SetActive(true);
+      animator?.SetTrigger("Attack");
 
       await Task.Delay(Mathf.RoundToInt(0.5f * 1000));
 
-      this.weapon.gameObject.SetActive(false);
-      this.IsAttacking = false;
+      weapon.gameObject.SetActive(false);
+      IsAttacking = false;
     }
 
     public void UseItem1() {

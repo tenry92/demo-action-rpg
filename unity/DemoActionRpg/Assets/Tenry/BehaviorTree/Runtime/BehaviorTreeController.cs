@@ -8,19 +8,19 @@ namespace Tenry.BehaviorTree.Runtime {
     #endregion
 
     public BehaviorTree Tree {
-      get => this.tree;
-      set => this.tree = value;
+      get => tree;
+      set => tree = value;
     }
 
     private void Awake() {
-      var original = this.tree;
-      this.tree = this.tree.Clone();
-      this.tree.name = original.name;
-      this.tree.Controller = this;
+      var original = tree;
+      tree = tree.Clone();
+      tree.name = original.name;
+      tree.Controller = this;
     }
 
     private void Update() {
-      this.tree.Update();
+      tree.Update();
     }
   }
 }

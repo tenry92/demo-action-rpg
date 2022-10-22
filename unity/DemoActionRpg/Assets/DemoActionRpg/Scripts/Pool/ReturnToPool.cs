@@ -9,7 +9,7 @@ namespace Tenry.DemoActionRpg.Pool {
     public IObjectPool<GameObject> Pool { get; set; }
 
     public void Return() {
-      this.Pool.Release(gameObject);
+      Pool.Release(gameObject);
     }
   }
 }

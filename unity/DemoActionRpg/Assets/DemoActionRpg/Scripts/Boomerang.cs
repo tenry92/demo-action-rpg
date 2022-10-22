@@ -27,7 +27,7 @@ namespace Tenry.DemoActionRpg {
     }
 
     private void Update() {
-      var pos = transform.position;
+      Vector3 pos;
       var duration = distance / speed;
 
       time += Time.deltaTime;
@@ -62,7 +62,7 @@ namespace Tenry.DemoActionRpg {
       }
 
       Gizmos.color = MoreColors.PowderBlue;
-      Gizmos.matrix = this.transform.localToWorldMatrix;
+      Gizmos.matrix = transform.localToWorldMatrix;
 
       Gizmos.DrawLine(Vector3.zero, Vector3.forward * distance);
     }

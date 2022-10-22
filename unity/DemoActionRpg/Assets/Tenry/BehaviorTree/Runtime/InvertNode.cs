@@ -5,15 +5,12 @@ namespace Tenry.BehaviorTree.Runtime {
     protected override void OnEnd() {}
 
     protected override NodeStatus OnUpdate() {
-      switch (this.Child.Evaluate()) {
-        default:
-        case NodeStatus.Running:
-          return NodeStatus.Running;
-        case NodeStatus.Success:
-          return NodeStatus.Failure;
-        case NodeStatus.Failure:
-          return NodeStatus.Success;
-      }
+      return Child.Evaluate() switch {
+        NodeStatus.Running => NodeStatus.Running,
+        NodeStatus.Success => NodeStatus.Failure,
+        NodeStatus.Failure => NodeStatus.Success,
+        _ => NodeStatus.Running,
+      };
     }
   }
 }

@@ -2,23 +2,23 @@ using System.Collections.Generic;
 
 namespace Tenry.BehaviorTree.Runtime {
   public class Blackboard {
-    private Dictionary<string, object> data = new Dictionary<string, object>();
+    private readonly Dictionary<string, object> data = new ();
 
     public bool TryGet<T>(string key, out T result) {
-      if (this.data.TryGetValue(key, out var value)) {
-        if (value is T) {
-          result = (T) value;
+      if (data.TryGetValue(key, out var value)) {
+        if (value is T typedValue) {
+          result = typedValue;
           return true;
         }
       }
 
-      result = default(T);
+      result = default;
 
       return false;
     }
 
     public void Set(string key, object value) {
-      this.data[key] = value;
+      data[key] = value;
     }
   }
 }

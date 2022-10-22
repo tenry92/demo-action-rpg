@@ -11,17 +11,17 @@ namespace Tenry.DemoActionRpg {
     private VisualElement healthBar;
 
     private void Awake() {
-      var root = this.GetComponent<UIDocument>().rootVisualElement;
+      var root = GetComponent<UIDocument>().rootVisualElement;
 
-      this.healthBar = root.Q<VisualElement>("HealthBar");
+      healthBar = root.Q<VisualElement>("HealthBar");
     }
 
     private void Update() {
-      this.UpdateHealthBar();
+      UpdateHealthBar();
     }
 
     private void UpdateHealthBar() {
-      this.healthBar.style.width = new Length(((float) this.reflectHealthOf.Health) / this.reflectHealthOf.MaxHealth * 100, LengthUnit.Percent);
+      healthBar.style.width = new Length(((float) reflectHealthOf.Health) / reflectHealthOf.MaxHealth * 100, LengthUnit.Percent);
     }
   }
 }

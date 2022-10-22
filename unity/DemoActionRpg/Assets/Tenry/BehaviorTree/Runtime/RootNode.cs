@@ -10,11 +10,11 @@ namespace Tenry.BehaviorTree.Runtime {
     private Node child;
     #endregion
 
-    public Node Child => this.child;
+    public Node Child => child;
 
     public override Node Clone() {
       var copy = Instantiate(this);
-      copy.child = this.child.Clone();
+      copy.child = child.Clone();
 
       return copy;
     }
@@ -24,7 +24,7 @@ namespace Tenry.BehaviorTree.Runtime {
     protected override void OnEnd() {}
 
     protected override NodeStatus OnUpdate() {
-      return this.Child.Evaluate();
+      return Child.Evaluate();
     }
 
     public override void AddChild(Node child) {
@@ -38,8 +38,8 @@ namespace Tenry.BehaviorTree.Runtime {
     }
 
     public override IEnumerable<Node> GetChildren() {
-      if (this.child != null) {
-        yield return this.child;
+      if (child != null) {
+        yield return child;
       }
     }
 

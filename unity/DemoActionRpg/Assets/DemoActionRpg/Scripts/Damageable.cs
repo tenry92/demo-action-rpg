@@ -33,51 +33,51 @@ namespace Tenry.DemoActionRpg {
 
     public int Health {
       get {
-        return this.health;
+        return health;
       }
       set {
-        if (this.health == 0 && value == 0) {
+        if (health == 0 && value == 0) {
           return;
         }
 
-        this.health = Mathf.Clamp(value, 0, maxHealth);
+        health = Mathf.Clamp(value, 0, maxHealth);
 
-        if (this.health == 0) {
-          this.Destroyed?.Invoke();
+        if (health == 0) {
+          Destroyed?.Invoke();
 
-          if (this.destroyOnDeath) {
-            this.gameObject.SetActive(false);
+          if (destroyOnDeath) {
+            gameObject.SetActive(false);
           }
         }
       }
     }
 
-    public int MaxHealth => this.maxHealth;
+    public int MaxHealth => maxHealth;
 
     private float activeDamageCooldown = 0f;
 
-    public bool IsAlive => this.health > 0;
+    public bool IsAlive => health > 0;
 
-    public bool IsDead => !this.IsAlive;
+    public bool IsDead => !IsAlive;
 
     public UnityEvent<int> Damaged;
 
     public UnityEvent Destroyed;
 
     private void Awake() {
-      this.health = this.maxHealth;
+      health = maxHealth;
     }
 
     private void Update() {
-      this.activeDamageCooldown = Mathf.Clamp(this.activeDamageCooldown - Time.deltaTime, 0f, this.activeDamageCooldown);
+      activeDamageCooldown = Mathf.Clamp(activeDamageCooldown - Time.deltaTime, 0f, activeDamageCooldown);
     }
 
     // private void OnEnable() {
-    //   this.Damaged.AddListener(this.SpawnDamageText);
+    //   Damaged.AddListener(SpawnDamageText);
     // }
 
     // private void OnDisable() {
-    //   this.Damaged.RemoveListener(this.SpawnDamageText);
+    //   Damaged.RemoveListener(SpawnDamageText);
     // }
 
     public bool CanTakeDamageFrom(DamageType type) {
@@ -89,33 +89,33 @@ namespace Tenry.DemoActionRpg {
     }
 
     public void Damage(int amount) {
-      if (this.IsDead) {
+      if (IsDead) {
         Debug.Log("Is already dead");
         return;
       }
 
-      amount = Mathf.Min(this.Health, amount);
+      amount = Mathf.Min(Health, amount);
 
       if (amount > 0) {
-        if (this.hurtAudioSource != null) {
-          this.hurtAudioSource.Play();
+        if (hurtAudioSource != null) {
+          hurtAudioSource.Play();
         }
 
-        this.Health -= amount;
-        this.Damaged?.Invoke(amount);
+        Health -= amount;
+        Damaged?.Invoke(amount);
       }
 
-      // if (this.damageEffectPrefab != null) {
-      //   Instantiate(this.damageEffectPrefab, this.damageTextSpawnPoint?.position ?? this.transform.position, Quaternion.identity);
+      // if (damageEffectPrefab != null) {
+      //   Instantiate(damageEffectPrefab, damageTextSpawnPoint?.position ?? transform.position, Quaternion.identity);
       // }
     }
 
     // private void SpawnDamageText(int damage) {
-    //   if (this.damageTextPrefab == null) {
+    //   if (damageTextPrefab == null) {
     //     return;
     //   }
 
-    //   var damageText = Instantiate(this.damageTextPrefab, this.damageTextSpawnPoint?.position ?? this.transform.position, Quaternion.identity);
+    //   var damageText = Instantiate(damageTextPrefab, damageTextSpawnPoint?.position ?? transform.position, Quaternion.identity);
     //   damageText.Text = $"-{damage}";
     // }
   }

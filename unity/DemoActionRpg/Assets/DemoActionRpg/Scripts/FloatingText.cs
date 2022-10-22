@@ -18,70 +18,70 @@ namespace Tenry.DemoActionRpg {
 
     private float MaxPositionTime {
       get {
-        var lastKey = this.positionOverTime.keys[this.positionOverTime.length - 1];
+        var lastKey = positionOverTime.keys[positionOverTime.length - 1];
         return lastKey.time;
       }
     }
 
     private float MaxAlphaTime {
       get {
-        var lastKey = this.alphaOverTime.keys[this.alphaOverTime.length - 1];
+        var lastKey = alphaOverTime.keys[alphaOverTime.length - 1];
         return lastKey.time;
       }
     }
 
-    private float MaxAge => Mathf.Max(this.MaxPositionTime, this.MaxAlphaTime);
+    private float MaxAge => Mathf.Max(MaxPositionTime, MaxAlphaTime);
 
     private float originalPosition;
 
     private float Position {
       set {
-        var transformPos = this.transform.position;
+        var transformPos = transform.position;
         transformPos.y = originalPosition;
-        this.transform.position = transformPos + Vector3.up * value;
+        transform.position = transformPos + Vector3.up * value;
       }
     }
 
     private float Alpha {
       set {
-        if (this.tmpText == null) {
+        if (tmpText == null) {
           return;
         }
 
-        var color = this.tmpText.color;
+        var color = tmpText.color;
         color.a = value;
-        this.tmpText.color = color;
+        tmpText.color = color;
       }
     }
 
     public string Text {
       set {
-        if (this.tmpText == null) {
+        if (tmpText == null) {
           return;
         }
 
-        this.tmpText.text = value;
+        tmpText.text = value;
       }
     }
 
     private void Awake() {
-      this.tmpText = this.GetComponentInChildren<TMP_Text>();
+      tmpText = GetComponentInChildren<TMP_Text>();
     }
 
     private void Start() {
-      this.originalPosition = this.transform.position.y;
+      originalPosition = transform.position.y;
     }
 
     private void Update() {
-      this.Position = this.positionOverTime.Evaluate(this.age);
-      this.Alpha = this.alphaOverTime.Evaluate(this.age);
+      Position = positionOverTime.Evaluate(age);
+      Alpha = alphaOverTime.Evaluate(age);
     }
 
     private void LateUpdate() {
-      this.age += Time.deltaTime;
+      age += Time.deltaTime;
 
-      if (this.age >= this.MaxAge) {
-        Destroy(this.gameObject);
+      if (age >= MaxAge) {
+        Destroy(gameObject);
       }
     }
   }

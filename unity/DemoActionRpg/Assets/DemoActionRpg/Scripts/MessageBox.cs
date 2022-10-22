@@ -14,7 +14,7 @@ namespace Tenry.DemoActionRpg {
     #endregion
 
     public static void ShowMessage(string message) {
-      var messageBox = GameObject.FindObjectOfType<MessageBox>(true);
+      var messageBox = FindObjectOfType<MessageBox>(true);
 
       if (messageBox == null) {
         Debug.LogWarning("No object of MessageBox found");
@@ -27,39 +27,39 @@ namespace Tenry.DemoActionRpg {
     public void Show(string message) {
       playerInputEnabledSwitch.Value = false;
 
-      this.text.text = message;
+      text.text = message;
 
-      var canvasGroup = this.GetComponent<CanvasGroup>();
+      var canvasGroup = GetComponent<CanvasGroup>();
 
       if (canvasGroup != null) {
         canvasGroup.alpha = 1f;
       }
       
-      var typewriter = this.text.GetComponent<Typewriter>();
+      var typewriter = text.GetComponent<Typewriter>();
 
       if (typewriter != null) {
         typewriter.enabled = true;
       }
 
-      this.gameObject.SetActive(true);
+      gameObject.SetActive(true);
     }
 
     public void Hide() {
       playerInputEnabledSwitch.Value = true;
 
-      var canvasGroup = this.GetComponent<CanvasGroup>();
+      var canvasGroup = GetComponent<CanvasGroup>();
 
       if (canvasGroup != null) {
         canvasGroup.alpha = 0f;
       }
       
-      var typewriter = this.text.GetComponent<Typewriter>();
+      var typewriter = text.GetComponent<Typewriter>();
 
       if (typewriter != null) {
         typewriter.enabled = false;
       }
 
-      this.gameObject.SetActive(false);
+      gameObject.SetActive(false);
     }
   }
 }

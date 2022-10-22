@@ -20,19 +20,19 @@ namespace Tenry.Common {
     private bool triggered = false;
 
     private void OnTriggerEnter(Collider other) {
-      if (this.once && this.triggered) {
+      if (once && triggered) {
         return;
       }
 
-      if (this.filterTag != "" && this.filterTag != "Untagged") {
-        if (other.tag != this.filterTag) {
+      if (filterTag != "" && filterTag != "Untagged") {
+        if (other.tag != filterTag) {
           return;
         }
       }
 
-      this.Triggered?.Invoke();
+      Triggered?.Invoke();
 
-      this.triggered = true;
+      triggered = true;
     }
   }
 }

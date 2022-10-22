@@ -13,23 +13,23 @@ namespace Tenry.DemoActionRpg {
     private int damage = 1;
     #endregion
 
-    private HashSet<Damageable> damagedTargets = new HashSet<Damageable>();
+    private readonly HashSet<Damageable> damagedTargets = new ();
 
     private void OnTriggerStay(Collider other) {
       var target = other.GetComponent<Damageable>();
 
-      if (this.CanDamage(target)) {
+      if (CanDamage(target)) {
         target.Damage(damage);
-        this.damagedTargets.Add(target);
+        damagedTargets.Add(target);
       }
     }
 
     private void OnTriggerEnter(Collider other) {
       var target = other.GetComponent<Damageable>();
 
-      if (this.CanDamage(target)) {
+      if (CanDamage(target)) {
         target.Damage(damage);
-        this.damagedTargets.Add(target);
+        damagedTargets.Add(target);
       }
     }
 
@@ -38,7 +38,7 @@ namespace Tenry.DemoActionRpg {
         return false;
       }
 
-      if (this.damagedTargets.Contains(target)) {
+      if (damagedTargets.Contains(target)) {
         return false;
       }
 
@@ -47,11 +47,11 @@ namespace Tenry.DemoActionRpg {
 
     #if UNITY_EDITOR
     private void OnDrawGizmos() {
-      var collider = this.GetComponent<Collider>();
+      var collider = GetComponent<Collider>();
 
       if (collider != null) {
         Gizmos.color = new Color(1f, 0.5f, 0f);
-        Gizmos.matrix = this.transform.localToWorldMatrix;
+        Gizmos.matrix = transform.localToWorldMatrix;
 
         var capsuleCollider = collider as CapsuleCollider;
 

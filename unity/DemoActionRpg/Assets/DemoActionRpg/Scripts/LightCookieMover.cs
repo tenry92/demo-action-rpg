@@ -12,15 +12,15 @@ namespace Tenry.DemoActionRpg {
     private new UniversalAdditionalLightData light;
 
     private void Awake() {
-      this.light = this.GetComponent<UniversalAdditionalLightData>();
-      Debug.Assert(this.light);
+      light = GetComponent<UniversalAdditionalLightData>();
+      Debug.Assert(light);
     }
 
     private void Update() {
-      var offset = this.light.lightCookieOffset;
-      offset.x = Mathf.Repeat(offset.x + this.moveSpeed.x * Time.deltaTime, this.light.lightCookieSize.x);
-      offset.y = Mathf.Repeat(offset.y + this.moveSpeed.y * Time.deltaTime, this.light.lightCookieSize.y);
-      this.light.lightCookieOffset = offset;
+      var offset = light.lightCookieOffset;
+      offset.x = Mathf.Repeat(offset.x + moveSpeed.x * Time.deltaTime, light.lightCookieSize.x);
+      offset.y = Mathf.Repeat(offset.y + moveSpeed.y * Time.deltaTime, light.lightCookieSize.y);
+      light.lightCookieOffset = offset;
     }
   }
 }

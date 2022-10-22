@@ -19,26 +19,26 @@ namespace Tenry.BehaviorTree.Runtime {
     #endregion
 
     public Node Root {
-      get => this.root;
-      set => this.root = value;
+      get => root;
+      set => root = value;
     }
 
     public NodeStatus Status = NodeStatus.Running;
 
-    public List<Node> Nodes => this.nodes;
+    public List<Node> Nodes => nodes;
 
     private BehaviorTreeController controller;
 
     public BehaviorTreeController Controller {
-      get => this.controller;
+      get => controller;
       internal set {
-        this.controller = value;
+        controller = value;
 
-        if (this.Root != null) {
-          this.Root.Traverse(node => {
+        if (Root != null) {
+          Root.Traverse(node => {
             node.behaviorTree = this;
-            node.controller = this.controller;
-            node.gameObject = this.controller.gameObject;
+            node.controller = controller;
+            node.gameObject = controller.gameObject;
           });
         }
       }
@@ -47,11 +47,11 @@ namespace Tenry.BehaviorTree.Runtime {
     public Blackboard Blackboard { get; private set; }
 
     public NodeStatus Update() {
-      if (this.Root.Status == NodeStatus.Running) {
-        this.Status = this.Root.Evaluate();
+      if (Root.Status == NodeStatus.Running) {
+        Status = Root.Evaluate();
       }
 
-      return this.Status;
+      return Status;
     }
 
     public List<Node> GetChildren(Node parent) {
@@ -92,7 +92,7 @@ namespace Tenry.BehaviorTree.Runtime {
 
       Undo.RecordObject(this, "Behavior Tree (Create Node)");
 
-      this.nodes.Add(node);
+      nodes.Add(node);
 
       if (!Application.isPlaying) {
         AssetDatabase.AddObjectToAsset(node, this);
@@ -107,7 +107,7 @@ namespace Tenry.BehaviorTree.Runtime {
 
     public void DeleteNode(Node node) {
       Undo.RecordObject(this, "Behavior Tree (Delete Node)");
-      this.nodes.Remove(node);
+      nodes.Remove(node);
 
       Undo.DestroyObjectImmediate(node);
 

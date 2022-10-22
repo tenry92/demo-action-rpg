@@ -18,7 +18,7 @@ namespace Tenry.Common {
         return;
       }
 
-      this.transform.rotation = alignTo.rotation;
+      transform.rotation = alignTo.rotation;
     }
   }
 }

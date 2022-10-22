@@ -70,7 +70,7 @@ namespace Tenry.DemoActionRpg {
           ++currentIndex;
 
           if (currentIndex == code.Length) {
-            this.activated.Invoke();
+            activated.Invoke();
           }
         } else {
           // reset

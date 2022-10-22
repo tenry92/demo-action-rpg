@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.Pool;
 
 namespace Tenry.DemoActionRpg.Pool {
   public static class GameObjectExtensions {

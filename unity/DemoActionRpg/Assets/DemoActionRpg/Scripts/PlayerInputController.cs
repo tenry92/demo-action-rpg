@@ -22,8 +22,8 @@ namespace Tenry.DemoActionRpg {
     private InputAction item2Action;
 
     private void Awake() {
-      this.playerController = this.GetComponent<PlayerController>();
-      Debug.Assert(this.playerController != null);
+      playerController = GetComponent<PlayerController>();
+      Debug.Assert(playerController != null);
 
       if (enabledSwitch != null) {
         enabled = enabledSwitch.Value;
@@ -38,55 +38,55 @@ namespace Tenry.DemoActionRpg {
       item1Action = map.FindAction("Item 1");
       item2Action = map.FindAction("Item 2");
 
-      this.attackAction.performed += this.OnAttack;
-      this.item1Action.performed += this.OnUseItem1;
-      this.item2Action.performed += this.OnUseItem2;
+      attackAction.performed += OnAttack;
+      item1Action.performed += OnUseItem1;
+      item2Action.performed += OnUseItem2;
     }
 
     private void OnDisable() {
       GameController.Instance.InputManager.UnlistenToMap("Game");
 
       if (attackAction != null) {
-        attackAction.performed -= this.OnAttack;
+        attackAction.performed -= OnAttack;
       }
 
       if (item1Action != null) {
-        item1Action.performed -= this.OnUseItem1;
+        item1Action.performed -= OnUseItem1;
       }
 
       if (item2Action != null) {
-        item2Action.performed -= this.OnUseItem2;
+        item2Action.performed -= OnUseItem2;
       }
     }
 
     private void Update() {
-      this.UpdateMovement();
+      UpdateMovement();
     }
 
     private void UpdateMovement() {
-      var input = this.moveAction.ReadValue<Vector2>();
+      var input = moveAction.ReadValue<Vector2>();
 
       if (input.magnitude > 0f) {
         var direction = -Vector2.SignedAngle(Vector2.right, input.normalized) + 90f;
-        this.playerController.Move(direction, input.magnitude);
+        playerController.Move(direction, input.magnitude);
       }
     }
 
     private IEnumerable<InputAction> GetAllActions() {
-      yield return this.moveAction;
-      yield return this.attackAction;
+      yield return moveAction;
+      yield return attackAction;
     }
 
     private async void OnAttack(InputAction.CallbackContext context) {
-      await this.playerController.Attack();
+      await playerController.Attack();
     }
 
     private void OnUseItem1(InputAction.CallbackContext context) {
-      this.playerController.UseItem1();
+      playerController.UseItem1();
     }
 
     private void OnUseItem2(InputAction.CallbackContext context) {
-      this.playerController.UseItem2();
+      playerController.UseItem2();
     }
   }
 }

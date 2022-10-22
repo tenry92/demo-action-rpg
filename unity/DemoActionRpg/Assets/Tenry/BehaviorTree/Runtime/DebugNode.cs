@@ -12,7 +12,7 @@ namespace Tenry.BehaviorTree.Runtime {
     protected override void OnEnd() {}
 
     protected override NodeStatus OnUpdate() {
-      return this.emitStatus;
+      return emitStatus;
     }
   }
 }

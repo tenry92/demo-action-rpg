@@ -9,18 +9,18 @@ namespace Tenry.DemoActionRpg.BehaviorTree {
     private Task task = null;
 
     protected override void OnStart() {
-      this.playerController = this.GameObject.GetComponent<PlayerController>();
-      this.task = null;
+      playerController = GameObject.GetComponent<PlayerController>();
+      task = null;
     }
 
     protected override void OnEnd() {}
 
     protected override NodeStatus OnUpdate() {
-      if (this.task == null) {
-        this.task = this.playerController.Attack();
+      if (task == null) {
+        task = playerController.Attack();
       }
 
-      if (this.task.IsCompleted) {
+      if (task.IsCompleted) {
         return NodeStatus.Success;
       }
 

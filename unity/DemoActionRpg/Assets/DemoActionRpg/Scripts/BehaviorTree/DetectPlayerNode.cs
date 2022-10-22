@@ -14,8 +14,8 @@ namespace Tenry.DemoActionRpg.BehaviorTree {
     protected override void OnEnd() {}
 
     protected override NodeStatus OnUpdate() {
-      if (this.TryGetNearestPlayer(out var player, out var distance) && distance <= this.range) {
-        this.Blackboard.Set("SeekTarget", player);
+      if (TryGetNearestPlayer(out var player, out var distance) && distance <= range) {
+        Blackboard.Set("SeekTarget", player);
         return NodeStatus.Success;
       }
 
@@ -33,7 +33,7 @@ namespace Tenry.DemoActionRpg.BehaviorTree {
       }
 
       for (int i = 0; i < players.Length; ++i) {
-        var distanceToPlayer = Vector3.Distance(this.GameObject.transform.position, players[i].transform.position);
+        var distanceToPlayer = Vector3.Distance(GameObject.transform.position, players[i].transform.position);
 
         if (distanceToPlayer < distance) {
           player = players[i];

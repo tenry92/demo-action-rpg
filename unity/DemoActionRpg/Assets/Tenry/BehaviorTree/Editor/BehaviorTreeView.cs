@@ -18,7 +18,7 @@ namespace Tenry.BehaviorTree.Editor {
     public Action<Runtime.Node> NodeSelected;
 
     public BehaviorTreeView() {
-      this.Insert(0, new GridBackground());
+      Insert(0, new GridBackground());
 
       this.AddManipulator(new ContentZoomer());
       this.AddManipulator(new ContentDragger());
@@ -26,22 +26,22 @@ namespace Tenry.BehaviorTree.Editor {
       this.AddManipulator(new RectangleSelector());
 
       var styleSheet = AssetDatabase.LoadAssetAtPath<StyleSheet>("Assets/Tenry/BehaviorTree/Editor/BehaviorTreeView.uss");
-      this.styleSheets.Add(styleSheet);
+      styleSheets.Add(styleSheet);
 
-      Undo.undoRedoPerformed += this.OnUndoRedo;
+      Undo.undoRedoPerformed += OnUndoRedo;
     }
 
     private void OnUndoRedo() {
-      this.PopulateView(this.tree);
+      PopulateView(tree);
       AssetDatabase.SaveAssets();
     }
 
     private NodeView FindNodeViewByNode(Runtime.Node node) {
-      return this.GetNodeByGuid(node.Guid) as NodeView;
+      return GetNodeByGuid(node.Guid) as NodeView;
     }
 
     public override void BuildContextualMenu(ContextualMenuPopulateEvent ev) {
-      var viewTransform = this.contentViewContainer.transform;
+      var viewTransform = contentViewContainer.transform;
       var position = ev.localMousePosition;
       position.x = (position.x - viewTransform.position.x) / viewTransform.scale.x;
       position.y = (position.y - viewTransform.position.y) / viewTransform.scale.y;
@@ -51,7 +51,7 @@ namespace Tenry.BehaviorTree.Editor {
 
         var types = TypeCache.GetTypesDerivedFrom<ActionNode>();
         foreach (var type in types) {
-          ev.menu.AppendAction(Runtime.Node.GetUserFriendlyName(type), action => this.CreateNode(type, position));
+          ev.menu.AppendAction(Runtime.Node.GetUserFriendlyName(type), action => CreateNode(type, position));
         }
       }
 
@@ -62,7 +62,7 @@ namespace Tenry.BehaviorTree.Editor {
 
         var types = TypeCache.GetTypesDerivedFrom<CompositeNode>();
         foreach (var type in types) {
-          ev.menu.AppendAction(Runtime.Node.GetUserFriendlyName(type), action => this.CreateNode(type, position));
+          ev.menu.AppendAction(Runtime.Node.GetUserFriendlyName(type), action => CreateNode(type, position));
         }
       }
 
@@ -73,26 +73,26 @@ namespace Tenry.BehaviorTree.Editor {
 
         var types = TypeCache.GetTypesDerivedFrom<DecoratorNode>();
         foreach (var type in types) {
-          ev.menu.AppendAction(Runtime.Node.GetUserFriendlyName(type), action => this.CreateNode(type, position));
+          ev.menu.AppendAction(Runtime.Node.GetUserFriendlyName(type), action => CreateNode(type, position));
         }
       }
     }
 
     private void CreateNode(System.Type type) {
-      var node = this.tree.CreateNode(type);
-      this.CreateNodeView(node);
+      var node = tree.CreateNode(type);
+      CreateNodeView(node);
     }
 
     private void CreateNode(System.Type type, Vector2 position) {
-      var node = this.tree.CreateNode(type);
+      var node = tree.CreateNode(type);
       node.Position = position;
-      this.CreateNodeView(node);
+      CreateNodeView(node);
     }
 
     internal void PopulateView(Runtime.BehaviorTree tree) {
       this.tree = tree;
 
-      this.ClearView();
+      ClearView();
 
       // todo: do this in BehaviorTree instead?
       if (this.tree.Root == null) {
@@ -101,32 +101,32 @@ namespace Tenry.BehaviorTree.Editor {
         AssetDatabase.SaveAssets();
       }
 
-      this.CreateNodeViews();
-      this.ConnectEdges();
+      CreateNodeViews();
+      ConnectEdges();
     }
 
     private void ClearView() {
-      this.graphViewChanged -= this.OnGraphViewChanged;
-      this.DeleteElements(this.graphElements);
-      this.graphViewChanged += this.OnGraphViewChanged;
+      graphViewChanged -= OnGraphViewChanged;
+      DeleteElements(graphElements);
+      graphViewChanged += OnGraphViewChanged;
     }
 
     private void CreateNodeViews() {
-      foreach (var node in this.tree.Nodes) {
-        this.CreateNodeView(node);
+      foreach (var node in tree.Nodes) {
+        CreateNodeView(node);
       }
     }
 
     private void ConnectEdges() {
-      foreach (var node in this.tree.Nodes) {
-        var children = this.tree.GetChildren(node);
+      foreach (var node in tree.Nodes) {
+        var children = tree.GetChildren(node);
 
         foreach (var child in children) {
-          var parentView = this.FindNodeViewByNode(node);
-          var childView = this.FindNodeViewByNode(child);
+          var parentView = FindNodeViewByNode(node);
+          var childView = FindNodeViewByNode(child);
 
           var edge = parentView.Output.ConnectTo(childView.Input);
-          this.AddElement(edge);
+          AddElement(edge);
         }
       }
     }
@@ -138,24 +138,20 @@ namespace Tenry.BehaviorTree.Editor {
     }
 
     public override List<Port> GetCompatiblePorts(Port startPort, NodeAdapter nodeAdapter) {
-      return this.ports.ToList().Where(endPort => PortsCompatible(startPort, endPort)).ToList();
+      return ports.ToList().Where(endPort => PortsCompatible(startPort, endPort)).ToList();
     }
 
     private GraphViewChange OnGraphViewChanged(GraphViewChange change) {
       if (change.elementsToRemove != null) {
         foreach (var element in change.elementsToRemove) {
-          var nodeView = element as NodeView;
-
-          if (nodeView != null) {
-            this.tree.DeleteNode(nodeView.Node);
+          if (element is NodeView nodeView) {
+            tree.DeleteNode(nodeView.Node);
           }
 
-          var edge = element as Edge;
-
-          if (edge != null) {
+          if (element is Edge edge) {
             var parentView = edge.output.node as NodeView;
             var childView = edge.input.node as NodeView;
-            this.tree.RemoveChild(parentView.Node, childView.Node);
+            tree.RemoveChild(parentView.Node, childView.Node);
           }
         }
       }
@@ -164,12 +160,12 @@ namespace Tenry.BehaviorTree.Editor {
         foreach (var edge in change.edgesToCreate) {
           var parentView = edge.output.node as NodeView;
           var childView = edge.input.node as NodeView;
-          this.tree.AddChild(parentView.Node, childView.Node);
+          tree.AddChild(parentView.Node, childView.Node);
         }
       }
 
       if (change.edgesToCreate != null || change.movedElements != null) {
-        foreach (var node in this.nodes) {
+        foreach (var node in nodes) {
           var view = node as NodeView;
           view.Node.SortChildren();
         }
@@ -179,17 +175,17 @@ namespace Tenry.BehaviorTree.Editor {
     }
 
     private void CreateNodeView(Runtime.Node node) {
-      NodeView nodeView = new NodeView(node);
+      var nodeView = new NodeView(node);
 
       nodeView.Selected = () => {
-        this.NodeSelected?.Invoke(nodeView.Node);
+        NodeSelected?.Invoke(nodeView.Node);
       };
 
-      this.AddElement(nodeView);
+      AddElement(nodeView);
     }
 
     public void UpdateNodeStates() {
-      foreach (var graphNode in this.nodes) {
+      foreach (var graphNode in nodes) {
         var nodeView = graphNode as NodeView;
         nodeView?.UpdateState();
       }

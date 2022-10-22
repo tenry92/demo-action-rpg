@@ -23,16 +23,16 @@ namespace Tenry.BehaviorTree.Editor {
     internal Port Output => output;
 
     public NodeView(Runtime.Node node) : base("Assets/Tenry/BehaviorTree/Editor/NodeView.uxml") {
-      this.Node = node;
-      this.title = Runtime.Node.GetUserFriendlyName(node.GetType());
-      // todo: this.name = node.name;
-      this.viewDataKey = node.Guid;
+      Node = node;
+      title = Runtime.Node.GetUserFriendlyName(node.GetType());
+      // todo: name = node.name;
+      viewDataKey = node.Guid;
 
-      this.style.left = this.Node.Position.x;
-      this.style.top = this.Node.Position.y;
+      style.left = Node.Position.x;
+      style.top = Node.Position.y;
 
-      this.CreatePorts();
-      this.ApplyStyles();
+      CreatePorts();
+      ApplyStyles();
 
       var noteLabel = this.Q<Label>("note");
       noteLabel.bindingPath = "note";
@@ -40,86 +40,86 @@ namespace Tenry.BehaviorTree.Editor {
     }
 
     private void CreatePorts() {
-      this.CreateInputPorts();
-      this.CreateOutputPorts();
+      CreateInputPorts();
+      CreateOutputPorts();
     }
 
     private void CreateInputPorts() {
-      if (this.Node is ActionNode) {
-        this.input = this.InstantiatePort(Orientation.Vertical, Direction.Input, Port.Capacity.Single, null);
-      } else if (this.Node is CompositeNode) {
-        this.input = this.InstantiatePort(Orientation.Vertical, Direction.Input, Port.Capacity.Single, null);
-      } else if (this.Node is DecoratorNode) {
-        this.input = this.InstantiatePort(Orientation.Vertical, Direction.Input, Port.Capacity.Single, null);
-      } else if (this.Node is RootNode) {
+      if (Node is ActionNode) {
+        input = InstantiatePort(Orientation.Vertical, Direction.Input, Port.Capacity.Single, null);
+      } else if (Node is CompositeNode) {
+        input = InstantiatePort(Orientation.Vertical, Direction.Input, Port.Capacity.Single, null);
+      } else if (Node is DecoratorNode) {
+        input = InstantiatePort(Orientation.Vertical, Direction.Input, Port.Capacity.Single, null);
+      } else if (Node is RootNode) {
 
       }
 
-      if (this.input != null) {
-        this.input.portName = "";
-        this.inputContainer.Add(this.input);
+      if (input != null) {
+        input.portName = "";
+        inputContainer.Add(input);
       }
     }
 
     private void CreateOutputPorts() {
-      if (this.Node is ActionNode) {
+      if (Node is ActionNode) {
 
-      } else if (this.Node is CompositeNode) {
-        this.output = this.InstantiatePort(Orientation.Vertical, Direction.Output, Port.Capacity.Multi, null);
-      } else if (this.Node is DecoratorNode) {
-        this.output = this.InstantiatePort(Orientation.Vertical, Direction.Output, Port.Capacity.Single, null);
-      } else if (this.Node is RootNode) {
-        this.output = this.InstantiatePort(Orientation.Vertical, Direction.Output, Port.Capacity.Single, null);
+      } else if (Node is CompositeNode) {
+        output = InstantiatePort(Orientation.Vertical, Direction.Output, Port.Capacity.Multi, null);
+      } else if (Node is DecoratorNode) {
+        output = InstantiatePort(Orientation.Vertical, Direction.Output, Port.Capacity.Single, null);
+      } else if (Node is RootNode) {
+        output = InstantiatePort(Orientation.Vertical, Direction.Output, Port.Capacity.Single, null);
       }
 
-      if (this.output != null) {
-        this.output.portName = "";
-        this.outputContainer.Add(this.output);
+      if (output != null) {
+        output.portName = "";
+        outputContainer.Add(output);
       }
     }
 
     private void ApplyStyles() {
-      if (this.Node is ActionNode) {
-        this.AddToClassList("action");
-      } else if (this.Node is CompositeNode) {
-        this.AddToClassList("composite");
-      } else if (this.Node is DecoratorNode) {
-        this.AddToClassList("decorator");
-      } else if (this.Node is RootNode) {
-        this.AddToClassList("root");
+      if (Node is ActionNode) {
+        AddToClassList("action");
+      } else if (Node is CompositeNode) {
+        AddToClassList("composite");
+      } else if (Node is DecoratorNode) {
+        AddToClassList("decorator");
+      } else if (Node is RootNode) {
+        AddToClassList("root");
       }
     }
 
     public override void SetPosition(Rect position) {
       base.SetPosition(position);
-      Undo.RecordObject(this.Node, "Behavior Tree (Set Position");
-      this.Node.Position = new Vector2(position.xMin, position.yMin);
-      EditorUtility.SetDirty(this.Node);
+      Undo.RecordObject(Node, "Behavior Tree (Set Position");
+      Node.Position = new Vector2(position.xMin, position.yMin);
+      EditorUtility.SetDirty(Node);
     }
 
     public override void OnSelected() {
       base.OnSelected();
 
-      this.Selected?.Invoke();
+      Selected?.Invoke();
     }
 
     public void UpdateState() {
-      this.RemoveFromClassList("running");
-      this.RemoveFromClassList("success");
-      this.RemoveFromClassList("failure");
+      RemoveFromClassList("running");
+      RemoveFromClassList("success");
+      RemoveFromClassList("failure");
 
       if (Application.isPlaying) {
-        switch (this.Node.Status) {
+        switch (Node.Status) {
           case NodeStatus.Running:
-            if (this.Node.Started) {
-              this.AddToClassList("running");
+            if (Node.Started) {
+              AddToClassList("running");
             }
             break;
           case NodeStatus.Success:
-            this.AddToClassList("success");
+            AddToClassList("success");
             break;
           case NodeStatus.Failure:
-            this.AddToClassList("failure");
+            AddToClassList("failure");
             break;
         }
       }

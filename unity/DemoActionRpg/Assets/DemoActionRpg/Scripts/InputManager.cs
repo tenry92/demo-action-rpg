@@ -10,7 +10,7 @@ namespace Tenry.DemoActionRpg {
     private InputActionAsset controls;
     #endregion
 
-    private Dictionary<InputActionMap, int> referenceCount = new ();
+    private readonly Dictionary<InputActionMap, int> referenceCount = new ();
 
     private void Update() {
       for (int deviceIndex = 0; deviceIndex < InputSystem.devices.Count; ++deviceIndex) {
@@ -36,11 +36,11 @@ namespace Tenry.DemoActionRpg {
     public InputActionMap ListenToMap(string mapName) {
       var map = controls.FindActionMap(mapName);
 
-      if (!this.referenceCount.ContainsKey(map)) {
-        this.referenceCount.Add(map, 0);
+      if (!referenceCount.ContainsKey(map)) {
+        referenceCount.Add(map, 0);
       }
 
-      var refCount = this.referenceCount[map];
+      var refCount = referenceCount[map];
 
       if (refCount == 0) {
         foreach (var action in map.actions) {
@@ -48,7 +48,7 @@ namespace Tenry.DemoActionRpg {
         }
       }
 
-      this.referenceCount[map] = refCount + 1;
+      referenceCount[map] = refCount + 1;
 
       return map;
     }
@@ -56,13 +56,13 @@ namespace Tenry.DemoActionRpg {
     public void UnlistenToMap(string mapName) {
       var map = controls.FindActionMap(mapName);
 
-      if (!this.referenceCount.ContainsKey(map)) {
-        this.referenceCount.Add(map, 0);
+      if (!referenceCount.ContainsKey(map)) {
+        referenceCount.Add(map, 0);
       }
 
-      var refCount = this.referenceCount[map];
+      var refCount = referenceCount[map];
 
-      this.referenceCount[map] = --refCount;
+      referenceCount[map] = --refCount;
 
       if (refCount == 0) {
         foreach (var action in map.actions) {

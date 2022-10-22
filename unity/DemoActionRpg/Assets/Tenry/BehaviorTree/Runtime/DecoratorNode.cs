@@ -10,18 +10,18 @@ namespace Tenry.BehaviorTree.Runtime {
     private Node child;
     #endregion
 
-    public Node Child => this.child;
+    public Node Child => child;
 
     public override Node Clone() {
       var copy = Instantiate(this);
-      copy.child = this.child.Clone();
+      copy.child = child.Clone();
 
       return copy;
     }
 
     public override void Abort() {
-      if (this.child != null && this.child.IsRunning) {
-        this.child.Abort();
+      if (child != null && child.IsRunning) {
+        child.Abort();
       }
 
       base.Abort();
@@ -38,8 +38,8 @@ namespace Tenry.BehaviorTree.Runtime {
     }
 
     public override IEnumerable<Node> GetChildren() {
-      if (this.child != null) {
-        yield return this.child;
+      if (child != null) {
+        yield return child;
       }
     }
 

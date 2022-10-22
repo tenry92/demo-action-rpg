@@ -20,44 +20,44 @@ namespace Tenry.BehaviorTree.Runtime {
 
     internal GameObject gameObject;
 
-    public GameObject GameObject => this.gameObject;
+    public GameObject GameObject => gameObject;
 
     internal BehaviorTree behaviorTree;
 
-    public BehaviorTree BehaviorTree => this.behaviorTree;
+    public BehaviorTree BehaviorTree => behaviorTree;
 
     internal BehaviorTreeController controller;
 
-    public BehaviorTreeController Controller => this.controller;
+    public BehaviorTreeController Controller => controller;
 
-    protected Blackboard Blackboard => this.BehaviorTree.Blackboard;
+    protected Blackboard Blackboard => BehaviorTree.Blackboard;
 
     public NodeStatus Status { get; protected set; } = NodeStatus.Running;
 
     public bool Started { get; protected set; } = false;
 
-    public bool IsRunning => this.Started == true && this.Status == NodeStatus.Running;
+    public bool IsRunning => Started == true && Status == NodeStatus.Running;
 
     public string Guid {
       get {
-        return this.guid;
+        return guid;
       }
       set {
-        this.guid = value;
+        guid = value;
       }
     }
 
     public string Note {
-      get => this.note;
-      set => this.note = value;
+      get => note;
+      set => note = value;
     }
 
     public Vector2 Position {
       get {
-        return this.position;
+        return position;
       }
       set {
-        this.position = value;
+        position = value;
       }
     }
 
@@ -72,19 +72,19 @@ namespace Tenry.BehaviorTree.Runtime {
     }
 
     public NodeStatus Evaluate() {
-      if (!this.Started) {
-        this.OnStart();
-        this.Started = true;
+      if (!Started) {
+        OnStart();
+        Started = true;
       }
 
-      this.Status = this.OnUpdate();
+      Status = OnUpdate();
 
-      if (this.Status != NodeStatus.Running) {
-        this.OnEnd();
-        this.Started = false;
+      if (Status != NodeStatus.Running) {
+        OnEnd();
+        Started = false;
       }
 
-      return this.Status;
+      return Status;
     }
 
     public virtual Node Clone() {
@@ -94,21 +94,21 @@ namespace Tenry.BehaviorTree.Runtime {
     public void Traverse(System.Action<Node> visitor) {
       visitor?.Invoke(this);
 
-      foreach (var child in this.GetChildren()) {
+      foreach (var child in GetChildren()) {
         child.Traverse(visitor);
       }
     }
 
     public virtual void Abort() {
-      if (this.IsRunning) {
-        this.OnEnd();
-        this.ResetStatus();
+      if (IsRunning) {
+        OnEnd();
+        ResetStatus();
       }
     }
 
     private void ResetStatus() {
-      this.Started = false;
-      this.Status = NodeStatus.Running;
+      Started = false;
+      Status = NodeStatus.Running;
     }
 
     protected abstract void OnStart();

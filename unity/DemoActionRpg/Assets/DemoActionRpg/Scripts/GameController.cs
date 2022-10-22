@@ -12,7 +12,7 @@ namespace Tenry.DemoActionRpg {
         Destroy(this);
       }
 
-      DontDestroyOnLoad(this.gameObject);
+      DontDestroyOnLoad(gameObject);
 
       Instance = this;
       InputManager = GetComponentInChildren<InputManager>();

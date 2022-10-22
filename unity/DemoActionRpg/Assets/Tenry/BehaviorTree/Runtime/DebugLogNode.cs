@@ -15,34 +15,34 @@ namespace Tenry.BehaviorTree.Runtime {
 
     public string Message {
       get {
-        return this.message;
+        return message;
       }
       set {
-        this.message = value;
+        message = value;
       }
     }
 
     private string GetMessagePrefix(string phase) {
-      var objectName = this.GameObject?.name ?? "?";
-      var treeName = this.BehaviorTree?.name ?? "?";
+      var objectName = GameObject?.name ?? "?";
+      var treeName = BehaviorTree?.name ?? "?";
 
       return $"<color=#007fff>{objectName}</color><color=#c9a96d>@{treeName}</color>(<color=#c96da6>{phase}</color>): ";
     }
 
     protected override void OnStart() {
-      if (this.logStart) {
-        Debug.Log($"{this.GetMessagePrefix("OnStart")}{this.Message}", this);
+      if (logStart) {
+        Debug.Log($"{GetMessagePrefix("OnStart")}{Message}", this);
       }
     }
 
     protected override void OnEnd() {
-      if (this.logEnd) {
-        Debug.Log($"{this.GetMessagePrefix("OnEnd")}{this.Message}", this);
+      if (logEnd) {
+        Debug.Log($"{GetMessagePrefix("OnEnd")}{Message}", this);
       }
     }
 
     protected override NodeStatus OnUpdate() {
-      Debug.Log($"{this.GetMessagePrefix("OnUpdate")}{this.Message}", this);
+      Debug.Log($"{GetMessagePrefix("OnUpdate")}{Message}", this);
 
       return NodeStatus.Success;
     }

@@ -7,19 +7,19 @@ namespace Tenry.Common.Editor.UIElements {
     private UnityEditor.Editor editor;
 
     public void Inspect(UnityEngine.Object target) {
-      this.Clear();
+      Clear();
 
-      if (this.editor != null) {
-        UnityEngine.Object.DestroyImmediate(this.editor);
+      if (editor != null) {
+        UnityEngine.Object.DestroyImmediate(editor);
       }
 
-      this.editor = UnityEditor.Editor.CreateEditor(target);
+      editor = UnityEditor.Editor.CreateEditor(target);
       var container = new IMGUIContainer(() => {
-        if (this.editor?.target != null) {
-          this.editor?.OnInspectorGUI();
+        if (editor?.target != null) {
+          editor?.OnInspectorGUI();
         }
       });
-      this.Add(container);
+      Add(container);
     }
   }
 }

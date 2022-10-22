@@ -7,22 +7,22 @@ namespace Tenry.DemoActionRpg.BehaviorTree {
     private PlayerController playerController;
 
     protected override void OnStart() {
-      this.playerController = this.GameObject.GetComponent<PlayerController>();
+      playerController = GameObject.GetComponent<PlayerController>();
     }
 
     protected override void OnEnd() {}
 
     protected override NodeStatus OnUpdate() {
-      if (!this.Blackboard.TryGet<GameObject>("SeekTarget", out var seekTarget)) {
+      if (!Blackboard.TryGet<GameObject>("SeekTarget", out var seekTarget)) {
         return NodeStatus.Failure;
       }
 
       var seekFor = seekTarget.transform.position;
 
-      var directionVector = seekFor - this.GameObject.transform.position;
+      var directionVector = seekFor - GameObject.transform.position;
       var direction = Vector3.SignedAngle(Vector3.forward, directionVector.normalized, Vector3.up);
 
-      this.playerController.Move(direction);
+      playerController.Move(direction);
 
       return NodeStatus.Running;
     }

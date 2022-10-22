@@ -11,23 +11,23 @@ namespace Tenry.BehaviorTree.Runtime {
     /// Duration to wait in seconds.
     public float Duration {
       get {
-        return this.duration;
+        return duration;
       }
       set {
-        this.duration = Mathf.Max(0f, value);
+        duration = Mathf.Max(0f, value);
       }
     }
 
     private float startTime;
 
     protected override void OnStart() {
-      this.startTime = Time.time;
+      startTime = Time.time;
     }
 
     protected override void OnEnd() {}
 
     protected override NodeStatus OnUpdate() {
-      if (Time.time - this.startTime >= this.Duration) {
+      if (Time.time - startTime >= Duration) {
         return NodeStatus.Success;
       }
 

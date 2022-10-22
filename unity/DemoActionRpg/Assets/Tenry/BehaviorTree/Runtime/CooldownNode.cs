@@ -15,18 +15,18 @@ namespace Tenry.BehaviorTree.Runtime {
     protected override void OnEnd() {}
 
     protected override NodeStatus OnUpdate() {
-      if (Time.time < this.readyAt) {
+      if (Time.time < readyAt) {
         return NodeStatus.Failure;
       }
 
-      var status = this.Child.Evaluate();
+      var status = Child.Evaluate();
 
       switch (status) {
         case NodeStatus.Running:
           break;
         case NodeStatus.Success:
         case NodeStatus.Failure:
-          this.readyAt = Time.time + this.cooldown;
+          readyAt = Time.time + cooldown;
           break;
       }
 

@@ -37,50 +37,50 @@ namespace Tenry.Common {
 
     private float fraction = 0f;
 
-    private bool TextAvailable => this.currentTextIndex < this.textToType.Length;
+    private bool TextAvailable => currentTextIndex < textToType.Length;
 
     private float speedMultiplier = 1f;
 
     private void Awake() {
-      this.text = this.GetComponent<TMP_Text>();
+      text = GetComponent<TMP_Text>();
     }
 
     private void Start() {
-      this.textToType = this.text.text;
-      this.Restart();
+      textToType = text.text;
+      Restart();
     }
 
     private void Update() {
-      if (this.speedMultiplier <= 0f) {
+      if (speedMultiplier <= 0f) {
         return;
       }
 
-      this.fraction += this.charsPerSecond * Time.deltaTime * this.speedMultiplier;
+      fraction += charsPerSecond * Time.deltaTime * speedMultiplier;
 
-      while (this.fraction >= 1f) {
-        this.fraction -= 1f;
-        this.TypeNextChar();
+      while (fraction >= 1f) {
+        fraction -= 1f;
+        TypeNextChar();
       }
     }
 
     private void TypeNextChar() {
-      if (this.TextAvailable) {
-        if (this.GetNextCharPage() > this.currentPageIndex) {
-          this.enabled = false;
-          this.PageFinished?.Invoke();
+      if (TextAvailable) {
+        if (GetNextCharPage() > currentPageIndex) {
+          enabled = false;
+          PageFinished?.Invoke();
           return;
         }
 
-        this.text.text += this.RetriveNextChars();
-        this.text.pageToDisplay = this.currentPageIndex + 1;
+        text.text += RetriveNextChars();
+        text.pageToDisplay = currentPageIndex + 1;
       } else {
-        this.enabled = false;
-        this.TextFinished?.Invoke();
+        enabled = false;
+        TextFinished?.Invoke();
       }
     }
 
     private int GetNextCharPage() {
-      var charInfo = this.textInfo.characterInfo[this.currentCharIndex];
+      var charInfo = textInfo.characterInfo[currentCharIndex];
 
       return charInfo.pageNumber;
     }
@@ -88,52 +88,52 @@ namespace Tenry.Common {
     private string RetriveNextChars() {
       var sb = new StringBuilder();
 
-      var charInfo = this.textInfo.characterInfo[this.currentCharIndex];
+      var charInfo = textInfo.characterInfo[currentCharIndex];
 
-      if (charInfo.pageNumber > this.currentPageIndex) {
-        this.currentPageIndex = ++this.text.pageToDisplay;
+      if (charInfo.pageNumber > currentPageIndex) {
+        currentPageIndex = ++text.pageToDisplay;
       }
 
-      if (charInfo.lineNumber > this.currentLineIndex) {
+      if (charInfo.lineNumber > currentLineIndex) {
         sb.Append("\n");
-        ++this.currentLineIndex;
+        ++currentLineIndex;
       }
 
-      var substringLength = 1 + charInfo.index - this.currentTextIndex;
-      var substring = this.textToType.Substring(this.currentTextIndex, substringLength);
+      var substringLength = 1 + charInfo.index - currentTextIndex;
+      var substring = textToType.Substring(currentTextIndex, substringLength);
 
       if (substring != "\n") {
         sb.Append(substring);
       }
 
-      ++this.currentCharIndex;
-      this.currentTextIndex = charInfo.index + 1;
+      ++currentCharIndex;
+      currentTextIndex = charInfo.index + 1;
 
       return sb.ToString();
     }
 
     public void Restart() {
-      this.textInfo = this.text.GetTextInfo(this.textToType);
-      this.text.text = "";
+      textInfo = text.GetTextInfo(textToType);
+      text.text = "";
 
-      this.currentCharIndex = 0;
-      this.currentTextIndex = 0;
-      this.currentLineIndex = 0;
-      this.currentPageIndex = 0;
-      this.fraction = 0f;
+      currentCharIndex = 0;
+      currentTextIndex = 0;
+      currentLineIndex = 0;
+      currentPageIndex = 0;
+      fraction = 0f;
     }
 
     public void Continue() {
-      this.enabled = true;
-      this.fraction = 0f;
+      enabled = true;
+      fraction = 0f;
 
-      if (this.GetNextCharPage() > this.currentPageIndex) {
-        this.currentPageIndex = this.GetNextCharPage();
+      if (GetNextCharPage() > currentPageIndex) {
+        currentPageIndex = GetNextCharPage();
       }
     }
 
     public void SetSpeedMultiplier(float multiplier) {
-      this.speedMultiplier = Mathf.Clamp(multiplier, 0f, 100f);
+      speedMultiplier = Mathf.Clamp(multiplier, 0f, 100f);
     }
   }
 }

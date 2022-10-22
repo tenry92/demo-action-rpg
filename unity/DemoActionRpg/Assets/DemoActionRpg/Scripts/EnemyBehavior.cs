@@ -11,18 +11,18 @@ namespace Tenry.DemoActionRpg {
     private PlayerController controller;
 
     protected override void OnStart() {
-      this.enemyBehaviour = this.GameObject.GetComponent<EnemyBehavior>();
-      this.controller = this.GameObject.GetComponent<PlayerController>();
+      enemyBehaviour = GameObject.GetComponent<EnemyBehavior>();
+      controller = GameObject.GetComponent<PlayerController>();
     }
 
     protected override void OnEnd() {}
 
     protected override NodeStatus OnUpdate() {
-      var seekFor = this.enemyBehaviour.SeekFor;
-      var directionVector = seekFor - this.GameObject.transform.position;
+      var seekFor = enemyBehaviour.SeekFor;
+      var directionVector = seekFor - GameObject.transform.position;
       var direction = Vector3.SignedAngle(Vector3.forward, directionVector.normalized, Vector3.up);
 
-      this.controller.Move(direction);
+      controller.Move(direction);
 
       return NodeStatus.Running;
     }
@@ -38,14 +38,11 @@ namespace Tenry.DemoActionRpg {
 
     private Animator animator;
 
-    private PlayerController controller;
-
     public Vector3 SeekFor { get; set; }
 
     private void Awake() {
-      this.damage = this.GetComponentInChildren<Damageable>();
-      this.animator = this.GetComponent<Animator>();
-      this.controller = this.GetComponent<PlayerController>();
+      damage = GetComponentInChildren<Damageable>();
+      animator = GetComponent<Animator>();
     }
 
     private void Start() {
@@ -57,46 +54,46 @@ namespace Tenry.DemoActionRpg {
     }
 
     private void OnEnable() {
-      if (this.damage != null) {
-        this.damage.Damaged.AddListener(this.OnDamage);
-        this.damage.Destroyed.AddListener(this.Perish);
+      if (damage != null) {
+        damage.Damaged.AddListener(OnDamage);
+        damage.Destroyed.AddListener(Perish);
       }
     }
 
     private void OnDisable() {
-      if (this.damage != null) {
-        this.damage.Damaged.RemoveListener(this.OnDamage);
-        this.damage.Destroyed.RemoveListener(this.Perish);
+      if (damage != null) {
+        damage.Damaged.RemoveListener(OnDamage);
+        damage.Destroyed.RemoveListener(Perish);
       }
     }
 
     public async void Perish() {
-      if (this.animator == null) {
+      if (animator == null) {
         return;
       }
 
-      this.animator.SetInteger("DamageType", 1);
-      this.animator.SetTrigger("Damage");
+      animator.SetInteger("DamageType", 1);
+      animator.SetTrigger("Damage");
 
       await Task.Delay(500);
-      Destroy(this.gameObject);
+      Destroy(gameObject);
 
-      if (this.perishEffectPrefab != null) {
-        Instantiate(this.perishEffectPrefab, this.transform.position, Quaternion.identity);
+      if (perishEffectPrefab != null) {
+        Instantiate(perishEffectPrefab, transform.position, Quaternion.identity);
       }
     }
 
     private void OnDamage(int amount) {
-      if (this.damage.IsDead) {
+      if (damage.IsDead) {
         return;
       }
 
-      if (this.animator == null) {
+      if (animator == null) {
         return;
       }
 
-      this.animator.SetInteger("DamageType", 0);
-      this.animator.SetTrigger("Damage");
+      animator.SetInteger("DamageType", 0);
+      animator.SetTrigger("Damage");
     }
 
     private void AlertObservers() {

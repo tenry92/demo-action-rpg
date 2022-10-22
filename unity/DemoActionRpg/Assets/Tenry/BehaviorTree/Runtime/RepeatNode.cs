@@ -12,9 +12,9 @@ namespace Tenry.BehaviorTree.Runtime {
     protected override void OnEnd() {}
 
     protected override NodeStatus OnUpdate() {
-      var status = this.Child.Evaluate();
+      var status = Child.Evaluate();
 
-      if (this.endOnFailure && status == NodeStatus.Failure) {
+      if (endOnFailure && status == NodeStatus.Failure) {
         return NodeStatus.Failure;
       }
 
