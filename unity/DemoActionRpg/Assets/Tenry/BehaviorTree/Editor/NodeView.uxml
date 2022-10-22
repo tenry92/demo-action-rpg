@@ -1,0 +1,23 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="True">
+    <Style src="project://database/Assets/Tenry/BehaviorTree/Editor/NodeView.uss?fileID=7433441132597879392&amp;guid=6cd903601e17e554ca8465147dfeb815&amp;type=3#NodeView" />
+    <ui:VisualElement name="node-border" style="min-width: 80px;">
+        <ui:VisualElement name="contents">
+            <ui:VisualElement name="divider" class="horizontal" />
+            <ui:VisualElement name="top">
+                <ui:VisualElement name="input" />
+                <ui:VisualElement name="divider" class="vertical" />
+                <ui:VisualElement name="title" style="margin-left: 8px; margin-right: 8px; margin-top: 8px; margin-bottom: 8px; align-items: center; -unity-font-style: bold; font-size: 18px;">
+                    <ui:Label name="title-label" text="Node" class="unity-text-element unity-label" />
+                    <ui:VisualElement name="title-button-container">
+                        <ui:VisualElement name="collapse-button">
+                            <ui:VisualElement name="icon" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:Label text="Note" display-tooltip-when-elided="true" name="note" style="-unity-text-align: upper-center; font-size: 10px;" />
+                <ui:VisualElement name="output" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+    <ui:VisualElement name="selection-border" picking-mode="Ignore" />
+</ui:UXML>

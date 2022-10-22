@@ -1,0 +1,14 @@
+{
+    "name": "Tenry.OggInfo",
+    "rootNamespace": "Tenry.OggInfo",
+    "references": [],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
