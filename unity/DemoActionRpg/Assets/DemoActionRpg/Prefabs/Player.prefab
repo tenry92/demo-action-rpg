@@ -116,6 +116,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9a0122558e7ef264e801c477f26f260e, type: 2}
   - {fileID: 11400000, guid: b51df209a958ca345bc5951097031125, type: 2}
   destroyOnDeath: 0
+  hurtAudioSource: {fileID: 0}
   Damaged:
     m_PersistentCalls:
       m_Calls: []
@@ -211,7 +212,7 @@ MonoBehaviour:
   acceleration: 15
   gravity: 10
   bombPool: {fileID: 11400000, guid: 576534e9138792849aa406ad5fe47ff3, type: 2}
-  boomerangSpawner: {fileID: 0}
+  boomerangSpawner: {fileID: 5252999080749378357}
 --- !u!114 &6204600993177781234
 MonoBehaviour:
   m_ObjectHideFlags: 0

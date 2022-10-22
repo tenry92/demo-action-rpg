@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -13,17 +11,13 @@ namespace Tenry.DemoActionRpg {
 
     private PlayerController playerController;
 
-    private InputAction moveAction;
-
-    private InputAction attackAction;
-
-    private InputAction item1Action;
-
-    private InputAction item2Action;
+    private Controls controls;
 
     private void Awake() {
       playerController = GetComponent<PlayerController>();
       Debug.Assert(playerController != null);
+
+      controls = new Controls();
 
       if (enabledSwitch != null) {
         enabled = enabledSwitch.Value;
@@ -31,32 +25,19 @@ namespace Tenry.DemoActionRpg {
     }
 
     private void OnEnable() {
-      var map = GameController.Instance.InputManager.ListenToMap("Game");
+      controls.Game.Enable();
 
-      moveAction = map.FindAction("Move");
-      attackAction = map.FindAction("Attack");
-      item1Action = map.FindAction("Item 1");
-      item2Action = map.FindAction("Item 2");
-
-      attackAction.performed += OnAttack;
-      item1Action.performed += OnUseItem1;
-      item2Action.performed += OnUseItem2;
+      controls.Game.Attack.performed += OnAttack;
+      controls.Game.Item1.performed += OnUseItem1;
+      controls.Game.Item2.performed += OnUseItem2;
     }
 
     private void OnDisable() {
-      GameController.Instance.InputManager.UnlistenToMap("Game");
+      controls.Game.Disable();
 
-      if (attackAction != null) {
-        attackAction.performed -= OnAttack;
-      }
-
-      if (item1Action != null) {
-        item1Action.performed -= OnUseItem1;
-      }
-
-      if (item2Action != null) {
-        item2Action.performed -= OnUseItem2;
-      }
+      controls.Game.Attack.performed -= OnAttack;
+      controls.Game.Item1.performed -= OnUseItem1;
+      controls.Game.Item2.performed -= OnUseItem2;
     }
 
     private void Update() {
@@ -64,17 +45,12 @@ namespace Tenry.DemoActionRpg {
     }
 
     private void UpdateMovement() {
-      var input = moveAction.ReadValue<Vector2>();
+      var input = controls.Game.Move.ReadValue<Vector2>();
 
       if (input.magnitude > 0f) {
         var direction = -Vector2.SignedAngle(Vector2.right, input.normalized) + 90f;
         playerController.Move(direction, input.magnitude);
       }
-    }
-
-    private IEnumerable<InputAction> GetAllActions() {
-      yield return moveAction;
-      yield return attackAction;
     }
 
     private async void OnAttack(InputAction.CallbackContext context) {

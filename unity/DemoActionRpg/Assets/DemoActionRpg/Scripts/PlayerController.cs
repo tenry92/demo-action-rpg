@@ -158,8 +158,7 @@ namespace Tenry.DemoActionRpg {
 
     public void UseItem1() {
       var bomb = bombPool.Pool.Get();
-      bomb.transform.position = transform.position;
-      bomb.transform.rotation = Quaternion.identity;
+      bomb.transform.SetPositionAndRotation(transform.position, Quaternion.identity);
     }
 
     public void UseItem2() {
