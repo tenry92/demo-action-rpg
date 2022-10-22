@@ -1,0 +1,19 @@
+{
+    "name": "Tenry.BehaviorTree.Editor",
+    "rootNamespace": "Tenry.BehaviorTree.Editor",
+    "references": [
+        "GUID:081871b51d8cf4b4ea5874c9a3610546",
+        "GUID:20a42ffe8a5091742a2420e833097541"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
