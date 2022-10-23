@@ -27,6 +27,9 @@ namespace Tenry.DemoActionRpg {
 
     [SerializeField]
     private AudioSource hurtAudioSource;
+
+    [SerializeField]
+    private float damageCooldown = 0f;
     #endregion
 
     private int health;
@@ -84,7 +87,7 @@ namespace Tenry.DemoActionRpg {
     // }
 
     public bool CanTakeDamageFrom(DamageType type) {
-      if (damagedBy == null) {
+      if (damagedBy == null || activeDamageCooldown > 0f) {
         return false;
       }
 
@@ -105,6 +108,7 @@ namespace Tenry.DemoActionRpg {
         }
 
         Health -= amount;
+        activeDamageCooldown = damageCooldown;
         Damaged?.Invoke(amount);
       }
 

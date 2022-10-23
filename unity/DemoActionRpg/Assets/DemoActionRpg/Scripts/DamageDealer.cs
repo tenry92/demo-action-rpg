@@ -11,9 +11,14 @@ namespace Tenry.DemoActionRpg {
     [SerializeField]
     [Min(1)]
     private int damage = 1;
+
+    [SerializeField]
+    private bool permanentDamage = false;
     #endregion
 
     private readonly HashSet<Damageable> damagedTargets = new();
+
+    public bool PermanentDamage => permanentDamage;
 
     private void OnEnable() {
       damagedTargets.Clear();
@@ -38,11 +43,15 @@ namespace Tenry.DemoActionRpg {
     }
 
     private bool CanDamage(Damageable target) {
+      if (!enabled) {
+        return false;
+      }
+
       if (target == null) {
         return false;
       }
 
-      if (damagedTargets.Contains(target)) {
+      if (!permanentDamage && damagedTargets.Contains(target)) {
         return false;
       }
 

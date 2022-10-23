@@ -3034,6 +3034,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageType: {fileID: 11400000, guid: 9a0122558e7ef264e801c477f26f260e, type: 2}
   damage: 1
+  permanentDamage: 1
 --- !u!1 &1086808928
 GameObject:
   m_ObjectHideFlags: 0
@@ -4420,6 +4421,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b51df209a958ca345bc5951097031125, type: 2}
   destroyOnDeath: 0
   hurtAudioSource: {fileID: 1086808930}
+  damageCooldown: 0
   Changed:
     m_PersistentCalls:
       m_Calls: []
@@ -4558,6 +4560,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b51df209a958ca345bc5951097031125, type: 2}
   destroyOnDeath: 1
   hurtAudioSource: {fileID: 0}
+  damageCooldown: 0
   Changed:
     m_PersistentCalls:
       m_Calls: []
