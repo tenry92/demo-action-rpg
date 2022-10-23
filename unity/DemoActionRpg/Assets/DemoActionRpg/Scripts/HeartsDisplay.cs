@@ -12,12 +12,6 @@ namespace Tenry.DemoActionRpg {
     private Damageable reflectHealthOf;
     #endregion
 
-#if UNITY_EDITOR
-    private void OnValidate() {
-      AdjustHeartsCount();
-    }
-#endif
-
     private void Start() {
       AdjustHeartsCount();
     }
