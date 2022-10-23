@@ -8,7 +8,7 @@ using UnityEditor;
 #endif
 
 namespace Tenry.BehaviorTree.Runtime {
-  [CreateAssetMenu()]
+  [CreateAssetMenu(menuName = "Tenry/Behavior Tree", fileName = "BehaviorTree")]
   public class BehaviorTree : ScriptableObject {
     #region Serialized Fields
     [SerializeField]
@@ -70,6 +70,10 @@ namespace Tenry.BehaviorTree.Runtime {
       });
 
       return copy;
+    }
+
+    public void Restart() {
+      root.Restart();
     }
 
 #if UNITY_EDITOR

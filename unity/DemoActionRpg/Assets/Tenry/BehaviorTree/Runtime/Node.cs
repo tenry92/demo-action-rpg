@@ -111,6 +111,14 @@ namespace Tenry.BehaviorTree.Runtime {
       Status = NodeStatus.Running;
     }
 
+    public void Restart() {
+      ResetStatus();
+
+      foreach (var child in GetChildren()) {
+        child.Restart();
+      }
+    }
+
     protected abstract void OnStart();
 
     protected abstract void OnEnd();

@@ -387,6 +387,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tree: {fileID: 11400000, guid: 06c88d2883c618a409b55c08573995d9, type: 2}
+  autoRun: 1
 --- !u!1 &37411602
 GameObject:
   m_ObjectHideFlags: 0
@@ -1043,7 +1044,6 @@ GameObject:
   - component: {fileID: 336533752}
   - component: {fileID: 336533751}
   - component: {fileID: 336533753}
-  - component: {fileID: 336533754}
   m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
@@ -1206,93 +1206,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &336533754
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 336533749}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: 04d4e328ce264994f986de2b02551a41,
-    type: 3}
-  m_NotificationBehavior: 2
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents:
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 336533753}
-        m_TargetAssemblyTypeName: Tenry.Common.Typewriter, Tenry.Common
-        m_MethodName: Continue
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: ed0be9a1-d430-4e90-beff-5626e055e918
-    m_ActionName: ActionMap/Confirm[/Keyboard/space,/Keyboard/enter,/Mouse/leftButton]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: ef3044a3-3d50-4721-aa92-8a325fd2783d
-    m_ActionName: ActionMap/Cancel[/Keyboard/escape,/Keyboard/backspace,/Mouse/rightButton]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: a8ba80da-c3b8-40a0-98d5-0d84088a4916
-    m_ActionName: Game/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 14ce6a6c-8935-4691-9a01-c8447ea04a2d
-    m_ActionName: Game/Attack[/Keyboard/space,/Mouse/leftButton,/XInputControllerWindows/buttonSouth]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 75c8663b-9e19-4373-8b47-d59e78f72060
-    m_ActionName: Game/Item 1[/Keyboard/z,/XInputControllerWindows/buttonWest]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 64fb2cb0-e0b9-4b2f-8dca-8bf3bfced6de
-    m_ActionName: Game/Item 2[/Keyboard/x,/XInputControllerWindows/buttonNorth]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: c62f17a2-f50e-48ec-af84-b955cbbc66a7
-    m_ActionName: Game/Interact[/Keyboard/space,/Keyboard/enter,/Mouse/leftButton,/XInputControllerWindows/buttonSouth,/XInputControllerWindows/buttonEast]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: dd8d9987-6e19-4a1c-b98c-26592ba29520
-    m_ActionName: Menu/Point[/Mouse/position]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: afa85957-83c2-410b-b457-2fbfb8f2082c
-    m_ActionName: Menu/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d,/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow,/XInputControllerWindows/leftStick,/XInputControllerWindows/dpad]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: fa93a262-e919-4110-ba32-f482a09febb4
-    m_ActionName: Menu/Click[/Mouse/leftButton]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: cc6c977d-8d26-4e42-96f2-4ce7f71c0b8d
-    m_ActionName: General/Menu[/Keyboard/escape,/XInputControllerWindows/start]
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
-  m_DefaultActionMap: Game
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 1327799407}
 --- !u!1 &350408707
 GameObject:
   m_ObjectHideFlags: 0
@@ -4184,6 +4097,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4efe645b1f6dbd46b8d95c95fdda53e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  behavior: {fileID: 11400000, guid: d2b882db8ece4884484c64b121d7bfbe, type: 2}
 --- !u!1001 &1407997246
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6165,7 +6079,7 @@ PrefabInstance:
     - target: {fileID: 5906950446355611762, guid: b50d846b6a3c5a545af1d394384054bf,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.1159169
+      value: 0.115916885
       objectReference: {fileID: 0}
     - target: {fileID: 5906950446355611762, guid: b50d846b6a3c5a545af1d394384054bf,
         type: 3}
@@ -6492,7 +6406,7 @@ PrefabInstance:
     - target: {fileID: 8588678655220123984, guid: b2e9b85da0ec6ed459b2fe517443d7a3,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.1159169
+      value: 0.115916885
       objectReference: {fileID: 0}
     - target: {fileID: 8588678655220123984, guid: b2e9b85da0ec6ed459b2fe517443d7a3,
         type: 3}

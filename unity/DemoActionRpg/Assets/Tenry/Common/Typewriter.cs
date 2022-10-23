@@ -45,7 +45,7 @@ namespace Tenry.Common {
       text = GetComponent<TMP_Text>();
     }
 
-    private void Start() {
+    private void OnEnable() {
       textToType = text.text;
       Restart();
     }

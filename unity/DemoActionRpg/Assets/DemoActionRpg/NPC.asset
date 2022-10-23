@@ -1,0 +1,51 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-7095426525208348333
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf41b31ee31385b4c9dfe2809228cc40, type: 3}
+  m_Name: RootNode
+  m_EditorClassIdentifier: 
+  position: {x: 16, y: -13}
+  guid: 7ed666a11f4cce34bb45b6a29a2140fb
+  note: 
+  child: {fileID: -2574796544103740444}
+--- !u!114 &-2574796544103740444
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79e553bc77880094c90bc4c9f73056fa, type: 3}
+  m_Name: MessageNode
+  m_EditorClassIdentifier: 
+  position: {x: 8, y: 189}
+  guid: 1e062d8233624aa4bb77de4d87ff7ad0
+  note: 
+  message: Welcome! A big quest is awaiting you!
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7463ad0349261a448f8e98dccb718e9, type: 3}
+  m_Name: NPC
+  m_EditorClassIdentifier: 
+  nodes:
+  - {fileID: -7095426525208348333}
+  - {fileID: -2574796544103740444}
+  root: {fileID: -7095426525208348333}
+  Status: 0
