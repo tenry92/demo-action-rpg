@@ -17,7 +17,7 @@ namespace Tenry.DemoActionRpg {
       playerController = GetComponent<PlayerController>();
       Debug.Assert(playerController != null);
 
-      controls = new Controls();
+      controls = new();
 
       if (enabledSwitch != null) {
         enabled = enabledSwitch.Value;
