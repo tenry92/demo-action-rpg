@@ -1233,7 +1233,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Scenes/GamepadTest
+          m_StringArgument: GamepadTest
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!4 &2098686652
@@ -1481,7 +1481,7 @@ PrefabInstance:
     - target: {fileID: 3345750709593347482, guid: 7513de494809b964e8f1c5d745a82fd7,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: Scenes/SampleScene
+      value: SampleScene
       objectReference: {fileID: 0}
     - target: {fileID: 3345750709593347482, guid: 7513de494809b964e8f1c5d745a82fd7,
         type: 3}
